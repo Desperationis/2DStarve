@@ -7,6 +7,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
     int speed = 4;
     Vector2 movement;
+    bool attacked = false;
 
 
     public override void Attached()
@@ -20,18 +21,16 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         movement.y = Input.GetAxisRaw("Vertical");
     }
 
-    private void Update()
-    {
-        // Poll Server and Client for input
-        PollInput();
-    }
-
     public override void SimulateController()
     {
-        // This is the client's Update();
+        // This is the client's and server's player's Update();
         PollInput();
         IPlayerMovementAuthInput input = PlayerMovementAuth.Create();
         input.Direction = movement.normalized;
+
+        input.Attack = Input.GetKey(KeyCode.Space) && !attacked;
+        attacked = Input.GetKey(KeyCode.Space);
+
         entity.QueueInput(input);
     }
 
@@ -51,8 +50,17 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         {
             // Move the entity if the application owns it; Updates every frame.
             transform.position = transform.position + (cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
-
             cmd.Result.Position = transform.position;
+
+            if(cmd.Input.Attack)
+            {
+                Bolt.LagCompensation.BoltPhysicsHits hits = BoltNetwork.OverlapSphereAll(cmd.Result.Position, 2.0f, cmd.ServerFrame);
+
+                for(int i = 0; i < hits.count; i++)
+                {
+                    Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
+                }
+            }
         }
 
     }
