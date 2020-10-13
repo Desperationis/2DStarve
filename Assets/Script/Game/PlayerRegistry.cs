@@ -48,6 +48,12 @@ public static class PlayerRegistry
         return CreatePlayer(connection);
     }
 
+    public static void DestroyPlayer(BoltConnection connection)
+    {
+        GetPlayer(connection).BoltDestroy();
+        players.Remove(GetPlayer(connection));
+    }
+
 
     public static PlayerObject GetPlayer(BoltConnection connection)
     {

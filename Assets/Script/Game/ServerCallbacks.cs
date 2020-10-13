@@ -18,6 +18,11 @@ public class ServerCallbacks : Bolt.GlobalEventListener
         PlayerRegistry.CreateClientPlayer(connection);
     }
 
+    public override void Disconnected(BoltConnection connection)
+    {
+        PlayerRegistry.DestroyPlayer(connection);
+    }
+
     public override void SceneLoadLocalDone(string scene)
     {
         PlayerRegistry.ServerPlayer.Spawn();

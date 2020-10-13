@@ -32,6 +32,16 @@ public class PlayerObject
         character.transform.position = Vector3.zero;
     }
 
+    public void BoltDestroy()
+    {
+        if(character)
+        {
+            BoltNetwork.Destroy(character);
+        }
+    }
+
+
+
     public bool IsServer
     {
         get { return connection == null; }
@@ -41,4 +51,5 @@ public class PlayerObject
     {
         get { return connection != null; }
     }
+
 }
