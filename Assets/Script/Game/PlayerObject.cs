@@ -5,7 +5,8 @@ using Bolt;
 
 /// <summary>
 /// Abstract representation of a player. This allows the server
-/// to exist in the game without a Bolt Connection. 
+/// to exist in the game without a Bolt Connection. Used in 
+/// PlayerRegistry.cs.
 /// </summary>
 public class PlayerObject
 {
@@ -39,7 +40,6 @@ public class PlayerObject
             BoltNetwork.Destroy(character);
         }
     }
-
 
 
     public bool IsServer

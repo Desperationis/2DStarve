@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Bolt;
 
-
+/// <summary>
+/// Singleton dedicated to following ONLY 1 player via camera.
+/// </summary>
 public class PlayerCamera : MonoBehaviour
 {
     #region Singleton

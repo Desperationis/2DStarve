@@ -8,8 +8,9 @@ using Bolt;
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "GameScene")]
 public class ServerCallbacks : Bolt.GlobalEventListener
 {
-    private void Awake()
+    private void Start()
     {
+        // Comment this line out if you don't want a player for the server
         PlayerRegistry.CreateServerPlayer();
     }
 
@@ -30,12 +31,13 @@ public class ServerCallbacks : Bolt.GlobalEventListener
 
     public override void SceneLoadRemoteDone(BoltConnection connection)
     {
-        // When a client is done loading, spawn it. 
+        // When a client is done loading on their end, spawn it. 
         PlayerRegistry.GetPlayer(connection).Spawn();
     }
 
     public override void ControlOfEntityGained(BoltEntity entity)
     {
+        // Follow controlled player around
         if (entity.StateIs<IPlayerState>())
         {
             PlayerCamera.Instance.Follow(entity);
