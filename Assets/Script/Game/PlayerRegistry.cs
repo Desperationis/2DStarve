@@ -2,7 +2,7 @@
 
 /// <summary>
 /// A class that deals with finding and creating players in a 
-/// registry. 
+/// registry; Only applies to the server.
 /// </summary>
 public static class PlayerRegistry
 {

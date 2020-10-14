@@ -43,13 +43,16 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 
         if (resetState)
         {
-            // Can ONLY be true on clients
+            // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
         }
         else
         {
-            // Move the entity if the application owns it; Updates every frame.
-            state.Direction = cmd.Input.Direction;
+            // Move the entity on both the client and server.
+            if(BoltNetwork.IsServer)
+            {
+                state.Direction = cmd.Input.Direction;
+            }
             transform.position = transform.position + (cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
             cmd.Result.Position = transform.position;
 

@@ -33,4 +33,12 @@ public class ServerCallbacks : Bolt.GlobalEventListener
         // When a client is done loading, spawn it. 
         PlayerRegistry.GetPlayer(connection).Spawn();
     }
+
+    public override void ControlOfEntityGained(BoltEntity entity)
+    {
+        if (entity.StateIs<IPlayerState>())
+        {
+            PlayerCamera.Instance.Follow(entity);
+        }
+    }
 }

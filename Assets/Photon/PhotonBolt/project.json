@@ -512,6 +512,15 @@
       "Name": "MobState",
       "Guid": "c01292e7-7d60-44e4-ad55-a7eae145e7e0",
       "Groups": []
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [],
+      "EntitySenders": 3,
+      "GlobalSenders": 1,
+      "Name": "ConnectedWithPlayer",
+      "Guid": "dbc41c76-0eb8-42df-b57a-9c2f393bda94",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"
