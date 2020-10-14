@@ -39,18 +39,21 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     {
         // Bolt saves a query of inputs and slowly fixes the divergence of the
         // client to the cerser's position. This is done with resetState.
-
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
         if (resetState)
         {
+            // Can ONLY be true on clients
             transform.position = cmd.Result.Position;
         }
         else
         {
             // Move the entity if the application owns it; Updates every frame.
+            state.Direction = cmd.Input.Direction;
             transform.position = transform.position + (cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
             cmd.Result.Position = transform.position;
+
+            // DIRECTION INTO COMMAND
 
             if(cmd.Input.Attack)
             {
@@ -60,6 +63,8 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
                 {
                     Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
                 }
+
+                Debug.Log(state.Direction);
             }
         }
 
