@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 7097680312478396940}
   - component: {fileID: 4886282247938135432}
   - component: {fileID: 8311166723567496473}
-  - component: {fileID: 8651847698336136051}
   - component: {fileID: 4107436443380686467}
+  - component: {fileID: 8651847698336136051}
+  - component: {fileID: -2372937717468005028}
   - component: {fileID: -3375194100729452473}
   - component: {fileID: 6411824412771164450}
   m_Layer: 0
@@ -117,20 +118,6 @@ MonoBehaviour:
   _entityBehaviourQueryOption: 0
   _entityPriorityCalculatorQueryOption: 1
   _entityReplicationFilterQueryOption: 1
---- !u!114 &8651847698336136051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625509503249030293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10764d4ed3c7c240a6075836f297c9c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxCollider: {fileID: -3375194100729452473}
-  collisionMarker: {fileID: 6411824412771164450}
 --- !u!114 &4107436443380686467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,6 +132,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _proximity: {fileID: 5862214055096586165}
   _hitboxes: []
+--- !u!114 &8651847698336136051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625509503249030293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e10764d4ed3c7c240a6075836f297c9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobController: {fileID: -2372937717468005028}
+--- !u!114 &-2372937717468005028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625509503249030293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc554962e22863d4ab793220c3ffc1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: -3375194100729452473}
+  collisionMarker: {fileID: 6411824412771164450}
+  speed: 5
+  _velocity: {x: 0, y: 0}
 --- !u!61 &-3375194100729452473
 BoxCollider2D:
   m_ObjectHideFlags: 0

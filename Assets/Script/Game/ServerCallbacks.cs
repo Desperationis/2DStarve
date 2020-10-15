@@ -37,7 +37,7 @@ public class ServerCallbacks : Bolt.GlobalEventListener
 
     public override void ControlOfEntityGained(BoltEntity entity)
     {
-        // Follow controlled player around
+        // Follow server-controlled player around
         if (entity.StateIs<IPlayerState>())
         {
             PlayerCamera.Instance.Follow(entity);

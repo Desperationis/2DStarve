@@ -5,16 +5,28 @@ using Bolt;
 
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
-    int speed = 4;
     Vector2 movement;
     bool attacked = false;
 
-    public BoxCollider2D boxCollider;
-    public CollisionMarker collisionMarker;
+    public MobController mobController;
 
     public override void Attached()
     {
         state.SetTransforms(state.PositionTransform, transform);
+        state.AddCallback("Velocity", VelocityUpdate);
+    }
+
+    private void VelocityUpdate()
+    {
+        //mobController.ForceVelocity(state.Velocity);
+    }
+
+    private void Update()
+    {
+        if(entity.IsControllerOrOwner)
+        {
+            //mobController.UpdateFrame();
+        }
     }
 
     private void PollInput()
@@ -36,28 +48,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         entity.QueueInput(input);
     }
 
-    private void CalculateCollidedPosition()
-    {
-        Collider2D[] colliderHits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0.0f);
-
-        foreach (Collider2D hit in colliderHits)
-        {
-            if (hit == boxCollider) continue;
-
-            CollisionMarker hitMarker = hit.GetComponent<CollisionMarker>();
-
-            if(collisionMarker.IsPushed(hitMarker.CollisionNumber))
-            {
-                ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-
-                if (colliderDistance.isOverlapped)
-                {
-                    transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
-                }
-            }
-        }
-    }
-
     // Execute a command on both the controller and owner
     public override void ExecuteCommand(Command command, bool resetState)
     {
@@ -69,21 +59,23 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         {
             // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
+            mobController.ForceVelocity(cmd.Result.Velocity);
         }
         else
         {
             // Move the entity on both the client and server.
-            if(BoltNetwork.IsServer)
-            {
-                state.Direction = cmd.Input.Direction;
-            }
 
             // Physics here
-            transform.Translate(cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
-            CalculateCollidedPosition();
+            mobController.SetDirection(cmd.Input.Direction);
+            mobController.UpdateFrame();
+
+            if(BoltNetwork.IsServer)
+            {
+                state.Velocity = mobController.Velocity;
+            }
 
             cmd.Result.Position = transform.position;
-
+            cmd.Result.Velocity = mobController.Velocity;
 
             if(cmd.Input.Attack)
             {
@@ -93,8 +85,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
                 {
                     Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
                 }
-
-                Debug.Log(state.Direction);
             }
         }
 
