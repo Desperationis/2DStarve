@@ -9,6 +9,9 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     Vector2 movement;
     bool attacked = false;
 
+    public BoxCollider2D boxCollider;
+    public CollisionMarker collisionMarker;
+
 
     public override void Attached()
     {
@@ -34,6 +37,28 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         entity.QueueInput(input);
     }
 
+    private void CalculateCollidedPosition()
+    {
+        Collider2D[] colliderHits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0.0f);
+
+        foreach (Collider2D hit in colliderHits)
+        {
+            if (hit == boxCollider) continue;
+
+            CollisionMarker hitMarker = hit.GetComponent<CollisionMarker>();
+
+            if(collisionMarker.IsPushed(hitMarker.CollisionNumber))
+            {
+                ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+
+                if (colliderDistance.isOverlapped)
+                {
+                    transform.Translate(colliderDistance.pointA - colliderDistance.pointB);
+                }
+            }
+        }
+    }
+
     // Execute a command on both the controller and owner
     public override void ExecuteCommand(Command command, bool resetState)
     {
@@ -53,10 +78,13 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             {
                 state.Direction = cmd.Input.Direction;
             }
-            transform.position = transform.position + (cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
+
+            // Physics here
+            transform.Translate(cmd.Input.Direction * speed * BoltNetwork.FrameDeltaTime);
+            CalculateCollidedPosition();
+
             cmd.Result.Position = transform.position;
 
-            // DIRECTION INTO COMMAND
 
             if(cmd.Input.Attack)
             {
