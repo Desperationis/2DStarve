@@ -12,7 +12,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     public BoxCollider2D boxCollider;
     public CollisionMarker collisionMarker;
 
-
     public override void Attached()
     {
         state.SetTransforms(state.PositionTransform, transform);
