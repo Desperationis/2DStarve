@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -2372937717468005028}
   - component: {fileID: -3375194100729452473}
   - component: {fileID: 6411824412771164450}
+  - component: {fileID: 416141970648545280}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -160,7 +161,9 @@ MonoBehaviour:
   boxCollider: {fileID: -3375194100729452473}
   collisionMarker: {fileID: 6411824412771164450}
   speed: 5
-  _velocity: {x: 0, y: 0}
+  runningMultiplier: 1.5
+  isRunning: 0
+  _direction: {x: 0, y: 0}
 --- !u!61 &-3375194100729452473
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -200,6 +203,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collisionNumber: 0
+--- !u!114 &416141970648545280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625509503249030293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7564cc9e10daff747986b1a5dde5d04f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8089671330879029919
 GameObject:
   m_ObjectHideFlags: 0

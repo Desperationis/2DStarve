@@ -1,26 +1,35 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// A custom physics controller for a mob. 
+/// A custom physics controller for a mob that deals with
+/// on-frame collision with BoxCollider2D's. 
 /// </summary>
 public class MobController : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("The collider of this entity. This is what is checked against other colliders.")]
     private BoxCollider2D boxCollider;
 
     [SerializeField]
+    [Tooltip("The collision marker of this entity. This determines how it'll interact with other colliders.")]
     private CollisionMarker collisionMarker;
 
     [SerializeField]
-    [Tooltip("The number of units passed per second.")]
+    [Tooltip("The walking speed of the entity in units per second.")]
     private float speed = 5.0f;
 
     [SerializeField]
-    private Vector2 _velocity = Vector2.zero;
+    [Tooltip("How many times faster running is than walking.")]
+    private float runningMultiplier = 1.5f;
 
-    public Vector2 Velocity { get { return _velocity; } }
+    [ReadOnly]
+    [SerializeField]
+    private bool isRunning = false;
+
+    [SerializeField]
+    [ReadOnly]
+    private Vector2 _direction = Vector2.zero;
+    public Vector2 Direction { get { return _direction; } }
 
     /// <summary>
     /// Sets the direction the mob controller will drive the mob to 
@@ -32,21 +41,29 @@ public class MobController : MonoBehaviour
     /// </param>
     public void SetDirection(Vector2 direction)
     {
-        _velocity = direction.normalized * speed;
+        _direction = direction.normalized;
     }
 
-    /// <summary>
-    /// Force the mob controller to take a certain velocity.
-    /// </summary>
-    /// <param name="velocity"></param>
-    public void ForceVelocity(Vector2 velocity)
+
+    public void SetSpeed(float speed)
     {
-        _velocity = velocity;
+        this.speed = speed;
     }
+
+    public void SetRunning(bool running)
+    {
+        isRunning = running;
+    }
+
+    public void SetRunningMultiplier(float runningMultiplier)
+    {
+        this.runningMultiplier = runningMultiplier;
+    }
+
 
     /// <summary>
     /// Updates the position of the entity based on any colliding 
-    /// BoxCollider2D's. 
+    /// BoxCollider2D's and CollisionMarker
     /// </summary>
     public void CalculateCollidedPosition()
     {
@@ -56,6 +73,8 @@ public class MobController : MonoBehaviour
         {
             if (hit == boxCollider) continue;
 
+            // Determine if this entity gets pushed by other colliders
+            // or phases through them
             CollisionMarker hitMarker = hit.GetComponent<CollisionMarker>();
 
             if (collisionMarker.IsPushed(hitMarker.CollisionNumber))
@@ -70,12 +89,21 @@ public class MobController : MonoBehaviour
         }
     }
 
+
     /// <summary>
-    /// Updates the controller by a single frame.
+    /// Updates the controller by a single frame. This function MUST be called
+    /// in FixedUpdate() or some other variant of it to work. 
     /// </summary>
-    public void UpdateFrame()
+    public void UpdateFixedFrame()
     {
-        transform.position += (Vector3)_velocity * BoltNetwork.FrameDeltaTime;
+        Vector3 calculatedVelocity = (Vector3)Direction * speed * BoltNetwork.FrameDeltaTime;
+
+        if(isRunning)
+        {
+            calculatedVelocity *= runningMultiplier;
+        }
+
+        transform.position += calculatedVelocity;
         CalculateCollidedPosition();
     }
 }

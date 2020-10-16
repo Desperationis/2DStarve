@@ -1,51 +1,44 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Bolt;
 
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
-    Vector2 movement;
     bool attacked = false;
-
     public MobController mobController;
 
     public override void Attached()
     {
-        state.SetTransforms(state.PositionTransform, transform);
-        state.AddCallback("Velocity", VelocityUpdate);
+        state.SetTransforms(state.Transform, transform);
+        state.AddCallback("Speed", SpeedUpdate);
+        state.AddCallback("RunningMultiplier", RunningUpdate);
     }
 
-    private void VelocityUpdate()
+    private void SpeedUpdate()
     {
-        //mobController.ForceVelocity(state.Velocity);
+        mobController.SetSpeed(state.Speed);
     }
 
-    private void Update()
+    private void RunningUpdate()
     {
-        if(entity.IsControllerOrOwner)
-        {
-            //mobController.UpdateFrame();
-        }
-    }
-
-    private void PollInput()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+        mobController.SetRunningMultiplier(state.RunningMultiplier);
     }
 
     public override void SimulateController()
     {
         // This is the client's and server's player's Update();
-        PollInput();
-        IPlayerMovementAuthInput input = PlayerMovementAuth.Create();
-        input.Direction = movement.normalized;
+        IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
 
-        input.Attack = Input.GetKey(KeyCode.Space) && !attacked;
+        Vector2 inputDirection;
+        inputDirection.x = Input.GetAxisRaw("Horizontal");
+        inputDirection.y = Input.GetAxisRaw("Vertical");
+        commandInput.Direction = inputDirection.normalized;
+
+        commandInput.Attack = Input.GetKey(KeyCode.Space) && !attacked;
         attacked = Input.GetKey(KeyCode.Space);
 
-        entity.QueueInput(input);
+        commandInput.Running = Input.GetKey(KeyCode.LeftShift);
+
+        entity.QueueInput(commandInput);
     }
 
     // Execute a command on both the controller and owner
@@ -59,23 +52,15 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         {
             // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
-            mobController.ForceVelocity(cmd.Result.Velocity);
         }
         else
         {
-            // Move the entity on both the client and server.
-
-            // Physics here
+            // Move the entity on both the client and server; Client-side prediction
             mobController.SetDirection(cmd.Input.Direction);
-            mobController.UpdateFrame();
-
-            if(BoltNetwork.IsServer)
-            {
-                state.Velocity = mobController.Velocity;
-            }
+            mobController.SetRunning(cmd.Input.Running);
+            mobController.UpdateFixedFrame();
 
             cmd.Result.Position = transform.position;
-            cmd.Result.Velocity = mobController.Velocity;
 
             if(cmd.Input.Attack)
             {
