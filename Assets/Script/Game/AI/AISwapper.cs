@@ -35,7 +35,6 @@ public class AISwapper : MonoBehaviour
         }
 
 
-
         // Initialize AIBehaviors.
         if (AIs.Count == 0)
         {

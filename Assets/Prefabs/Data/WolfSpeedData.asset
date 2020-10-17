@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ec32137d83687743b66061fdc55785a, type: 3}
   m_Name: WolfSpeedData
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   runningMultiplier: 2.9

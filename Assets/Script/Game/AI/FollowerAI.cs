@@ -7,44 +7,61 @@ using System;
 [RequireComponent(typeof(MobController))]
 public class FollowerAI : AIBehavior
 {
-    public override void OnSwitchEnter()
-    {
-        mobController.SetRunning(AIData.runAtFollow);
-    }
-    /*
     public override void UpdateAI()
     {
-        PlayerRegistry.
-
-
-        // Move toward closest player.
-        GameObject closestPlayer = PlayerManager.Instance.GetNearestPlayer(transform, information.mobData.followerRange);
-
-        if(closestPlayer != null)
-        {
-            MoveTowardPlayer(closestPlayer.transform);
-        }
+        BoltEntity nearestPlayer = GetNearestPlayer();
+        mobController.SetRunning(true);
+        mobController.SetDirection(nearestPlayer.transform.position - transform.position);
+        mobController.UpdateFrame(Time.fixedDeltaTime);
     }
 
     public override bool CheckRequirement()
     {
-        return PlayerManager.Instance.GetNearestPlayer(transform, information.mobData.followerRange) != null;
+        return PlayerNearby();
     }
 
     public override void OnSwitchLeave()
     {
-
+        mobController.SetRunning(false);
+        mobController.SetDirection(Vector2.zero);
     }
 
-    public override Type GetIdentifier()
+    private bool PlayerNearby()
     {
-        return typeof(FollowerAI);
+        foreach (PlayerObject player in PlayerRegistry.AllPlayers)
+        {
+            Vector2 position = player.character.transform.position;
+            Vector2 difference = (Vector2)transform.position - position;
+
+            if (difference.sqrMagnitude < Mathf.Pow(AIData.followerRange, 2))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
-    public void MoveTowardPlayer(Transform playerTransform)
+    private BoltEntity GetNearestPlayer()
     {
-        // Get and set unit velocity relative to player.
-        Vector2 direction = (Vector2) playerTransform.position - (Vector2)transform.position;
-        movement.intendedDirection = direction;
-    }*/
+        BoltEntity closestPlayer = null;
+        Vector2 nearestDistance = Vector2.positiveInfinity;
+
+        foreach(PlayerObject player in PlayerRegistry.AllPlayers)
+        {
+            Vector2 position = player.character.transform.position;
+            Vector2 difference = (Vector2)transform.position - position;
+
+            if(difference.sqrMagnitude < Mathf.Pow(AIData.followerRange, 2))
+            {
+                if(difference.sqrMagnitude < nearestDistance.sqrMagnitude)
+                {
+                    closestPlayer = player.character;
+                    nearestDistance = difference;
+                }
+            }
+        }
+
+        return closestPlayer;
+    }
 }

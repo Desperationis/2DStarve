@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8280041087113635399}
   - component: {fileID: -7290134826670572977}
   - component: {fileID: -46107767918594314}
+  - component: {fileID: -6933155491670218093}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Mob
@@ -172,6 +173,7 @@ MonoBehaviour:
   mobController: {fileID: -7290134826670572977}
   AIData: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6, type: 2}
   AIs:
+  - {fileID: -6933155491670218093}
   - {fileID: 8280041087113635399}
   currentAI: {fileID: 0}
 --- !u!114 &8280041087113635399
@@ -215,5 +217,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a065a6e3295493847bd0ea3f8dba8773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-6933155491670218093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89259fb5936d34e46a3a652b7c2c8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

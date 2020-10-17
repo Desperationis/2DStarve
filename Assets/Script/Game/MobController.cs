@@ -115,10 +115,10 @@ public class MobController : MonoBehaviour
 
 
     /// <summary>
-    /// Updates the controller by a single frame. This function MUST be called
-    /// in FixedUpdate() or some other variant of it to work. 
+    /// Updates the controller by a single frame. Delta time used
+    /// must be passed in to function.
     /// </summary>
-    public void UpdateFixedFrame(float deltaTime)
+    public void UpdateFrame(float deltaTime)
     {
         Vector3 calculatedVelocity = (Vector3)Direction * speed * deltaTime;
 

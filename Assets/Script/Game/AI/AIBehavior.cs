@@ -2,7 +2,7 @@
 using System;
 
 /// <summary>
-/// Abstract Class for all AI behaviors.
+/// Base Class for all AI behaviors.
 /// </summary>
 [RequireComponent(typeof(AISwapper))]
 public class AIBehavior : MonoBehaviour
