@@ -9,13 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7d472ba07a7b1540a80adcfc0b302ee, type: 3}
-  m_Name: WolfData
+  m_Script: {fileID: 11500000, guid: 3ec32137d83687743b66061fdc55785a, type: 3}
+  m_Name: PlayerSpeedData
   m_EditorClassIdentifier: 
-  followerRange: 10
-  runAtFollow: 1
-  attackRange: 2
-  idleRestTime: 3
-  idleMoveTime: 5
-  speed: 2
-  runningMultiplier: 2.9
+  speed: 1.15714
+  runningMultiplier: 3

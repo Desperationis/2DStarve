@@ -160,7 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: -3375194100729452473}
   collisionMarker: {fileID: 6411824412771164450}
-  speedData: {fileID: 11400000, guid: e52c4f79d44803540add8a6dd5bec935, type: 2}
+  speedData: {fileID: 11400000, guid: b8af43955b9c0e44aa755c6cc9ed6963, type: 2}
   speed: 5
   runningMultiplier: 1.5
   isRunning: 0

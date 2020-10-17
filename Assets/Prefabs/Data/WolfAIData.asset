@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7d472ba07a7b1540a80adcfc0b302ee, type: 3}
-  m_Name: PlayerData
+  m_Name: WolfAIData
   m_EditorClassIdentifier: 
-  followerRange: 0
-  runAtFollow: 0
-  attackRange: 0
-  idleRestTime: 0
-  idleMoveTime: 0
-  speed: 1.15714
-  runningMultiplier: 3
+  followerRange: 10
+  runAtFollow: 1
+  attackRange: 2
+  idleRestTime: 3
+  idleMoveTime: 5

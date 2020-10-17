@@ -35,7 +35,7 @@ public class WolfTestScript : Bolt.EntityBehaviour<IMobState>
 
     public override void Attached()
     {
-        state.SetTransforms(state.PositionTransform, transform);
+        state.SetTransforms(state.Transform, transform);
     }
 
     public void Update()

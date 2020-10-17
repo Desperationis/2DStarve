@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 5003528177133432364}
   - component: {fileID: 5003528177133432363}
   - component: {fileID: 5003528177133432362}
-  - component: {fileID: 5161939194724550018}
   - component: {fileID: -1279673826132850888}
   - component: {fileID: -8223647604920146649}
+  - component: {fileID: -4701622655676753826}
+  - component: {fileID: 8280041087113635399}
+  - component: {fileID: -7290134826670572977}
+  - component: {fileID: -46107767918594314}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Mob
@@ -115,22 +118,6 @@ MonoBehaviour:
   _entityBehaviourQueryOption: 0
   _entityPriorityCalculatorQueryOption: 1
   _entityReplicationFilterQueryOption: 1
---- !u!114 &5161939194724550018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5003528177133432361}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd0dc23c7d4e5774295d337856396cb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 2
-  speed: 3
-  boxCollider: {fileID: -8223647604920146649}
-  collisionMarker: {fileID: -1279673826132850888}
 --- !u!114 &-1279673826132850888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,3 +157,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.6, y: 2.4}
   m_EdgeRadius: 0
+--- !u!114 &-4701622655676753826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eca1f25a3aedb448a1c12686080f1cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobController: {fileID: -7290134826670572977}
+  AIData: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6, type: 2}
+  AIs:
+  - {fileID: 8280041087113635399}
+  currentAI: {fileID: 0}
+--- !u!114 &8280041087113635399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5415eeca89b05564dbaf232c26a0cbf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-7290134826670572977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc554962e22863d4ab793220c3ffc1ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCollider: {fileID: -8223647604920146649}
+  collisionMarker: {fileID: -1279673826132850888}
+  speedData: {fileID: 11400000, guid: 0378083ea0421a94d8efc8373506beab, type: 2}
+  speed: 0
+  runningMultiplier: 0
+  isRunning: 0
+  _direction: {x: 0, y: 0}
+--- !u!114 &-46107767918594314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a065a6e3295493847bd0ea3f8dba8773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

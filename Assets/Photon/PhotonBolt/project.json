@@ -338,7 +338,7 @@
       "$type": "Bolt.Compiler.StateDefinition, bolt.compiler",
       "Properties": [
         {
-          "Name": "PositionTransform",
+          "Name": "Transform",
           "Enabled": true,
           "Expanded": true,
           "ReplicationMode": 1,

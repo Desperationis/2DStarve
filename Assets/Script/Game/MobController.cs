@@ -16,7 +16,7 @@ public class MobController : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Speed data to load when initialized.")]
-    private MobData speedData;
+    private MobSpeedData speedData;
 
     [ReadOnly]
     [SerializeField]
@@ -118,9 +118,9 @@ public class MobController : MonoBehaviour
     /// Updates the controller by a single frame. This function MUST be called
     /// in FixedUpdate() or some other variant of it to work. 
     /// </summary>
-    public void UpdateFixedFrame()
+    public void UpdateFixedFrame(float deltaTime)
     {
-        Vector3 calculatedVelocity = (Vector3)Direction * speed * BoltNetwork.FrameDeltaTime;
+        Vector3 calculatedVelocity = (Vector3)Direction * speed * deltaTime;
 
         if(isRunning)
         {

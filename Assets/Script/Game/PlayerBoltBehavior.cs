@@ -61,7 +61,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             // Move the entity on both the client and server; Client-side prediction
             mobController.SetDirection(cmd.Input.Direction);
             mobController.SetRunning(cmd.Input.Running);
-            mobController.UpdateFixedFrame();
+            mobController.UpdateFixedFrame(BoltNetwork.FrameDeltaTime);
 
             cmd.Result.Position = transform.position;
 
