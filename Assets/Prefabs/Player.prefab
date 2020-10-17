@@ -160,6 +160,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: -3375194100729452473}
   collisionMarker: {fileID: 6411824412771164450}
+  speedData: {fileID: 11400000, guid: e52c4f79d44803540add8a6dd5bec935, type: 2}
   speed: 5
   runningMultiplier: 1.5
   isRunning: 0
@@ -173,7 +174,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2625509503249030293}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: ae045a3714852f3468b553485d02025f, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -215,6 +216,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7564cc9e10daff747986b1a5dde5d04f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requestedSpeed: 0
+  requestedRunningMultiplier: 0
 --- !u!1 &8089671330879029919
 GameObject:
   m_ObjectHideFlags: 0

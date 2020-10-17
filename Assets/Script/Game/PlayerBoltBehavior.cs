@@ -3,12 +3,15 @@ using Bolt;
 
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
-    bool attacked = false;
-    public MobController mobController;
+    [SerializeField]
+    private MobController mobController;
+    private bool spacePressed = false;
 
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);
+
+        // Syncronize mobController settings on clients and server. 
         state.AddCallback("Speed", SpeedUpdate);
         state.AddCallback("RunningMultiplier", RunningUpdate);
     }
@@ -33,8 +36,8 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         inputDirection.y = Input.GetAxisRaw("Vertical");
         commandInput.Direction = inputDirection.normalized;
 
-        commandInput.Attack = Input.GetKey(KeyCode.Space) && !attacked;
-        attacked = Input.GetKey(KeyCode.Space);
+        commandInput.Attack = Input.GetKey(KeyCode.Space) && !spacePressed;
+        spacePressed = Input.GetKey(KeyCode.Space);
 
         commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 

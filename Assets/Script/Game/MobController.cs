@@ -15,12 +15,16 @@ public class MobController : MonoBehaviour
     private CollisionMarker collisionMarker;
 
     [SerializeField]
-    [Tooltip("The walking speed of the entity in units per second.")]
-    private float speed = 5.0f;
+    [Tooltip("Speed data to load when initialized.")]
+    private MobData speedData;
 
+    [ReadOnly]
     [SerializeField]
-    [Tooltip("How many times faster running is than walking.")]
-    private float runningMultiplier = 1.5f;
+    private float speed;                // In units per second
+
+    [ReadOnly]
+    [SerializeField]
+    private float runningMultiplier;    // A percent as a decimal
 
     [ReadOnly]
     [SerializeField]
@@ -29,7 +33,16 @@ public class MobController : MonoBehaviour
     [SerializeField]
     [ReadOnly]
     private Vector2 _direction = Vector2.zero;
+
+    [HideInInspector]
     public Vector2 Direction { get { return _direction; } }
+
+
+    private void Awake()
+    {
+        ResetSettings();
+    }
+
 
     /// <summary>
     /// Sets the direction the mob controller will drive the mob to 
@@ -44,6 +57,13 @@ public class MobController : MonoBehaviour
         _direction = direction.normalized;
     }
 
+    public void ResetSettings()
+    {
+        speed = speedData.speed;
+        runningMultiplier = speedData.runningMultiplier;
+        isRunning = false;
+        _direction = Vector2.zero;
+    }
 
     public void SetSpeed(float speed)
     {
@@ -73,17 +93,21 @@ public class MobController : MonoBehaviour
         {
             if (hit == boxCollider) continue;
 
-            // Determine if this entity gets pushed by other colliders
-            // or phases through them
+            // Phase through if hit marker is not found
             CollisionMarker hitMarker = hit.GetComponent<CollisionMarker>();
 
-            if (collisionMarker.IsPushed(hitMarker.CollisionNumber))
+            if(hitMarker)
             {
-                ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-
-                if (colliderDistance.isOverlapped)
+                // Determine if this entity gets pushed by other colliders
+                // or phases through them
+                if (collisionMarker.IsPushed(hitMarker.CollisionNumber))
                 {
-                    transform.position += (Vector3)(colliderDistance.pointA - colliderDistance.pointB);
+                    ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
+
+                    if (colliderDistance.isOverlapped)
+                    {
+                        transform.position += (Vector3)(colliderDistance.pointA - colliderDistance.pointB);
+                    }
                 }
             }
         }
