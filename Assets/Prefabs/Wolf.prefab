@@ -207,7 +207,7 @@ MonoBehaviour:
   speedData: {fileID: 11400000, guid: 0378083ea0421a94d8efc8373506beab, type: 2}
   speed: 0
   runningMultiplier: 0
-  isRunning: 0
+  _running: 0
   _direction: {x: 0, y: 0}
 --- !u!114 &-46107767918594314
 MonoBehaviour:
@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a065a6e3295493847bd0ea3f8dba8773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobController: {fileID: -7290134826670572977}
 --- !u!114 &-6933155491670218093
 MonoBehaviour:
   m_ObjectHideFlags: 0

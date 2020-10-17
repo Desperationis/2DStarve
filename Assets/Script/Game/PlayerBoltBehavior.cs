@@ -6,9 +6,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     [SerializeField]
     private MobController mobController;
 
-    [SerializeField]
-    private MobAnimationController mobAnimationController;
-
     private bool spacePressed = false;
 
     public override void Attached()
@@ -17,7 +14,19 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 
         // Syncronize mobController settings on clients and server. 
         state.AddCallback("Speed", SpeedUpdate);
-        state.AddCallback("RunningMultiplier", RunningUpdate);
+        state.AddCallback("RunningMultiplier", RunningMultUpdate);
+        state.AddCallback("Direction", DirectionUpdate);
+        state.AddCallback("Running", RunningUpdate);
+    }
+
+    private void DirectionUpdate()
+    {
+        mobController.SetDirection(state.Direction);
+    }
+
+    private void RunningUpdate()
+    {
+        mobController.SetRunning(state.Running);
     }
 
     private void SpeedUpdate()
@@ -25,7 +34,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         mobController.SetSpeed(state.Speed);
     }
 
-    private void RunningUpdate()
+    private void RunningMultUpdate()
     {
         mobController.SetRunningMultiplier(state.RunningMultiplier);
     }
@@ -65,6 +74,10 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             // Move the entity on both the client and server; Client-side prediction
             mobController.SetDirection(cmd.Input.Direction);
             mobController.SetRunning(cmd.Input.Running);
+
+            state.Direction = mobController.Direction;
+            state.Running = mobController.Running;
+
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
 
             cmd.Result.Position = transform.position;

@@ -95,7 +95,10 @@ public class AISwapper : MonoBehaviour
         }
         else
         {
-            currentAI.OnSwitchLeave();
+            if(currentAI != null)
+            {
+                currentAI.OnSwitchLeave();
+            }
             currentAI = AI;
             currentAI.OnSwitchEnter();
         }
