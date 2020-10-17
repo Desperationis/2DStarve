@@ -17,19 +17,27 @@ public class MobAnimationController : MonoBehaviour
     [ReadOnly]
     private Vector2 cardinalDirection = new Vector2(1, 0);
 
+
     /// <summary>
     /// Changes the state of the animation based on mobController's intended velocity and
     /// MobInformation.
     /// </summary>
-    public void Update()
+    private void Update()
     {
-        cardinalDirection = GetCardinalDirection(mobController.Direction);
-
-        SetAnimatorVariables();
+        UpdateCardinalDirection(mobController.Direction);
+        UpdateMovementVariables();
         FlipAnimation();
     }
 
-    public Vector2 GetCardinalDirection(Vector2 vector)
+    private void UpdateMovementVariables()
+    {
+        animator.SetInteger("horizontalDirection", (int)cardinalDirection.x);
+        animator.SetInteger("verticalDirection", (int)cardinalDirection.y);
+        animator.SetBool("moving", mobController.Direction.sqrMagnitude != 0.0f);
+        animator.SetBool("running", mobController.Running);
+    }
+
+    private void UpdateCardinalDirection(Vector2 vector)
     {
         if (vector != Vector2.zero)
         {
@@ -45,19 +53,8 @@ public class MobAnimationController : MonoBehaviour
                 vector.y = Mathf.Sign(vector.y);
             }
 
-            return vector;
+            cardinalDirection = vector;
         }
-
-        return cardinalDirection;
-    }
-
-    private void SetAnimatorVariables()
-    {
-        animator.SetInteger("horizontalDirection", (int)cardinalDirection.x);
-        animator.SetInteger("verticalDirection", (int)cardinalDirection.y);
-        animator.SetBool("moving", mobController.Direction.sqrMagnitude != 0.0f);
-        animator.SetBool("running", Input.GetKey(KeyCode.LeftShift));
-        //animator.SetBool("attacking", mobInformation.attacking);
     }
 
     public void FlipAnimation()

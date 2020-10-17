@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: -7290134826670572977}
   - component: {fileID: -46107767918594314}
   - component: {fileID: -6933155491670218093}
+  - component: {fileID: -6354933463195713549}
+  - component: {fileID: 4782774084870630191}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Mob
@@ -33,7 +35,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5003528177133432361}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.6895783, y: -0.069654174, z: 0}
+  m_LocalPosition: {x: -1.785, y: -0.117, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -156,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.6, y: 2.4}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!114 &-4701622655676753826
 MonoBehaviour:
@@ -231,3 +233,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89259fb5936d34e46a3a652b7c2c8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &-6354933463195713549
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c242d0131c034f448d18c50a185f823, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4782774084870630191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dd448c818473734c974043bce4fd465, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: -6354933463195713549}
+  mobController: {fileID: -7290134826670572977}
+  flipDirection: 0
+  cardinalDirection: {x: 1, y: 0}

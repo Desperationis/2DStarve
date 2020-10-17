@@ -28,7 +28,10 @@ public class MobController : MonoBehaviour
 
     [ReadOnly]
     [SerializeField]
-    private bool isRunning = false;
+    private bool _running = false;
+
+    [HideInInspector]
+    public bool Running { get { return _running; } }
 
     [SerializeField]
     [ReadOnly]
@@ -61,7 +64,7 @@ public class MobController : MonoBehaviour
     {
         speed = speedData.speed;
         runningMultiplier = speedData.runningMultiplier;
-        isRunning = false;
+        _running = false;
         _direction = Vector2.zero;
     }
 
@@ -72,7 +75,7 @@ public class MobController : MonoBehaviour
 
     public void SetRunning(bool running)
     {
-        isRunning = running;
+        _running = running;
     }
 
     public void SetRunningMultiplier(float runningMultiplier)
@@ -122,7 +125,7 @@ public class MobController : MonoBehaviour
     {
         Vector3 calculatedVelocity = (Vector3)Direction * speed * deltaTime;
 
-        if(isRunning)
+        if(_running)
         {
             calculatedVelocity *= runningMultiplier;
         }

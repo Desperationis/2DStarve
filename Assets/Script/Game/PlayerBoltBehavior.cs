@@ -5,6 +5,10 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
     [SerializeField]
     private MobController mobController;
+
+    [SerializeField]
+    private MobAnimationController mobAnimationController;
+
     private bool spacePressed = false;
 
     public override void Attached()

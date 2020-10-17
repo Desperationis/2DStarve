@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobController: {fileID: -2372937717468005028}
+  mobAnimationController: {fileID: -2498038600151747360}
 --- !u!114 &-2372937717468005028
 MonoBehaviour:
   m_ObjectHideFlags: 0
