@@ -44,9 +44,4 @@ public class IdleAI : AIBehavior
         // Always try to idle.
         return true;
     }
-
-    public override Type GetIdentifier()
-    {
-        return typeof(IdleAI);
-    }
 }

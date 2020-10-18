@@ -9,12 +9,15 @@ using UnityEngine;
 public class AISwapper : MonoBehaviour
 {
     [SerializeField]
+    [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
     private MobController mobController;
 
     [SerializeField]
+    [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
     private MobAIData AIData;
 
     [SerializeField]
+    [Tooltip("Values closer to index 0 have a higher priority.")]
     private List<AIBehavior> AIs = new List<AIBehavior>();
 
     [SerializeField]
@@ -35,13 +38,7 @@ public class AISwapper : MonoBehaviour
         }
 
 
-        // Initialize AIBehaviors.
-        if (AIs.Count == 0)
-        {
-            Debug.LogWarningFormat("AISwapper.cs: There are no AI behaviors on {0}\'s!", name);
-        }
-
-        else
+        if (AIs.Count != 0)
         {
             foreach (AIBehavior AI in AIs)
             {
@@ -75,7 +72,7 @@ public class AISwapper : MonoBehaviour
             {
                 if (currentAI == null) return AI;
 
-                else if (currentAI.GetIdentifier() != AI.GetIdentifier())
+                else if (currentAI != AI)
                 {
                     return AI;
                 }

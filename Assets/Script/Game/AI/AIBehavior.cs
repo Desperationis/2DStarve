@@ -18,7 +18,7 @@ public class AIBehavior : MonoBehaviour
 
 
     /// <summary>
-    /// Called when AISwapper starts up.
+    /// Called when AISwapper is initialized.
     /// </summary>
     public virtual void Init()
     {
@@ -48,7 +48,8 @@ public class AIBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Updates AIBehavior.
+    /// Updates AIBehavior on FixedUpdate(). This will only
+    /// be called if the AI is currently swapped in. 
     /// </summary>
     public virtual void UpdateAI()
     {
@@ -61,13 +62,5 @@ public class AIBehavior : MonoBehaviour
     public virtual void OnSwitchLeave()
     {
 
-    }
-
-    /// <summary>
-    /// Used to identity the current AI by its type.
-    /// </summary>
-    public virtual Type GetIdentifier()
-    {
-        return this.GetType();
     }
 }
