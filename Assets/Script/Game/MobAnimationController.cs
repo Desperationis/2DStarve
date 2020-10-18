@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Bolt;
+﻿using UnityEngine;
 
 public class MobAnimationController : MonoBehaviour
 {

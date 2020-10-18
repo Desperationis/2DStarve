@@ -1,9 +1,14 @@
 ﻿using UnityEngine;
 using Bolt;
 
+/// <summary>
+/// Syncs all necessary variables for a player from the server to the clients while
+/// also using client-side prediction.
+/// </summary>
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
     [SerializeField]
+    [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController;
 
     private bool spacePressed = false;
@@ -41,7 +46,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 
     public override void SimulateController()
     {
-        // This is the client's and server's player's Update();
+        // Bundle up all input commands into an authoritive command.
         IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
 
         Vector2 inputDirection;
@@ -57,7 +62,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         entity.QueueInput(commandInput);
     }
 
-    // Execute a command on both the controller and owner
     public override void ExecuteCommand(Command command, bool resetState)
     {
         // Bolt saves a query of inputs and slowly fixes the divergence of the
