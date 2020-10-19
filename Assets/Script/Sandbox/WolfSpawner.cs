@@ -3,8 +3,18 @@ using Bolt;
 
 public class WolfSpawner : MonoBehaviour
 {
-    float timer = 0.0f;
-    float delay = 2.0f;
+    [SerializeField]
+    private int hardLimit = 5;
+
+    [SerializeField]
+    private float timer = 0.0f;
+
+    [SerializeField]
+    private float delay = 2.0f;
+
+    [SerializeField]
+    [ReadOnly]
+    private int count;
 
     public void Awake()
     {
@@ -13,12 +23,13 @@ public class WolfSpawner : MonoBehaviour
 
     public void Update()
     {
-        if (BoltNetwork.IsServer)
+        if (BoltNetwork.IsServer && count < hardLimit)
         {
             if (Time.time > timer)
             {
                 timer = Time.time + delay;
                 BoltNetwork.Instantiate(BoltPrefabs.Wolf, Vector3.zero, Quaternion.identity);
+                count++;
             }
         }
     }
