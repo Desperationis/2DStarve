@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8296606085314802858}
   - component: {fileID: 8296606085314802857}
   - component: {fileID: 8296606085314802856}
+  - component: {fileID: -194090451143321659}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -130,6 +131,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-194090451143321659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296606085314802863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eccbe83e7e1e148abdd51a225f8c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collisionNumber: 1
 --- !u!1001 &5704740466346330300
 PrefabInstance:
   m_ObjectHideFlags: 0

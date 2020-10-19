@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NonAdditive
-  m_Shader: {fileID: 4800000, guid: 68e93f01397096c48b1232af3160e86e, type: 3}
+  m_Name: NonAdditiveStencil
+  m_Shader: {fileID: 4800000, guid: 3b7a1f33f79149540a6c1d9b9ce0d080, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,6 +51,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: d00dbc8ce3ade30409a5535dd8bd1526, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,6 +65,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - PixelSnap: 0
+    - _AVEryCoolVariable: 0.5
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
