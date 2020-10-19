@@ -64,8 +64,8 @@
 				fixed4 fragmentShader(v2f i) : SV_Target
 				{
 					// Modify position of fragment. 
-					//i.uv.x += sin((i.uv.x + i.uv.y) * 8 + _Time.y * 1.3) * 0.1;
-					//i.uv.y += cos((i.uv.x - i.uv.y) * 8 + _Time.y * 1.3) * 0.1;
+					// i.uv.x += sin((i.uv.x + i.uv.y) * 8 + _Time.y * 1.3) * 0.1;
+					// i.uv.y += cos((i.uv.x - i.uv.y) * 8 + _Time.y * 1.3) * 0.1;
 
 					// Sample the texture for original color
 					half4 color = tex2D(_MainTex, i.uv);
