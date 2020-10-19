@@ -52,6 +52,16 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         Vector2 inputDirection;
         inputDirection.x = Input.GetAxisRaw("Horizontal");
         inputDirection.y = Input.GetAxisRaw("Vertical");
+
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            Vector2 position = touch.position;
+            inputDirection = position - new Vector2(Screen.width / 2, Screen.height / 2);
+        }
+
+
         commandInput.Direction = inputDirection.normalized;
 
         commandInput.Attack = Input.GetKey(KeyCode.Space) && !spacePressed;
