@@ -11,6 +11,10 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController;
 
+    [SerializeField]
+    [Tooltip("Syncs health with health bar.")]
+    private MobHealthBar mobHealthBar;
+
     private bool spacePressed = false;
 
     public override void Attached()
@@ -22,6 +26,17 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         state.AddCallback("RunningMultiplier", RunningMultUpdate);
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
+        state.AddCallback("Health", HealthUpdate);
+
+        if(BoltNetwork.IsServer)
+        {
+            state.Health = 100;
+        }
+    }
+
+    private void HealthUpdate()
+    {
+        mobHealthBar.SetHealth(state.Health);
     }
 
     private void DirectionUpdate()

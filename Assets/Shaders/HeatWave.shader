@@ -11,7 +11,7 @@
 		SubShader
 	{
 		// Draw ourselves after all opaque geometry
-		Tags{ "Queue" = "Transparent" }
+		Tags{ "Queue" = "Overlay" }
 
 		// Grab the screen behind the object into _BackgroundTexture
 		GrabPass
