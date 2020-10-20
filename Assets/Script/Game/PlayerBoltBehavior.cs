@@ -118,6 +118,20 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
                 for(int i = 0; i < hits.count; i++)
                 {
                     Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
+
+                    GameObject hitBody = hits[i].body.gameObject;
+                    MobHealthSetter mobHealthSetter = hitBody.GetComponent<MobHealthSetter>();
+                    PlayerHealthSetter playerHealthSetter = hitBody.GetComponent<PlayerHealthSetter>();
+
+                    if(mobHealthSetter != null)
+                    {
+                        mobHealthSetter.SetStateHealth(mobHealthSetter.StateHealth - 10);
+                    }
+
+                    else if (playerHealthSetter != null)
+                    {
+                        playerHealthSetter.SetStateHealth(playerHealthSetter.StateHealth - 10);
+                    }
                 }
             }
         }
