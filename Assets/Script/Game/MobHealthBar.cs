@@ -1,20 +1,31 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class MobHealthBar : MonoBehaviour
 {
     [SerializeField]
-    [ReadOnly]
-    private int health;
-
-    [SerializeField]
     private TextMeshPro healthBar;
 
-    public void SetHealth(int health)
+    [SerializeField]
+    private PlayerStateHealth playerStateHealth;
+
+    [SerializeField]
+    private MobStateHealth mobStateHealth;
+
+    private void Awake()
     {
-        this.health = health;
+        if(playerStateHealth != null)
+        {
+            playerStateHealth.onHealthChange.AddListener(SetHealth);
+        }
+        else if (mobStateHealth != null)
+        {
+            mobStateHealth.onHealthChange.AddListener(SetHealth);
+        }
+    }
+
+    private void SetHealth(int health)
+    {
         healthBar.text = string.Format("Health: {0}", health);
     }
 }

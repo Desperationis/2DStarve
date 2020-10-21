@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 4478296540953310891}
   - component: {fileID: -2785841137619778748}
   - component: {fileID: 8837384313600253818}
-  - component: {fileID: -966708409200113970}
+  - component: {fileID: 3029346160360588521}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Mob
@@ -469,7 +469,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobController: {fileID: -7290134826670572977}
-  mobHealthBar: {fileID: 4478296540953310891}
 --- !u!114 &-6933155491670218093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -494,8 +493,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d039ba374b17237428e0daf0d8d462d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   healthBar: {fileID: 8167679196962751512}
+  playerStateHealth: {fileID: 0}
+  mobStateHealth: {fileID: 3029346160360588521}
 --- !u!114 &-2785841137619778748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -523,7 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _proximity: {fileID: 3049968775707054801}
   _hitboxes: []
---- !u!114 &-966708409200113970
+--- !u!114 &3029346160360588521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5003528177133432361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41840898722541041882c92ff920aa3b, type: 3}
+  m_Script: {fileID: 11500000, guid: aa9117c87c499e742a7ce1d159614059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &7944122252436692927

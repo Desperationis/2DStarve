@@ -11,10 +11,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController;
 
-    [SerializeField]
-    [Tooltip("Syncs health with health bar.")]
-    private MobHealthBar mobHealthBar;
-
     private bool spacePressed = false;
 
     public override void Attached()
@@ -26,17 +22,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         state.AddCallback("RunningMultiplier", RunningMultUpdate);
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
-        state.AddCallback("Health", HealthUpdate);
-
-        if(BoltNetwork.IsServer)
-        {
-            state.Health = 100;
-        }
-    }
-
-    private void HealthUpdate()
-    {
-        mobHealthBar.SetHealth(state.Health);
     }
 
     private void DirectionUpdate()
@@ -120,17 +105,17 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
                     Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
 
                     GameObject hitBody = hits[i].body.gameObject;
-                    MobHealthSetter mobHealthSetter = hitBody.GetComponent<MobHealthSetter>();
-                    PlayerHealthSetter playerHealthSetter = hitBody.GetComponent<PlayerHealthSetter>();
+                    MobStateHealth mobHealthSetter = hitBody.GetComponent<MobStateHealth>();
+                    PlayerStateHealth playerHealthSetter = hitBody.GetComponent<PlayerStateHealth>();
 
                     if(mobHealthSetter != null)
                     {
-                        mobHealthSetter.SetStateHealth(mobHealthSetter.StateHealth - 10);
+                        mobHealthSetter.SetStateHealth(mobHealthSetter.GetStateHealth() - 10);
                     }
 
                     else if (playerHealthSetter != null)
                     {
-                        playerHealthSetter.SetStateHealth(playerHealthSetter.StateHealth - 10);
+                        playerHealthSetter.SetStateHealth(playerHealthSetter.GetStateHealth() - 10);
                     }
                 }
             }
