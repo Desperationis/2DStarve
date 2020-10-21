@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Controls the animation variables of a mob's animator.
+/// </summary>
 public class MobAnimationController : MonoBehaviour
 {
     [SerializeField]
