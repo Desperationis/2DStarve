@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// Displays a health bar by listening to value changes in a
+/// StateHealthBase class. 
+/// </summary>
 public class MobHealthBar : MonoBehaviour
 {
     [SerializeField]

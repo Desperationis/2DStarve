@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
+/// <summary>
+/// Implements the interface of IMobState into StateHealthBase logic. 
+/// </summary>
 public class MobStateHealth : StateHealthBase<IMobState>
 {
     public override void Attached()
