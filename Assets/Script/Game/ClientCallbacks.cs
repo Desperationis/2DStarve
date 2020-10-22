@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.SceneManagement;
 using Bolt;
 
 /// <summary>
@@ -16,5 +16,11 @@ public class ClientCallbacks : Bolt.GlobalEventListener
         {
             PlayerCamera.Instance.Follow(entity);
         }
+    }
+
+    public override void BoltShutdownBegin(AddCallback registerDoneCallback)
+    {
+        BoltLauncher.Shutdown();
+        SceneManager.LoadScene(0);
     }
 }

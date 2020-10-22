@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Bolt;
 
 public class Message
 {
@@ -9,7 +10,7 @@ public class Message
 }
 
 
-public class ChatTestScript : MonoBehaviour
+public class ChatTestScript : Bolt.GlobalEventListener
 {
     List<Message> messages = new List<Message>();
 
@@ -26,7 +27,15 @@ public class ChatTestScript : MonoBehaviour
     private void Awake()
     {
         chatTextPrefab = (GameObject)Resources.Load("ChatText");
-        inputFieldWrapper.onReturn.AddListener(CreateMessage);
+
+
+        inputFieldWrapper.onReturn.AddListener(SendBoltMessage);
+    }
+
+    private void SendBoltMessage(string message) {
+        ChatMessageEvent chatMessageEvent = ChatMessageEvent.Create();
+        chatMessageEvent.Message = message;
+        chatMessageEvent.Send();
     }
 
     private void CreateMessage(string message)
@@ -42,6 +51,11 @@ public class ChatTestScript : MonoBehaviour
         TMPtext.text = message;
     }
 
+
+    public override void OnEvent(ChatMessageEvent evnt)
+    {
+        CreateMessage(evnt.Message);
+    }
 
 
 }

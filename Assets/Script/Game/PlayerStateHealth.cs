@@ -6,13 +6,17 @@
 /// </summary>
 public class PlayerStateHealth : StateHealthBase<IPlayerState>
 {
-    public override void Attached()
+    public override void InitializeHealth()
     {
         state.AddCallback("Health", HealthUpdate);
-        base.Attached();
+
+        if (BoltNetwork.IsServer)
+        {
+            state.Health = 100;
+        }
     }
 
-    public override int GetStateHealth()
+    protected override int _GetStateHealth()
     {
         return state.Health;
     }

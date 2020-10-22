@@ -2,7 +2,7 @@
 using Bolt;
 
 /// <summary>
-/// Syncs all necessary variables for a player from the server to the clients while
+/// Syncs most variables for a player from the server to the clients while
 /// also using client-side prediction.
 /// </summary>
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
@@ -95,30 +95,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
 
             cmd.Result.Position = transform.position;
-
-            if(cmd.Input.Attack)
-            {
-                Bolt.LagCompensation.BoltPhysicsHits hits = BoltNetwork.OverlapSphereAll(cmd.Result.Position, 2.0f, cmd.ServerFrame);
-
-                for(int i = 0; i < hits.count; i++)
-                {
-                    Debug.Log(string.Format("Hit {0}!", hits[i].body.name));
-
-                    GameObject hitBody = hits[i].body.gameObject;
-                    MobStateHealth mobHealthSetter = hitBody.GetComponent<MobStateHealth>();
-                    PlayerStateHealth playerHealthSetter = hitBody.GetComponent<PlayerStateHealth>();
-
-                    if(mobHealthSetter != null)
-                    {
-                        mobHealthSetter.SetStateHealth(mobHealthSetter.GetStateHealth() - 10);
-                    }
-
-                    else if (playerHealthSetter != null)
-                    {
-                        playerHealthSetter.SetStateHealth(playerHealthSetter.GetStateHealth() - 10);
-                    }
-                }
-            }
         }
 
     }

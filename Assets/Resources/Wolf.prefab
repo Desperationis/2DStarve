@@ -315,6 +315,7 @@ GameObject:
   - component: {fileID: -2785841137619778748}
   - component: {fileID: 8837384313600253818}
   - component: {fileID: 3029346160360588521}
+  - component: {fileID: 8153436002153447326}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Mob
@@ -535,6 +536,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9117c87c499e742a7ce1d159614059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8153436002153447326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189fcb4bc569acf44aee7ea28edfb94c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobHealth: {fileID: 3029346160360588521}
 --- !u!1 &7944122252436692927
 GameObject:
   m_ObjectHideFlags: 0

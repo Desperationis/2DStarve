@@ -6,13 +6,17 @@ using UnityEngine.Events;
 /// </summary>
 public class MobStateHealth : StateHealthBase<IMobState>
 {
-    public override void Attached()
+    public override void InitializeHealth()
     {
         state.AddCallback("Health", HealthUpdate);
-        base.Attached();
+
+        if(BoltNetwork.IsServer)
+        {
+            state.Health = 100;
+        }
     }
 
-    public override int GetStateHealth()
+    protected override int _GetStateHealth()
     {
         return state.Health;
     }
