@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 2822487599686024083}
   - component: {fileID: 2822487599686024080}
   - component: {fileID: 2822487599686024081}
-  - component: {fileID: 2012037536601744398}
+  - component: {fileID: 7646447337011899116}
   m_Layer: 5
   m_Name: ChatUI
   m_TagString: Untagged
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2012037536601744398
+--- !u!114 &7646447337011899116
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2822487599686024095}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9adf4d1db3364e74a88ccd28fbe6825d, type: 3}
+  m_Script: {fileID: 11500000, guid: 0b3714acd0b3ba74ab3cbf3facd8cc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inputFieldWrapper: {fileID: 5148254119414930256}
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_CharacterValidation: 0
   m_RegexValue: 
   m_GlobalPointSize: 14
-  m_CharacterLimit: 0
+  m_CharacterLimit: 50
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_ReadOnly: 0
   m_RichText: 1
   m_GlobalFontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_OnFocusSelectAll: 1
+  m_OnFocusSelectAll: 0
   m_ResetOnDeActivation: 1
   m_RestoreOriginalTextOnEscape: 1
   m_isRichTextEditingAllowed: 0
