@@ -3,7 +3,7 @@ using Bolt;
 
 /// <summary>
 /// Syncs most variables for a mob from the server to the clients. Variables
-/// that are extensively manipulated (health) have their own class.
+/// that are extensively manipulated (e.x. health) have their own class.
 /// </summary>
 public class MobBoltBehavior : EntityBehaviour<IMobState>
 {

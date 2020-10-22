@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Used to mark the collision number of an entity; In relation
+/// Used to mark the collision number of an object or entity; In relation
 /// to another entity's number:
 /// 
 /// Same number = No collision

@@ -13,7 +13,6 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
     [SerializeField]
     private float range = 5.0f;
 
-
     public override void ExecuteCommand(Command command, bool resetState)
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
@@ -40,7 +39,6 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
             }
         }
     }
-
 
     /// <summary>
     /// A callback function to a gameObject message.

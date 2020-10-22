@@ -3,7 +3,7 @@ using TMPro;
 
 /// <summary>
 /// Displays a health bar by listening to value changes in a
-/// StateHealthBase class. 
+/// StateHealthBase derived class. 
 /// </summary>
 public class MobHealthBar : MonoBehaviour
 {

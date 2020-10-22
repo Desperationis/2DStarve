@@ -3,7 +3,8 @@ using Bolt;
 
 /// <summary>
 /// Syncs most variables for a player from the server to the clients while
-/// also using client-side prediction.
+/// also using client-side prediction. Variables that are extensively
+/// manipulated (e.x. health) have their own class.
 /// </summary>
 public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
