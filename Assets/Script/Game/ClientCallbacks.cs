@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine.SceneManagement;
 using Bolt;
 
 /// <summary>
@@ -20,6 +18,7 @@ public class ClientCallbacks : Bolt.GlobalEventListener
 
     public override void BoltShutdownBegin(AddCallback registerDoneCallback)
     {
+        // Go back to the menu screen
         BoltLauncher.Shutdown();
         SceneManager.LoadScene(0);
     }

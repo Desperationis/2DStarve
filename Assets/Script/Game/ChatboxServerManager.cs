@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Bolt;
-
-/// <summary>
-/// A server-only class that sends back messages to clients. 
+﻿/// <summary>
+/// A server-only class that verifies and sends back messages to clients.
 /// </summary>
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "GameScene")]
 public class ChatboxServerManager : Bolt.GlobalEventListener

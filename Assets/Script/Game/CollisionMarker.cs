@@ -19,18 +19,27 @@ public class CollisionMarker : MonoBehaviour
     public int CollisionNumber { get { return  _collisionNumber;  } }
 
 
-    public bool CanCollide(int collisionNumber)
+    /// <summary>
+    /// Checks if A can collide with B according to collision number.
+    /// </summary>
+    public static bool CanCollide(CollisionMarker a, CollisionMarker b)
     {
-        return collisionNumber != CollisionNumber;
+        return a.CollisionNumber != b.CollisionNumber;
     }
 
-    public bool CanPush(int collisionNumber)
+    /// <summary>
+    /// Checks is A can push B according to collision number.
+    /// </summary>
+    public static bool CanPush(CollisionMarker a, CollisionMarker b)
     {
-        return CollisionNumber > collisionNumber;
+        return a.CollisionNumber > b.CollisionNumber;
     }
 
-    public bool IsPushed(int collisionNumber)
+    /// <summary>
+    /// Checks is A can get pushed by B according to collision number.
+    /// </summary>
+    public static bool IsPushed(CollisionMarker a, CollisionMarker b)
     {
-        return CollisionNumber < collisionNumber;
+        return a.CollisionNumber < b.CollisionNumber;
     }
 }

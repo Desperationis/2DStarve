@@ -103,7 +103,7 @@ public class MobController : MonoBehaviour
             {
                 // Determine if this entity gets pushed by other colliders
                 // or phases through them
-                if (collisionMarker.IsPushed(hitMarker.CollisionNumber))
+                if (CollisionMarker.IsPushed(collisionMarker, hitMarker))
                 {
                     ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
