@@ -10,11 +10,11 @@ public class AISwapper : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
-    private MobController mobController;
+    private MobController mobController = null;
 
     [SerializeField]
     [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
-    private MobAIData AIData;
+    private MobAIData AIData = null;
 
     [SerializeField]
     [Tooltip("Values closer to index 0 have a higher priority.")]

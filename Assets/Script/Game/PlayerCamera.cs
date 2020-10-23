@@ -28,10 +28,10 @@ public class PlayerCamera : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private new Camera camera;
+    private new Camera camera = null;
 
     [SerializeField]
-    private BoltEntity controlledPlayer;
+    private BoltEntity controlledPlayer = null;
 
     public void Follow(BoltEntity controlledPlayer)
     {

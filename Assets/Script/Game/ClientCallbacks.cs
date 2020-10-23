@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using Bolt;
+using UdpKit;
 
 /// <summary>
 /// A script that deals with callbacks on the GameScene when
@@ -16,7 +17,7 @@ public class ClientCallbacks : Bolt.GlobalEventListener
         }
     }
 
-    public override void BoltShutdownBegin(AddCallback registerDoneCallback)
+    public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason)
     {
         // Go back to the menu screen
         BoltLauncher.Shutdown();

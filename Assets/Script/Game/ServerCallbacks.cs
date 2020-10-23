@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using Bolt;
+﻿using Bolt;
 
 /// <summary>
 /// A script that deals with callbacks on the GameScene when
@@ -24,12 +23,12 @@ public class ServerCallbacks : Bolt.GlobalEventListener
         PlayerRegistry.DestroyPlayer(connection);
     }
 
-    public override void SceneLoadLocalDone(string scene)
+    public override void SceneLoadLocalDone(string scene, IProtocolToken token)
     {
         PlayerRegistry.ServerPlayer.Spawn();
     }
 
-    public override void SceneLoadRemoteDone(BoltConnection connection)
+    public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token)
     {
         // When a client is done loading on their end, spawn it. 
         PlayerRegistry.GetPlayer(connection).Spawn();

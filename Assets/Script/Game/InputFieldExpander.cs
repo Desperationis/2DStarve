@@ -9,7 +9,7 @@ public class InputFieldExpander : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("The input field to listen to.")]
-    private TMP_InputField inputField;
+    private TMP_InputField inputField = null;
 
     private void Awake()
     {

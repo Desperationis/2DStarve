@@ -6,10 +6,10 @@
 public class MobAnimationController : MonoBehaviour
 {
     [SerializeField]
-    private Animator animator;
+    private Animator animator = null;
 
     [SerializeField]
-    private MobController mobController;
+    private MobController mobController = null;
 
     [SerializeField]
     private bool flipDirection = false;

@@ -9,7 +9,7 @@ public class MobBoltBehavior : EntityBehaviour<IMobState>
 {
     [SerializeField]
     [Tooltip("Used to syncronize movement settings.")]
-    private MobController mobController;
+    private MobController mobController = null;
 
     public override void Attached()
     {

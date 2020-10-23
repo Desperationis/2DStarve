@@ -8,9 +8,6 @@ using Bolt.LagCompensation;
 public class PlayerAttack : EntityBehaviour<IPlayerState>
 {
     [SerializeField]
-    private PlayerStateHealth playerHealth;
-
-    [SerializeField]
     private float range = 5.0f;
 
     public override void ExecuteCommand(Command command, bool resetState)
