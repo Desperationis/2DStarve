@@ -2,18 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAnimatorAttackTest : MonoBehaviour
+public class PlayerAnimatorAttackTest : Bolt.EntityBehaviour<IPlayerState>
 {
     [SerializeField]
     private Animator animator = null;
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            animator.SetTrigger("OnAttack");
-        }
-    }
 }

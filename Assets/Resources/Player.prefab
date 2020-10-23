@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3292356873904099963}
   - component: {fileID: 7491280917830343131}
   - component: {fileID: 7957580025048750202}
-  - component: {fileID: 2169787500723770102}
+  - component: {fileID: 1526790523382393890}
   m_Layer: 0
   m_Name: LocalFlipRenderer
   m_TagString: Untagged
@@ -120,7 +120,7 @@ MonoBehaviour:
   mobController: {fileID: -2372937717468005028}
   flipDirection: 0
   cardinalDirection: {x: 1, y: 0}
---- !u!114 &2169787500723770102
+--- !u!114 &1526790523382393890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -129,10 +129,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1104177521672310721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 122d9b5de62f46c4f958597617298338, type: 3}
+  m_Script: {fileID: 11500000, guid: 31777cd6317d35f4d88a3368e23fb792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7491280917830343131}
+  range: 5
 --- !u!1 &2625509503249030293
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,7 +151,6 @@ GameObject:
   - component: {fileID: 416141970648545280}
   - component: {fileID: 2122001285291922716}
   - component: {fileID: 3557677486998045178}
-  - component: {fileID: 3223974367271617364}
   - component: {fileID: 3740851428873756622}
   - component: {fileID: 7413259236237365110}
   m_Layer: 0
@@ -318,19 +318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97b9b3f30fabd048a857a4a5e48f8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3223974367271617364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625509503249030293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31777cd6317d35f4d88a3368e23fb792, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  range: 5
 --- !u!114 &3740851428873756622
 MonoBehaviour:
   m_ObjectHideFlags: 0

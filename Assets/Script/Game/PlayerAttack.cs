@@ -8,9 +8,17 @@ using Bolt.LagCompensation;
 public class PlayerAttack : EntityBehaviour<IPlayerState>
 {
     [SerializeField]
+    private Animator animator = null;
+
+    [SerializeField]
     private float range = 5.0f;
 
     private bool attackedPressed = false;
+
+    public void AttackNearby()
+    {
+        AttackNearby(transform.position);
+    }
 
     private void AttackNearby(Vector2 position)
     {
@@ -20,7 +28,7 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
         {
             BoltPhysicsHit hit = hits[i];
 
-            if (hit.body.gameObject != gameObject)
+            if (hit.body.gameObject != transform.parent.gameObject)
             {
                 hit.body.gameObject.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
             }
@@ -35,7 +43,7 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
         // Let the server know that the controller pressed attack
         if (cmd.Input.Attack && BoltNetwork.IsServer)
         {
-            AttackNearby(cmd.Result.Position);
+            animator.SetTrigger("OnAttack");
         }
     }
 
@@ -47,7 +55,7 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
         {
             if(Input.GetKey(KeyCode.Space) && !attackedPressed)
             {
-                AttackNearby(transform.position);
+                animator.SetTrigger("OnAttack");
             }
             attackedPressed = Input.GetKey(KeyCode.Space);
         }
