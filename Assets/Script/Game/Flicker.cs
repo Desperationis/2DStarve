@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Flickers the scale of a sprite.
+/// Flickers the local scale of a sprite.
 /// </summary>
 public class Flicker : MonoBehaviour
 {
