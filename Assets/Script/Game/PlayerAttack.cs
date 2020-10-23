@@ -41,6 +41,7 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
         // Let the server know that the controller pressed attack
+        // Since it's only server-side, will only be executed once.
         if (cmd.Input.Attack && BoltNetwork.IsServer)
         {
             animator.SetTrigger("OnAttack");
