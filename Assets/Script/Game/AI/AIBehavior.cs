@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 
 /// <summary>
 /// Base Class for all AI behaviors.
@@ -7,8 +6,8 @@ using System;
 [RequireComponent(typeof(AISwapper))]
 public class AIBehavior : MonoBehaviour
 {
-    protected MobController mobController;
-    protected MobAIData AIData;
+    protected MobController mobController = null;
+    protected MobAIData AIData = null;
 
     public virtual void SetDependencies(MobController mobController, MobAIData AIData)
     {

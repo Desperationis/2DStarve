@@ -8,23 +8,23 @@ public class MobController : MonoBehaviour
 {
     [SerializeField]
     [Tooltip("The collider of this entity. This is what is checked against other colliders.")]
-    private BoxCollider2D boxCollider;
+    private BoxCollider2D boxCollider = null;
 
     [SerializeField]
     [Tooltip("The collision marker of this entity. This determines how it'll interact with other colliders.")]
-    private CollisionMarker collisionMarker;
+    private CollisionMarker collisionMarker = null;
 
     [SerializeField]
     [Tooltip("Speed data to load when initialized.")]
-    private MobSpeedData speedData;
+    private MobSpeedData speedData = null;
 
     [ReadOnly]
     [SerializeField]
-    private float speed;                // In units per second
+    private float speed = 1.0f;                // In units per second
 
     [ReadOnly]
     [SerializeField]
-    private float runningMultiplier;    // A percent as a decimal
+    private float runningMultiplier = 2.0f;    // A percent as a decimal
 
     [ReadOnly]
     [SerializeField]

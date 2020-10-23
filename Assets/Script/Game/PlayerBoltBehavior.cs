@@ -10,7 +10,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 {
     [SerializeField]
     [Tooltip("Used to syncronize movement settings.")]
-    private MobController mobController;
+    private MobController mobController = null;
 
     private bool spacePressed = false;
 

@@ -7,8 +7,8 @@
 /// </summary>
 public class PlayerObject
 {
-    public BoltEntity character;
-    public BoltConnection connection;
+    public BoltEntity character = null;
+    public BoltConnection connection = null;
 
     public void Spawn()
     {

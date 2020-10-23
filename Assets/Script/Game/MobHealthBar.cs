@@ -8,13 +8,13 @@ using TMPro;
 public class MobHealthBar : MonoBehaviour
 {
     [SerializeField]
-    private TextMeshPro healthBar;
+    private TextMeshPro healthBar = null;
 
     [SerializeField]
-    private PlayerStateHealth playerStateHealth;
+    private PlayerStateHealth playerStateHealth = null;
 
     [SerializeField]
-    private MobStateHealth mobStateHealth;
+    private MobStateHealth mobStateHealth = null;
 
     private void Awake()
     {
