@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3292356873904099963}
   - component: {fileID: 7491280917830343131}
   - component: {fileID: 7957580025048750202}
+  - component: {fileID: 2169787500723770102}
   m_Layer: 0
   m_Name: LocalFlipRenderer
   m_TagString: Untagged
@@ -119,6 +120,19 @@ MonoBehaviour:
   mobController: {fileID: -2372937717468005028}
   flipDirection: 0
   cardinalDirection: {x: 1, y: 0}
+--- !u!114 &2169787500723770102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104177521672310721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122d9b5de62f46c4f958597617298338, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7491280917830343131}
 --- !u!1 &2625509503249030293
 GameObject:
   m_ObjectHideFlags: 0
