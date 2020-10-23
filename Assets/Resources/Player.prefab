@@ -316,7 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31777cd6317d35f4d88a3368e23fb792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHealth: {fileID: 3557677486998045178}
   range: 5
 --- !u!114 &3740851428873756622
 MonoBehaviour:

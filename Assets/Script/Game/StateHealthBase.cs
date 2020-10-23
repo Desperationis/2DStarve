@@ -88,6 +88,7 @@ public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
         else
         {
             _localHealth = health;
+            onHealthChange.Invoke(GetStateHealth());
         }
     }
 }
