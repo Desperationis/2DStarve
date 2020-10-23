@@ -43,16 +43,9 @@ public class MobAnimationController : MonoBehaviour
         if (vector != Vector2.zero)
         {
             // Get the cardinal direction of the greater x or y component
-            if (Mathf.Abs(vector.x) >= Mathf.Abs(vector.y))
-            {
-                vector.y = 0.0f;
-                vector.x = Mathf.Sign(vector.x);
-            }
-            else
-            {
-                vector.x = 0.0f;
-                vector.y = Mathf.Sign(vector.y);
-            }
+            bool xComponentGreater = Mathf.Abs(vector.x) >= Mathf.Abs(vector.y);
+            vector.x = xComponentGreater ? Mathf.Sign(vector.x) : 0;
+            vector.y = !xComponentGreater ? Mathf.Sign(vector.y) : 0;
 
             cardinalDirection = vector;
         }
