@@ -34,8 +34,8 @@ public class MobAnimationController : MonoBehaviour
     {
         animator.SetFloat("horizontalDirection", cardinalDirection.x);
         animator.SetFloat("verticalDirection", cardinalDirection.y);
-        animator.SetBool("moving", mobController.Direction.sqrMagnitude != 0.0f);
-        animator.SetBool("running", mobController.Running);
+        animator.SetFloat("moving", mobController.Direction.sqrMagnitude != 0.0f ? 1 : -1);
+        animator.SetFloat("running", mobController.Running ? 1 : -1);
     }
 
     private void UpdateCardinalDirection(Vector2 vector)
