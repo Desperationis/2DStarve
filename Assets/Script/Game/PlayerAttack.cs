@@ -39,12 +39,4 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
             }
         }
     }
-
-    /// <summary>
-    /// A callback function to a gameObject message.
-    /// </summary>
-    public void TakeDamage(int amount)
-    {
-        playerHealth.SetStateHealth(playerHealth.GetStateHealth() - amount);
-    }
 }

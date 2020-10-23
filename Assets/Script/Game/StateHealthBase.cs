@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine.Events;
 
 /// <summary>
 /// A base class that safely exposes the health component of a 
@@ -24,6 +23,11 @@ public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
     public override void Attached()
     {
         InitializeHealth();
+    }
+
+    public void TakeDamage(int amount)
+    {
+        SetStateHealth(GetStateHealth() - amount);
     }
 
 
