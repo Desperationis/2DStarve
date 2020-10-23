@@ -4,7 +4,6 @@
 /// A base class that safely exposes the health component of a 
 /// Bolt Entity's state while supportin client-side prediction. 
 /// </summary>
-[System.Serializable]
 public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
 {
     public bool IsDead { get { return GetStateHealth() < 0; } }
@@ -14,7 +13,6 @@ public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
     /// so that attacking looks instantaneous. 
     /// </summary>
     protected int _localHealth = 0;
-
 
     public class HealthEvent : UnityEvent<int> { }
 

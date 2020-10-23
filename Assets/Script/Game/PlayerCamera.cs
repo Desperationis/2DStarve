@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Bolt;
+﻿using UnityEngine;
 
 /// <summary>
 /// Singleton dedicated to following ONLY 1 player via camera.
