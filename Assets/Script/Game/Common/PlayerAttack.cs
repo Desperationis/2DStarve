@@ -17,7 +17,7 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
 
     public void AttackNearby()
     {
-        if(entity.Controller)
+        if(entity.IsControllerOrOwner)
         {
             AttackNearby(transform.position);
         }
