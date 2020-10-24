@@ -11,15 +11,14 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
     private Animator animator = null;
 
     [SerializeField]
-    private Transform hitbox = null;
+    private BoxCollider2D hitbox = null;
 
     [SerializeField]
     private MobAnimationController mobAnimationController = null;
 
-    [SerializeField]
-    private float range = 5.0f;
-
     private bool attackedPressed = false;
+
+    public LayerMask mask;
 
     public void AttackNearby()
     {
@@ -31,15 +30,22 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
 
     private void AttackNearby(Vector2 position)
     {
-        BoltPhysicsHits hits = BoltNetwork.OverlapSphereAll(position, range);
+        ContactFilter2D contactFilter = new ContactFilter2D();
+        contactFilter.layerMask = mask;
+        Collider2D[] hits = new Collider2D[5];
 
-        for (int i = 0; i < hits.count; i++)
+        hitbox.OverlapCollider(contactFilter, hits);
+
+        for (int i = 0; i < hits.Length; i++)
         {
-            BoltPhysicsHit hit = hits[i];
+            Collider2D hit = hits[i];
 
-            if (hit.body.gameObject != transform.parent.gameObject)
+            if(hit != null)
             {
-                hit.body.gameObject.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
+                if (hit.gameObject != transform.parent.gameObject)
+                {
+                    hit.gameObject.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
+                }
             }
         }
     }
@@ -88,7 +94,7 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
         float directionalAngle = Mathf.Acos(rotatedVector.x) * (180.0f / Mathf.PI);
         directionalAngle *= cardinalDirection.x < 0 ? -1 : 1;
 
-        hitbox.eulerAngles = new Vector3(0, 0, directionalAngle);
+        hitbox.transform.eulerAngles = new Vector3(0, 0, directionalAngle);
 
     }
 }

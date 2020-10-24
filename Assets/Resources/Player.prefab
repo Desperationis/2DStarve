@@ -133,9 +133,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7491280917830343131}
-  hitbox: {fileID: 61519904741305995}
+  hitbox: {fileID: 8357216349364483409}
   mobAnimationController: {fileID: 7957580025048750202}
-  range: 5
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &2625509503249030293
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,9 +155,7 @@ GameObject:
   - component: {fileID: 416141970648545280}
   - component: {fileID: 2122001285291922716}
   - component: {fileID: 3557677486998045178}
-  - component: {fileID: 3740851428873756622}
-  - component: {fileID: 7413259236237365110}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -321,37 +321,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97b9b3f30fabd048a857a4a5e48f8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3740851428873756622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625509503249030293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301758009, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _shape: 1
-  _type: 0
-  _center: {x: 0, y: 0, z: 0}
-  _boxSize: {x: 1, y: 1, z: 1}
-  _sphereRadius: 0.5
---- !u!114 &7413259236237365110
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2625509503249030293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1510134700, guid: 5b00bf8b25851d440940a40ec23344f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _proximity: {fileID: 3740851428873756622}
-  _hitboxes: []
 --- !u!1 &4816671186252303780
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,7 +331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 61519904741305995}
   - component: {fileID: 8357216349364483409}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hurtbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +345,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4816671186252303780}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -407,7 +376,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &7927552506059101580
 GameObject:
