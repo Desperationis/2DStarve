@@ -11,6 +11,12 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
     private Animator animator = null;
 
     [SerializeField]
+    private Transform hitbox = null;
+
+    [SerializeField]
+    private MobAnimationController mobAnimationController = null;
+
+    [SerializeField]
     private float range = 5.0f;
 
     private bool attackedPressed = false;
@@ -73,5 +79,16 @@ public class PlayerAttack : EntityEventListener<IPlayerState>
             }
             attackedPressed = Input.GetKey(KeyCode.Space);
         }
+    }
+
+    public void Update()
+    {
+        Vector2 cardinalDirection = mobAnimationController.CardinalDirection;
+        Vector2 rotatedVector = new Vector2(-cardinalDirection.y, cardinalDirection.x);
+        float directionalAngle = Mathf.Acos(rotatedVector.x) * (180.0f / Mathf.PI);
+        directionalAngle *= cardinalDirection.x < 0 ? -1 : 1;
+
+        hitbox.eulerAngles = new Vector3(0, 0, directionalAngle);
+
     }
 }

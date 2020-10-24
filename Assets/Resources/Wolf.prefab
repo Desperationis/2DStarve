@@ -293,7 +293,7 @@ MonoBehaviour:
   animator: {fileID: 7146507448982542611}
   mobController: {fileID: -7290134826670572977}
   flipDirection: 0
-  cardinalDirection: {x: 1, y: 0}
+  _cardinalDirection: {x: 1, y: 0}
 --- !u!1 &5003528177133432361
 GameObject:
   m_ObjectHideFlags: 0

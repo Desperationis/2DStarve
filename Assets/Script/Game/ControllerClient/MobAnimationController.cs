@@ -16,7 +16,9 @@ public class MobAnimationController : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
-    private Vector2 cardinalDirection = new Vector2(1, 0);
+    private Vector2 _cardinalDirection = new Vector2(1, 0);
+
+    public Vector2 CardinalDirection { get { return _cardinalDirection; } }
 
 
     /// <summary>
@@ -32,8 +34,8 @@ public class MobAnimationController : MonoBehaviour
 
     private void UpdateMovementVariables()
     {
-        animator.SetFloat("horizontalDirection", cardinalDirection.x);
-        animator.SetFloat("verticalDirection", cardinalDirection.y);
+        animator.SetFloat("horizontalDirection", _cardinalDirection.x);
+        animator.SetFloat("verticalDirection", _cardinalDirection.y);
         animator.SetFloat("moving", mobController.Direction.sqrMagnitude != 0.0f ? 1 : -1);
         animator.SetFloat("running", mobController.Running ? 1 : -1);
     }
@@ -47,7 +49,7 @@ public class MobAnimationController : MonoBehaviour
             vector.x = xComponentGreater ? Mathf.Sign(vector.x) : 0;
             vector.y = !xComponentGreater ? Mathf.Sign(vector.y) : 0;
 
-            cardinalDirection = vector;
+            _cardinalDirection = vector;
         }
     }
 
@@ -55,7 +57,7 @@ public class MobAnimationController : MonoBehaviour
     {
         // X component determines the direction of flip. Mathf.Sign(0) = 1
         float inverseDirection = flipDirection ? -1 : 1;
-        float direction = Mathf.Sign(cardinalDirection.x * inverseDirection);
+        float direction = Mathf.Sign(_cardinalDirection.x * inverseDirection);
 
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * direction, transform.localScale.y, transform.localScale.z);
     }
