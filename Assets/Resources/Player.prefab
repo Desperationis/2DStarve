@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7491280917830343131}
+  hurtbox: {fileID: -3375194100729452473}
   hitbox: {fileID: 8357216349364483409}
   mobAnimationController: {fileID: 7957580025048750202}
   mask:
@@ -332,7 +333,7 @@ GameObject:
   - component: {fileID: 61519904741305995}
   - component: {fileID: 8357216349364483409}
   m_Layer: 10
-  m_Name: Hurtbox
+  m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
