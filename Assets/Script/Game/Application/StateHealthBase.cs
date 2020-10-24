@@ -2,7 +2,7 @@
 
 /// <summary>
 /// A base class that safely exposes the health component of a 
-/// Bolt Entity's state while supportin client-side prediction. 
+/// Bolt Entity's state while supporting client-side prediction. 
 /// </summary>
 public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
 {
