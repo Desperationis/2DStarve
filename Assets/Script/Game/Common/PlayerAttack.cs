@@ -5,7 +5,7 @@ using Bolt.LagCompensation;
 /// <summary>
 /// Client-side prediction for player attack.
 /// </summary>
-public class PlayerAttack : EntityBehaviour<IPlayerState>
+public class PlayerAttack : EntityEventListener<IPlayerState>
 {
     [SerializeField]
     private Animator animator = null;
@@ -17,7 +17,10 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
 
     public void AttackNearby()
     {
-        AttackNearby(transform.position);
+        if(entity.Controller)
+        {
+            AttackNearby(transform.position);
+        }
     }
 
     private void AttackNearby(Vector2 position)
@@ -43,6 +46,16 @@ public class PlayerAttack : EntityBehaviour<IPlayerState>
         // Let the server know that the controller pressed attack
         // Since it's only server-side, will only be executed once.
         if (cmd.Input.Attack && BoltNetwork.IsServer)
+        {
+            animator.SetTrigger("OnAttack");
+            EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
+            attackEvent.Send();
+        }
+    }
+
+    public override void OnEvent(EntityAttackEvent evnt)
+    {
+        if(!entity.IsControllerOrOwner)
         {
             animator.SetTrigger("OnAttack");
         }

@@ -90,8 +90,11 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             mobController.SetDirection(cmd.Input.Direction);
             mobController.SetRunning(cmd.Input.Running);
 
-            state.Direction = mobController.Direction;
-            state.Running = mobController.Running;
+            if(BoltNetwork.IsServer)
+            {
+                state.Direction = mobController.Direction;
+                state.Running = mobController.Running;
+            }
 
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
 
