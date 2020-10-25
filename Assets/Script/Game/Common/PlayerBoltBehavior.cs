@@ -12,7 +12,17 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController = null;
 
-    private bool spacePressed = false;
+    private bool _spacePressed = false;
+    private bool _lockPlayer = false;
+
+    /// <summary>
+    /// If true, client will send input commands that will cause
+    /// the player to stand still and be locked out of input.
+    /// </summary>
+    public void LockPlayer(bool lockPlayer)
+    {
+        _lockPlayer = lockPlayer;
+    }
 
     public override void Attached()
     {
@@ -23,6 +33,12 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         state.AddCallback("RunningMultiplier", RunningMultUpdate);
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
+        state.AddCallback("MovementLocked", MovementLockedUpdate);
+    }
+
+    private void MovementLockedUpdate()
+    {
+        mobController.SetMovementLock(state.MovementLocked);
     }
 
     private void DirectionUpdate()
@@ -47,30 +63,42 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 
     public override void SimulateController()
     {
-        // Bundle up all input commands into an authoritive command.
-        IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
-
-        Vector2 inputDirection;
-        inputDirection.x = Input.GetAxisRaw("Horizontal");
-        inputDirection.y = Input.GetAxisRaw("Vertical");
-
-        if (Input.touchCount > 0)
+        if(!_lockPlayer)
         {
-            Touch touch = Input.GetTouch(0);
+            // Bundle up all input commands into an authoritive command.
+            IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
 
-            Vector2 position = touch.position;
-            inputDirection = position - new Vector2(Screen.width / 2, Screen.height / 2);
+            Vector2 inputDirection;
+            inputDirection.x = Input.GetAxisRaw("Horizontal");
+            inputDirection.y = Input.GetAxisRaw("Vertical");
+
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+
+                Vector2 position = touch.position;
+                inputDirection = position - new Vector2(Screen.width / 2, Screen.height / 2);
+            }
+
+
+            commandInput.Direction = inputDirection.normalized;
+
+            commandInput.Attack = Input.GetKey(KeyCode.Space) && !_spacePressed;
+            _spacePressed = Input.GetKey(KeyCode.Space);
+
+            commandInput.Running = Input.GetKey(KeyCode.LeftShift);
+
+            entity.QueueInput(commandInput);
         }
+        else
+        {
+            IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
+            commandInput.Direction = Vector2.zero;
+            commandInput.Attack = false;
+            commandInput.Running = false;
 
-
-        commandInput.Direction = inputDirection.normalized;
-
-        commandInput.Attack = Input.GetKey(KeyCode.Space) && !spacePressed;
-        spacePressed = Input.GetKey(KeyCode.Space);
-
-        commandInput.Running = Input.GetKey(KeyCode.LeftShift);
-
-        entity.QueueInput(commandInput);
+            entity.QueueInput(commandInput);
+        }
     }
 
     public override void ExecuteCommand(Command command, bool resetState)
@@ -94,6 +122,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             {
                 state.Direction = mobController.Direction;
                 state.Running = mobController.Running;
+                state.MovementLocked = mobController.MovementLocked;
             }
 
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
