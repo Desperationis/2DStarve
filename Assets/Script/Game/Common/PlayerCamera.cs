@@ -31,7 +31,13 @@ public class PlayerCamera : MonoBehaviour
     private new Camera camera = null;
 
     [SerializeField]
+    [ReadOnly]
     private BoltEntity controlledPlayer = null;
+
+    private void Start()
+    {
+        ControlledEntity.onControlledEntitySwitch.AddListener(Follow);
+    }
 
     public void Follow(BoltEntity controlledPlayer)
     {

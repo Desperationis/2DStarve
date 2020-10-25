@@ -33,13 +33,4 @@ public class ServerCallbacks : Bolt.GlobalEventListener
         // When a client is done loading on their end, spawn it. 
         PlayerRegistry.GetPlayer(connection).Spawn();
     }
-
-    public override void ControlOfEntityGained(BoltEntity entity)
-    {
-        // Follow server-controlled player around
-        if (entity.StateIs<IPlayerState>())
-        {
-            PlayerCamera.Instance.Follow(entity);
-        }
-    }
 }

@@ -9,14 +9,6 @@ using UdpKit;
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "GameScene")]
 public class ClientCallbacks : Bolt.GlobalEventListener
 {
-    public override void ControlOfEntityGained(BoltEntity entity)
-    {
-        if(entity.StateIs<IPlayerState>())
-        {
-            PlayerCamera.Instance.Follow(entity);
-        }
-    }
-
     public override void BoltShutdownBegin(AddCallback registerDoneCallback, UdpConnectionDisconnectReason disconnectReason)
     {
         // Go back to the menu screen
