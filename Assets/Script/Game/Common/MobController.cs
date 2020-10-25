@@ -20,11 +20,11 @@ public class MobController : MonoBehaviour
 
     [ReadOnly]
     [SerializeField]
-    private float speed = 1.0f;                // In units per second
+    private float _speed = 1.0f;                // In units per second
 
     [ReadOnly]
     [SerializeField]
-    private float runningMultiplier = 2.0f;    // A percent as a decimal
+    private float _runningMultiplier = 2.0f;    // A percent as a decimal
 
     [ReadOnly]
     [SerializeField]
@@ -39,6 +39,13 @@ public class MobController : MonoBehaviour
 
     [HideInInspector]
     public Vector2 Direction { get { return _direction; } }
+
+    [SerializeField]
+    [ReadOnly]
+    private bool _movementLocked = false;
+
+    [HideInInspector]
+    public bool MovementLocked { get { return _movementLocked; } }
 
 
     private void Awake()
@@ -62,15 +69,15 @@ public class MobController : MonoBehaviour
 
     public void ResetSettings()
     {
-        speed = speedData.speed;
-        runningMultiplier = speedData.runningMultiplier;
+        _speed = speedData.speed;
+        _runningMultiplier = speedData.runningMultiplier;
         _running = false;
         _direction = Vector2.zero;
     }
 
     public void SetSpeed(float speed)
     {
-        this.speed = speed;
+        _speed = speed;
     }
 
     public void SetRunning(bool running)
@@ -80,7 +87,16 @@ public class MobController : MonoBehaviour
 
     public void SetRunningMultiplier(float runningMultiplier)
     {
-        this.runningMultiplier = runningMultiplier;
+        _runningMultiplier = runningMultiplier;
+    }
+
+    /// <summary>
+    /// If set to true, prevents the mobController from moving
+    /// when called with UpdateFrame().
+    /// </summary>
+    public void SetMovementLock(bool locked)
+    {
+        _movementLocked = locked;
     }
 
 
@@ -123,14 +139,18 @@ public class MobController : MonoBehaviour
     /// </summary>
     public void UpdateFrame(float deltaTime)
     {
-        Vector3 calculatedVelocity = (Vector3)Direction * speed * deltaTime;
+        Vector3 calculatedVelocity = (Vector3)Direction * _speed * deltaTime;
 
         if(_running)
         {
-            calculatedVelocity *= runningMultiplier;
+            calculatedVelocity *= _runningMultiplier;
         }
 
-        transform.position += calculatedVelocity;
+        if(!MovementLocked)
+        {
+            transform.position += calculatedVelocity;
+        }
+
         CalculateCollidedPosition();
     }
 }
