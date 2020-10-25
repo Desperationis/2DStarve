@@ -490,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobController: {fileID: -7290134826670572977}
+  mobAttack: {fileID: 6402330298563616653}
 --- !u!114 &-6933155491670218093
 MonoBehaviour:
   m_ObjectHideFlags: 0

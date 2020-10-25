@@ -11,6 +11,10 @@ public class MobBoltBehavior : EntityBehaviour<IMobState>
     [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController = null;
 
+    [SerializeField]
+    [Tooltip("Used to sync attack animations.")]
+    private MobAttack mobAttack = null;
+
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);
@@ -34,5 +38,21 @@ public class MobBoltBehavior : EntityBehaviour<IMobState>
     {
         state.Direction = mobController.Direction;
         state.Running = mobController.Running;
+
+        if(mobAttack != null)
+        {
+            state.Attacking = mobAttack.animationIsPlaying;
+        }
+    }
+
+    private void Update()
+    {
+        if(state.Attacking && !entity.IsOwner)
+        {
+            if (!mobAttack.animationIsPlaying)
+            {
+                mobAttack.TriggerAttackEvent();
+            }
+        }
     }
 }

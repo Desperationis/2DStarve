@@ -24,8 +24,6 @@ public class MobAttack : AttackBase<IMobState>
     /// </summary>
     public void TriggerAttackEvent()
     {
-        EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
-        attackEvent.Send();
-        //animator.SetTrigger("OnAttack");
+        animator.SetTrigger("OnAttack");
     }
 }
