@@ -7,7 +7,24 @@ using Bolt;
 /// </summary>
 public class PlayerAttack : AttackBase<IPlayerState>
 {
+    [SerializeField]
+    private MobController mobController;
+
     private bool attackedPressed = false;
+
+    public bool requestedLock = false;
+
+
+    public void LockMovement()
+    {
+        requestedLock = true;
+    }
+
+    public void UnlockMovement()
+    {
+        requestedLock = false;
+    }
+
 
     public override void Attack()
     {

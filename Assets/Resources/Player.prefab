@@ -139,6 +139,8 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+  mobController: {fileID: -2372937717468005028}
+  requestedLock: 0
 --- !u!1 &2625509503249030293
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mobController: {fileID: -2372937717468005028}
+  playerAttack: {fileID: 1526790523382393890}
 --- !u!114 &-2372937717468005028
 MonoBehaviour:
   m_ObjectHideFlags: 0
