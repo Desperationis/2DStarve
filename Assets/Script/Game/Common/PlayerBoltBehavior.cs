@@ -12,6 +12,9 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController = null;
 
+    [SerializeField]
+    private PlayerAttack playerAttack;
+
     private bool _spacePressed = false;
     private bool _lockPlayer = false;
 
@@ -33,12 +36,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         state.AddCallback("RunningMultiplier", RunningMultUpdate);
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
-        state.AddCallback("MovementLocked", MovementLockedUpdate);
-    }
-
-    private void MovementLockedUpdate()
-    {
-        mobController.SetMovementLock(state.MovementLocked);
     }
 
     private void DirectionUpdate()
@@ -60,6 +57,7 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     {
         mobController.SetRunningMultiplier(state.RunningMultiplier);
     }
+
 
     public override void SimulateController()
     {
@@ -88,6 +86,8 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
+            commandInput.MovementLocked = playerAttack.requestedLock;
+
             entity.QueueInput(commandInput);
         }
         else
@@ -111,18 +111,19 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         {
             // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
+            //mobController.SetMovementLock(cmd.Result);
         }
         else
         {
             // Move the entity on both the client and server; Client-side prediction
             mobController.SetDirection(cmd.Input.Direction);
             mobController.SetRunning(cmd.Input.Running);
+            mobController.SetMovementLock(cmd.Input.MovementLocked);
 
             if(BoltNetwork.IsServer)
             {
                 state.Direction = mobController.Direction;
                 state.Running = mobController.Running;
-                state.MovementLocked = mobController.MovementLocked;
             }
 
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
