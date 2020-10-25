@@ -25,6 +25,14 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     [Tooltip("The layer mask that determines what objects can be hit.")]
     protected LayerMask mask;
 
+    public bool animationIsPlaying
+    {
+        get {
+            return animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
+        }
+        
+    }
+
 
     /// <summary>
     /// Sends an attack event to all colliders (filtered by a layer mask) that

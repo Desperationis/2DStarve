@@ -187,8 +187,9 @@ GameObject:
   - component: {fileID: 6588922928091073614}
   - component: {fileID: 7146507448982542611}
   - component: {fileID: 8221871295061568569}
+  - component: {fileID: 6402330298563616653}
   m_Layer: 0
-  m_Name: Renderer
+  m_Name: LocalFlipRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -294,6 +295,25 @@ MonoBehaviour:
   mobController: {fileID: -7290134826670572977}
   flipDirection: 0
   _cardinalDirection: {x: 1, y: 0}
+--- !u!114 &6402330298563616653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025369240931496533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5e0865a76903c4fa7c72f950bb183b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7146507448982542611}
+  hurtbox: {fileID: -8223647604920146649}
+  hitbox: {fileID: 1392459858754472191}
+  mobAnimationController: {fileID: 8221871295061568569}
+  mask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &5003528177133432361
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,6 +334,7 @@ GameObject:
   - component: {fileID: 4478296540953310891}
   - component: {fileID: -2785841137619778748}
   - component: {fileID: 3029346160360588521}
+  - component: {fileID: -9050808443251197942}
   m_Layer: 9
   m_Name: Wolf
   m_TagString: Mob
@@ -334,6 +355,7 @@ Transform:
   m_Children:
   - {fileID: 7607591640516848520}
   - {fileID: 3581202486418152465}
+  - {fileID: 1824379430176675663}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -420,6 +442,7 @@ MonoBehaviour:
   mobController: {fileID: -7290134826670572977}
   AIData: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6, type: 2}
   AIs:
+  - {fileID: -9050808443251197942}
   - {fileID: -6933155491670218093}
   - {fileID: 8280041087113635399}
   currentAI: {fileID: 0}
@@ -519,3 +542,73 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa9117c87c499e742a7ce1d159614059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-9050808443251197942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f7ae4b773707746a106f2d86d85154, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mobAttack: {fileID: 6402330298563616653}
+--- !u!1 &7719238700134976967
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1824379430176675663}
+  - component: {fileID: 1392459858754472191}
+  m_Layer: 9
+  m_Name: Hitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1824379430176675663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719238700134976967}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5003528177133432364}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1392459858754472191
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7719238700134976967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -1.4}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

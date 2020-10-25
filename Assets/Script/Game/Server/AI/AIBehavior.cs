@@ -4,7 +4,7 @@
 /// Base Class for all AI behaviors.
 /// </summary>
 [RequireComponent(typeof(AISwapper))]
-public class AIBehavior : MonoBehaviour
+public abstract class AIBehavior : MonoBehaviour
 {
     protected MobController mobController = null;
     protected MobAIData AIData = null;
@@ -41,10 +41,7 @@ public class AIBehavior : MonoBehaviour
     /// <returns>
     /// Returns a boolean, representing if the rule was fulfilled or not.
     /// </returns>
-    public virtual bool CheckRequirement()
-    {
-        return false;
-    }
+    public abstract bool CheckRequirement();
 
     /// <summary>
     /// Updates AIBehavior on FixedUpdate(). This will only
