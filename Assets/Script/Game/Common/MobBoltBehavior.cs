@@ -5,7 +5,7 @@ using Bolt;
 /// Syncs most variables for a mob from the server to the clients. Variables
 /// that are extensively manipulated (e.x. health) have their own class.
 /// </summary>
-public class MobBoltBehavior : EntityBehaviour<IMobState>
+public class MobBoltBehavior : Bolt.EntityEventListener<IMobState>
 {
     [SerializeField]
     [Tooltip("Used to syncronize movement settings.")]
@@ -53,6 +53,17 @@ public class MobBoltBehavior : EntityBehaviour<IMobState>
             {
                 mobAttack.TriggerAttackEvent();
             }
+        }
+    }
+
+    public override void OnEvent(EntityVariableChangeEvent evnt)
+    {
+        mobController.SetSpeed(evnt.Speed);
+        mobController.SetRunningMultiplier(evnt.RunningMultiplier);
+
+        if(BoltNetwork.IsServer)
+        {
+            state.Health = evnt.Health;
         }
     }
 }

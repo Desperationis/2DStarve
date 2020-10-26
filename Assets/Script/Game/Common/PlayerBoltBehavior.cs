@@ -6,7 +6,7 @@ using Bolt;
 /// also using client-side prediction. Variables that are extensively
 /// manipulated (e.x. health) have their own class.
 /// </summary>
-public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
+public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
 {
     [SerializeField]
     [Tooltip("Used to syncronize movement settings.")]
@@ -32,8 +32,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
         state.SetTransforms(state.Transform, transform);
 
         // Syncronize mobController settings on clients and server. 
-        state.AddCallback("Speed", SpeedUpdate);
-        state.AddCallback("RunningMultiplier", RunningMultUpdate);
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
     }
@@ -47,17 +45,6 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
     {
         mobController.SetRunning(state.Running);
     }
-
-    private void SpeedUpdate()
-    {
-        mobController.SetSpeed(state.Speed);
-    }
-
-    private void RunningMultUpdate()
-    {
-        mobController.SetRunningMultiplier(state.RunningMultiplier);
-    }
-
 
     public override void SimulateController()
     {
@@ -131,5 +118,16 @@ public class PlayerBoltBehavior : Bolt.EntityBehaviour<IPlayerState>
             cmd.Result.Position = transform.position;
         }
 
+    }
+
+    public override void OnEvent(EntityVariableChangeEvent evnt)
+    {
+        mobController.SetSpeed(evnt.Speed);
+        mobController.SetRunningMultiplier(evnt.RunningMultiplier);
+
+        if (BoltNetwork.IsServer)
+        {
+            state.Health = evnt.Health;
+        }
     }
 }
