@@ -1,6 +1,4 @@
-﻿using UnityEngine.Events;
-
-/// <summary>
+﻿/// <summary>
 /// Implements the interface of IPlayerState into StateHealthBase logic. 
 /// </summary>
 public class PlayerStateHealth : StateHealthBase<IPlayerState>

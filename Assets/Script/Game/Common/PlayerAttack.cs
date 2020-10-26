@@ -10,22 +10,6 @@ public class PlayerAttack : AttackBase<IPlayerState>
     [SerializeField]
     private MobController mobController;
 
-    private bool attackedPressed = false;
-
-    public bool requestedLock = false;
-
-
-    public void LockMovement()
-    {
-        requestedLock = true;
-    }
-
-    public void UnlockMovement()
-    {
-        requestedLock = false;
-    }
-
-
     public override void Attack()
     {
         if (entity.IsControllerOrOwner)
@@ -46,7 +30,6 @@ public class PlayerAttack : AttackBase<IPlayerState>
             EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
             attackEvent.Send();
         }
-
     }
 
     protected override void _OnEvent(EntityAttackEvent evnt)
@@ -63,11 +46,10 @@ public class PlayerAttack : AttackBase<IPlayerState>
         // back in time with Photon Bolt commands
         if(BoltNetwork.IsClient)
         {
-            if(Input.GetKey(KeyCode.Space) && !attackedPressed)
+            if(Input.GetKey(KeyCode.Space) && !animationIsPlaying)
             {
                 animator.SetTrigger("OnAttack");
             }
-            attackedPressed = Input.GetKey(KeyCode.Space);
         }
     }
 }

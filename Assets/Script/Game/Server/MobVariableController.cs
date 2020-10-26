@@ -3,7 +3,8 @@
 public class MobVariableController : MonoBehaviour
 {
     [SerializeField]
-    private BoltEntity entity;
+    [Tooltip("BoltEntity to send a EntityVariableChangeEvent to.")]
+    private BoltEntity entity = null;
 
     [SerializeField]
     private float _speed = 0.0f;

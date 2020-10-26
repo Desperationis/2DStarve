@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using UnityEngine.Events;
-
-/// <summary>
+﻿/// <summary>
 /// Implements the interface of IMobState into StateHealthBase logic. 
 /// </summary>
 public class MobStateHealth : StateHealthBase<IMobState>

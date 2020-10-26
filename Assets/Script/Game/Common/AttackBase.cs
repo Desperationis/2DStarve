@@ -25,6 +25,9 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     [Tooltip("The layer mask that determines what objects can be hit.")]
     protected LayerMask mask;
 
+    /// <summary>
+    /// Whether or not the attack (blend tree) is playing.
+    /// </summary>
     public bool animationIsPlaying
     {
         get {

@@ -13,7 +13,8 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
     private MobController mobController = null;
 
     [SerializeField]
-    private PlayerAttack playerAttack;
+    [Tooltip("Used to tell when the attack animation is playing.")]
+    private PlayerAttack playerAttack = null;
 
     private bool _spacePressed = false;
     private bool _lockPlayer = false;
@@ -73,7 +74,7 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
-            commandInput.MovementLocked = playerAttack.requestedLock;
+            commandInput.MovementLocked = playerAttack.animationIsPlaying;
 
             entity.QueueInput(commandInput);
         }
