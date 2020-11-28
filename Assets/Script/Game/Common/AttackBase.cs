@@ -26,7 +26,7 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     protected LayerMask mask;
 
     /// <summary>
-    /// Whether or not the attack (blend tree) is playing.
+    /// Whether or not the attackanimation (blend tree) is playing.
     /// </summary>
     public bool animationIsPlaying
     {
@@ -58,6 +58,7 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
             {
                 if (hit != hurtbox)
                 {
+                    // Send a event to the mob's health's TakeDamage() if possible. 
                     hit.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
                 }
             }
@@ -67,11 +68,12 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
 
     public override void OnEvent(EntityAttackEvent evnt)
     {
+        // Call overrided function. 
         _OnEvent(evnt);
     }
 
     /// <summary>
-    /// Buffer function that passes directly into EntityEventListener.OnEvent(evnt);
+    /// Overriden function that gets called in OnEvent(evnt) due to inherience issues;
     /// Activates the attack animation trigger.
     /// </summary>
     protected virtual void _OnEvent(EntityAttackEvent evnt)

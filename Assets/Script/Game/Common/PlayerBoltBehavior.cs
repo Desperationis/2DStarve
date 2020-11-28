@@ -20,8 +20,8 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
     private bool _lockPlayer = false;
 
     /// <summary>
-    /// If true, client will send input commands that will cause
-    /// the player to stand still and be locked out of input.
+    /// If true, client will override requested inputs to make 
+    /// the player stand still. 
     /// </summary>
     public void LockPlayer(bool lockPlayer)
     {
@@ -99,7 +99,6 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
         {
             // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
-            //mobController.SetMovementLock(cmd.Result);
         }
         else
         {
@@ -121,6 +120,11 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
 
     }
 
+    /// <summary>
+    /// Callback function that forces the player to be at the
+    /// requested variable state of the server. 
+    /// </summary>
+    /// <param name="evnt"></param>
     public override void OnEvent(EntityVariableChangeEvent evnt)
     {
         mobController.SetSpeed(evnt.Speed);
