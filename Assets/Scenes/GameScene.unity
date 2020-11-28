@@ -243,6 +243,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChatUI
       objectReference: {fileID: 0}
+    - target: {fileID: 2822487600160747856, guid: ea9db533dce036e499b805328b8f48a6,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822487600160747856, guid: ea9db533dce036e499b805328b8f48a6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822487600160747856, guid: ea9db533dce036e499b805328b8f48a6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2822487600457745278, guid: ea9db533dce036e499b805328b8f48a6,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -289,6 +304,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2822487601061462504, guid: ea9db533dce036e499b805328b8f48a6,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822487601381917260, guid: ea9db533dce036e499b805328b8f48a6,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2822487601381917260, guid: ea9db533dce036e499b805328b8f48a6,
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -398,6 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e65392c9bea45944b9e1b82803e4c36c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  offCenter: {x: 0, y: 0.5}
   camera: {fileID: 599042150}
   controlledPlayer: {fileID: 0}
 --- !u!1 &661060054

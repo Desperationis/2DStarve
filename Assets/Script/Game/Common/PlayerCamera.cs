@@ -28,6 +28,10 @@ public class PlayerCamera : MonoBehaviour
     #endregion
 
     [SerializeField]
+    private Vector2 offCenter;
+
+
+    [SerializeField]
     private new Camera camera = null;
 
     [SerializeField]
@@ -49,8 +53,8 @@ public class PlayerCamera : MonoBehaviour
         if(controlledPlayer != null)
         {
             Vector3 newCameraPosition;
-            newCameraPosition.x = controlledPlayer.transform.position.x;
-            newCameraPosition.y = controlledPlayer.transform.position.y;
+            newCameraPosition.x = controlledPlayer.transform.position.x + offCenter.x;
+            newCameraPosition.y = controlledPlayer.transform.position.y + offCenter.y;
             newCameraPosition.z = transform.position.z;
 
             camera.transform.position = newCameraPosition;
