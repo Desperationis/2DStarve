@@ -45,7 +45,7 @@ public class AISwapper : MonoBehaviour
                 AI.SetDependencies(mobController, AIData);
                 AI.Init();
             }
-            currentAI = GetCurrentAI();
+            SwapCurrentAI(GetCurrentAI());
         }
     }
 
