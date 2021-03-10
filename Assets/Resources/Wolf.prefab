@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5e0865a76903c4fa7c72f950bb183b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7146507448982542611}
+  attackingComponent: {fileID: 5327501056630726354}
 --- !u!114 &5327501056630726354
 MonoBehaviour:
   m_ObjectHideFlags: 0

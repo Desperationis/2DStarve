@@ -7,9 +7,6 @@ using Bolt;
 /// </summary>
 public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
 {
-    [SerializeField]
-    private AttackingComponent attackingComponent = null;
-
     public override void ExecuteCommand(Command command, bool resetState)
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
@@ -18,7 +15,7 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
         // Since it's only server-side, will only be executed once.
         if (cmd.Input.Attack && BoltNetwork.IsServer)
         {
-            animator.SetTrigger("OnAttack");
+            attackingComponent.TriggerAttackEvent();
             EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
             attackEvent.Send();
         }
@@ -40,7 +37,7 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
         {
             if(Input.GetKey(KeyCode.Space) && !attackingComponent.animationIsPlaying)
             {
-                animator.SetTrigger("OnAttack");
+                attackingComponent.TriggerAttackEvent();
             }
         }
     }

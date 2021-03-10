@@ -6,7 +6,7 @@
 public class AttackOrchestrator<T> : NetworkOrchestrator<T>
 {
     [SerializeField]
-    protected Animator animator = null;
+    protected AttackingComponent attackingComponent = null;
 
     public override void OnEvent(EntityAttackEvent evnt)
     {
@@ -15,11 +15,11 @@ public class AttackOrchestrator<T> : NetworkOrchestrator<T>
     }
 
     /// <summary>
-    /// Overriden function that gets called in OnEvent(evnt) due to inherience issues;
+    /// Overriden function that gets called in OnEvent(evnt) due to inheritence issues;
     /// Activates the attack animation trigger.
     /// </summary>
     protected virtual void _OnEvent(EntityAttackEvent evnt)
     {
-        animator.SetTrigger("OnAttack");
+        attackingComponent.TriggerAttackEvent();
     }
 }
