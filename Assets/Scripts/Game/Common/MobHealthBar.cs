@@ -14,7 +14,7 @@ public class MobHealthBar : MobBehaviour
     private PlayerHealthOrchestrator playerStateHealth = null;
 
     [SerializeField]
-    private PlayerHealthOrchestrator mobStateHealth = null;
+    private MobHealthOrchestrator mobStateHealth = null;
 
     protected void Awake()
     {

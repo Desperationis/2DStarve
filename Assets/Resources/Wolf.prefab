@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 7146507448982542611}
   - component: {fileID: 8221871295061568569}
   - component: {fileID: 6402330298563616653}
+  - component: {fileID: 5327501056630726354}
   m_Layer: 0
   m_Name: LocalFlipRenderer
   m_TagString: Untagged
@@ -294,7 +295,6 @@ MonoBehaviour:
   animator: {fileID: 7146507448982542611}
   mobController: {fileID: -7290134826670572977}
   flipDirection: 0
-  _cardinalDirection: {x: 1, y: 0}
 --- !u!114 &6402330298563616653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,9 +308,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7146507448982542611}
+--- !u!114 &5327501056630726354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4025369240931496533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1910b8ba004a389409b5b3b5cc696062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7146507448982542611}
   hurtbox: {fileID: -8223647604920146649}
   hitbox: {fileID: 1392459858754472191}
-  mobAnimationController: {fileID: 8221871295061568569}
   mask:
     serializedVersion: 2
     m_Bits: 512
@@ -472,12 +484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: -8223647604920146649}
   collisionMarker: {fileID: -1279673826132850888}
-  speedData: {fileID: 11400000, guid: 0378083ea0421a94d8efc8373506beab, type: 2}
-  _speed: 1
-  _runningMultiplier: 2
-  _running: 0
-  _direction: {x: 0, y: 0}
-  _movementLocked: 0
+  _cardinalDirection: {x: 0, y: -1}
 --- !u!114 &-46107767918594314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,8 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a065a6e3295493847bd0ea3f8dba8773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobController: {fileID: -7290134826670572977}
-  mobAttack: {fileID: 6402330298563616653}
+  attackingComponent: {fileID: 5327501056630726354}
 --- !u!114 &-6933155491670218093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -543,7 +549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f7ae4b773707746a106f2d86d85154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobAttack: {fileID: 6402330298563616653}
+  attackingComponent: {fileID: 5327501056630726354}
 --- !u!114 &5681256847317119823
 MonoBehaviour:
   m_ObjectHideFlags: 0

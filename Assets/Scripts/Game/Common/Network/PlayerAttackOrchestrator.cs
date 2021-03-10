@@ -7,13 +7,8 @@ using Bolt;
 /// </summary>
 public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
 {
-    public override void Attack()
-    {
-        if (entity.IsControllerOrOwner)
-        {
-            base.Attack();
-        }
-    }
+    [SerializeField]
+    private AttackingComponent attackingComponent = null;
 
     public override void ExecuteCommand(Command command, bool resetState)
     {
@@ -43,7 +38,7 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
         // back in time with Photon Bolt commands
         if(BoltNetwork.IsClient)
         {
-            if(Input.GetKey(KeyCode.Space) && !animationIsPlaying)
+            if(Input.GetKey(KeyCode.Space) && !attackingComponent.animationIsPlaying)
             {
                 animator.SetTrigger("OnAttack");
             }

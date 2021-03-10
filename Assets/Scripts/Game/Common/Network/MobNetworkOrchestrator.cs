@@ -8,7 +8,7 @@ using Bolt;
 public class MobNetworkOrchestrator : NetworkOrchestrator<IMobState>
 {
     [SerializeField]
-    private MobAttackOrchestrator mobAttack = null;
+    private AttackingComponent attackingComponent = null;
 
     public override void Attached()
     {
@@ -34,9 +34,9 @@ public class MobNetworkOrchestrator : NetworkOrchestrator<IMobState>
         state.Direction = mobController.direction;
         state.Running = mobController.isRunning;
 
-        if(mobAttack != null)
+        if(attackingComponent != null)
         {
-            state.Attacking = mobAttack.animationIsPlaying;
+            state.Attacking = attackingComponent.animationIsPlaying;
         }
     }
 
@@ -44,9 +44,9 @@ public class MobNetworkOrchestrator : NetworkOrchestrator<IMobState>
     {
         if(state.Attacking && !entity.IsOwner)
         {
-            if (!mobAttack.animationIsPlaying)
+            if (!attackingComponent.animationIsPlaying)
             {
-                mobAttack.TriggerAttackEvent();
+                attackingComponent.TriggerAttackEvent();
             }
         }
     }

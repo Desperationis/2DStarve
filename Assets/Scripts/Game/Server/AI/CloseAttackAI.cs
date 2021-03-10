@@ -4,7 +4,7 @@ public class CloseAttackAI : AIBehavior
 {
     [SerializeField]
     [Tooltip("Used to trigger the attack animation over and over.")]
-    private MobAttackOrchestrator mobAttack = null;
+    private AttackingComponent attackingComponent = null;
 
     public override void OnSwitchEnter()
     {
@@ -21,16 +21,16 @@ public class CloseAttackAI : AIBehavior
         }
         mobController.UpdateFrame(Time.fixedDeltaTime);
 
-        if(!mobAttack.animationIsPlaying)
+        if(!attackingComponent.animationIsPlaying)
         {
-            mobAttack.TriggerAttackEvent();
+            attackingComponent.TriggerAttackEvent();
         }
     }
 
 
     public override bool CheckRequirement()
     {
-        return PlayerRegistry.OverlapCircleAny(transform.position, 1.5f) || mobAttack.animationIsPlaying;
+        return PlayerRegistry.OverlapCircleAny(transform.position, 1.5f) || attackingComponent.animationIsPlaying;
     }
 
     public override void OnSwitchLeave()

@@ -10,7 +10,7 @@ public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
 {
     [SerializeField]
     [Tooltip("Used to tell when the attack animation is playing.")]
-    private PlayerAttackOrchestrator playerAttack = null;
+    private AttackingComponent attackingComponent = null;
 
     private bool _spacePressed = false;
     private bool _lockPlayer = false;
@@ -70,7 +70,7 @@ public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
-            commandInput.MovementLocked = playerAttack.animationIsPlaying;
+            commandInput.MovementLocked = attackingComponent.animationIsPlaying;
 
             entity.QueueInput(commandInput);
         }

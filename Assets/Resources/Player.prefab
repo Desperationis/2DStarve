@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7491280917830343131}
   - component: {fileID: 7957580025048750202}
   - component: {fileID: 1526790523382393890}
+  - component: {fileID: 7964543078509966494}
   m_Layer: 0
   m_Name: LocalFlipRenderer
   m_TagString: Untagged
@@ -132,13 +133,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 7491280917830343131}
+  attackingComponent: {fileID: 7964543078509966494}
+--- !u!114 &7964543078509966494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104177521672310721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1910b8ba004a389409b5b3b5cc696062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 7491280917830343131}
   hurtbox: {fileID: -3375194100729452473}
   hitbox: {fileID: 8357216349364483409}
-  mobController: {fileID: -2372937717468005028}
   mask:
     serializedVersion: 2
     m_Bits: 512
-  mobController: {fileID: -2372937717468005028}
 --- !u!1 &2625509503249030293
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10764d4ed3c7c240a6075836f297c9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobController: {fileID: -2372937717468005028}
-  playerAttack: {fileID: 1526790523382393890}
+  attackingComponent: {fileID: 7964543078509966494}
 --- !u!114 &-2372937717468005028
 MonoBehaviour:
   m_ObjectHideFlags: 0
