@@ -12,7 +12,7 @@ public class ChatPlayerMovementLock : MonoBehaviour
 
         if(player != null)
         {
-            player.GetComponent<PlayerBoltBehavior>().LockPlayer(true);
+            player.GetComponent<PlayerNetworkOrchestrator>().LockPlayer(true);
         }
     }
 
@@ -22,7 +22,7 @@ public class ChatPlayerMovementLock : MonoBehaviour
 
         if (player != null)
         {
-            player.GetComponent<PlayerBoltBehavior>().LockPlayer(false);
+            player.GetComponent<PlayerNetworkOrchestrator>().LockPlayer(false);
         }
     }
 }

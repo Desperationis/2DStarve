@@ -1,13 +1,13 @@
 ﻿/// <summary>
-/// Implements the interface of IPlayerState into StateHealthBase logic. 
+/// Implements the interface of IMobState into StateHealthBase logic. 
 /// </summary>
-public class PlayerStateHealth : StateHealthBase<IPlayerState>
+public class MobHealthOrchestrator : HealthOrchestrator<IMobState>
 {
     public override void InitializeHealth()
     {
         state.AddCallback("Health", HealthUpdate);
 
-        if (BoltNetwork.IsServer)
+        if(BoltNetwork.IsServer)
         {
             state.Health = 100;
         }

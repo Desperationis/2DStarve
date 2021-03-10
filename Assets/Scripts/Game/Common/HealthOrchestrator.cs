@@ -4,7 +4,7 @@
 /// A base class that safely exposes the health component of a 
 /// Bolt Entity's state while supporting client-side prediction. 
 /// </summary>
-public abstract class StateHealthBase<T> : Bolt.EntityBehaviour<T>
+public abstract class HealthOrchestrator<T> : Bolt.EntityBehaviour<T>
 {
     public bool IsDead { get { return GetStateHealth() < 0; } }
 

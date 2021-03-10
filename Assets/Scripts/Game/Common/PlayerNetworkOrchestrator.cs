@@ -6,15 +6,11 @@ using Bolt;
 /// also using client-side prediction. Variables that are extensively
 /// manipulated (e.x. health) have their own class.
 /// </summary>
-public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
+public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
 {
     [SerializeField]
-    [Tooltip("Used to synchronize movement settings.")]
-    private MobController mobController = null;
-
-    [SerializeField]
     [Tooltip("Used to tell when the attack animation is playing.")]
-    private PlayerAttack playerAttack = null;
+    private PlayerAttackOrchestrator playerAttack = null;
 
     private bool _spacePressed = false;
     private bool _lockPlayer = false;

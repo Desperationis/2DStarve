@@ -5,11 +5,8 @@ using Bolt;
 /// Client-side prediction for player attack. Derives from 
 /// AttackBase.
 /// </summary>
-public class PlayerAttack : AttackBase<IPlayerState>
+public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
 {
-    [SerializeField]
-    private MobController mobController;
-
     public override void Attack()
     {
         if (entity.IsControllerOrOwner)

@@ -2,7 +2,7 @@
 /// Makes attacking interfacible with AIBehaviors. Derives from 
 /// AttackBase.
 /// </summary>
-public class MobAttack : AttackBase<IMobState>
+public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
 {
     /// <summary>
     /// Only attack (do damage) on the server. Actual values will

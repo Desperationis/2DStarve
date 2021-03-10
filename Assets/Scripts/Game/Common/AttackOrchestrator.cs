@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Base class for attacking other entities. 
+/// Base class responsible for synching attack for both
+/// players and mobs
 /// </summary>
-public class AttackBase<T> : Bolt.EntityEventListener<T>
+public class AttackOrchestrator<T> : NetworkOrchestrator<T>
 {
     [SerializeField]
     [Tooltip("Used to activate the attack animation trigger.")]
@@ -16,9 +17,6 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     [SerializeField]
     [Tooltip("The singular hitbox used for attacking in four directions.")]
     protected BoxCollider2D hitbox = null;
-
-    [SerializeField]
-    protected MobController mobController = null;
 
     [SerializeField]
     [Tooltip("The layer mask that determines what objects can be hit.")]

@@ -4,7 +4,7 @@ public class CloseAttackAI : AIBehavior
 {
     [SerializeField]
     [Tooltip("Used to trigger the attack animation over and over.")]
-    private MobAttack mobAttack = null;
+    private MobAttackOrchestrator mobAttack = null;
 
     public override void OnSwitchEnter()
     {

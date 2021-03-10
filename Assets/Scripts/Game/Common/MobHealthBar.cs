@@ -5,19 +5,20 @@ using TMPro;
 /// Displays a health bar by listening to value changes in a
 /// StateHealthBase derived class. 
 /// </summary>
-public class MobHealthBar : MonoBehaviour
+public class MobHealthBar : MobBehaviour
 {
     [SerializeField]
     private TextMeshPro healthBar = null;
 
     [SerializeField]
-    private PlayerStateHealth playerStateHealth = null;
+    private PlayerHealthOrchestrator playerStateHealth = null;
 
     [SerializeField]
-    private MobStateHealth mobStateHealth = null;
+    private PlayerHealthOrchestrator mobStateHealth = null;
 
-    private void Awake()
+    protected void Awake()
     {
+        base.Awake();
         if(playerStateHealth != null)
         {
             playerStateHealth.onHealthChange.AddListener(SetHealth);

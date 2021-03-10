@@ -119,7 +119,6 @@ MonoBehaviour:
   animator: {fileID: 7491280917830343131}
   mobController: {fileID: -2372937717468005028}
   flipDirection: 0
-  _cardinalDirection: {x: 1, y: 0}
 --- !u!114 &1526790523382393890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ MonoBehaviour:
   animator: {fileID: 7491280917830343131}
   hurtbox: {fileID: -3375194100729452473}
   hitbox: {fileID: 8357216349364483409}
-  mobAnimationController: {fileID: 7957580025048750202}
+  mobController: {fileID: -2372937717468005028}
   mask:
     serializedVersion: 2
     m_Bits: 512
@@ -238,12 +237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   boxCollider: {fileID: -3375194100729452473}
   collisionMarker: {fileID: 6411824412771164450}
-  speedData: {fileID: 11400000, guid: b8af43955b9c0e44aa755c6cc9ed6963, type: 2}
-  _speed: 1
-  _runningMultiplier: 2
-  _running: 0
-  _direction: {x: 0, y: 0}
-  _movementLocked: 0
+  _cardinalDirection: {x: 0, y: -1}
 --- !u!61 &-3375194100729452473
 BoxCollider2D:
   m_ObjectHideFlags: 0

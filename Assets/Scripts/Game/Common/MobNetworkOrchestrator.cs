@@ -5,13 +5,10 @@ using Bolt;
 /// Syncs most variables for a mob from the server to the clients. Variables
 /// that are extensively manipulated (e.x. health) have their own class.
 /// </summary>
-public class MobBoltBehavior : Bolt.EntityEventListener<IMobState>
+public class MobNetworkOrchestrator : NetworkOrchestrator<IMobState>
 {
     [SerializeField]
-    private MobController mobController = null;
-
-    [SerializeField]
-    private MobAttack mobAttack = null;
+    private MobAttackOrchestrator mobAttack = null;
 
     public override void Attached()
     {
