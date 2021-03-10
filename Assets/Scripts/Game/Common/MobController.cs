@@ -1,58 +1,81 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// A custom physics controller for a mob that deals with
-/// on-frame collision with BoxCollider2D's. 
+/// A custom physics controller for collisions with BoxCollider2Ds. 
+/// This is the script solely responsible for mob movement and direction.
 /// </summary>
 public class MobController : MonoBehaviour
 {
     [SerializeField]
-    [Tooltip("The collider of this entity. This is what is checked against other colliders.")]
     private BoxCollider2D boxCollider = null;
 
     [SerializeField]
-    [Tooltip("The collision marker of this entity. This determines how it'll interact with other colliders.")]
-    private CollisionMarker collisionMarker = null;
+    public CollisionMarker collisionMarker = null;
 
-    [SerializeField]
-    [Tooltip("Speed data to load when initialized.")]
-    private MobSpeedData speedData = null;
+    public float speed { get; private set; }
+    public float runningMultiplier { get; private set; }
+    public bool isRunning { get; private set; }
+    public Vector2 direction { get; private set; }
+    public bool movementDisabled { get; private set; }
 
-    [ReadOnly]
-    [SerializeField]
-    private float _speed = 1.0f;                // In units per second
+    public Vector2 _cardinalDirection = Vector2.down;
 
-    [ReadOnly]
-    [SerializeField]
-    private float _runningMultiplier = 2.0f;    // A percent as a decimal
+    public Vector2 cardinalDirection
+    {
+        // Returns the cardinal direction of the mob controller as 
+        // a normalized vector in only the 4 major directions.
+        // If not moving, return the last known cardinal direction.
+        get
+        {
+            if (direction != Vector2.zero)
+            {
+                // Get the cardinal direction of the greater x or y component
+                Vector2 newCardinalDirection = direction;
+                bool xComponentGreater = Mathf.Abs(direction.x) >= Mathf.Abs(direction.y);
+                newCardinalDirection.x = xComponentGreater ? Mathf.Sign(direction.x) : 0;
+                newCardinalDirection.y = !xComponentGreater ? Mathf.Sign(direction.y) : 0;
 
-    [ReadOnly]
-    [SerializeField]
-    private bool _running = false;
+                _cardinalDirection = newCardinalDirection;
+            }
 
-    [HideInInspector]
-    public bool Running { get { return _running; } }
+            return _cardinalDirection;
+        }
+    }
 
-    [SerializeField]
-    [ReadOnly]
-    private Vector2 _direction = Vector2.zero;
-
-    [HideInInspector]
-    public Vector2 Direction { get { return _direction; } }
-
-    [SerializeField]
-    [ReadOnly]
-    private bool _movementLocked = false;
-
-    [HideInInspector]
-    public bool MovementLocked { get { return _movementLocked; } }
-
+    public bool isMoving { 
+        get
+        {
+            return direction.sqrMagnitude != 0.0f && !movementDisabled;
+        } 
+    }
 
     private void Awake()
     {
-        ResetSettings();
+        EnableMovement();
+        SetSpeed(1);
+        SetRunningMultiplier(1);
+        SetRunning(false);
+        Stop();
     }
 
+    public void DisableMovement()
+    {
+        movementDisabled = true;
+    }
+
+    public void EnableMovement()
+    {
+        movementDisabled = false;
+    }
+
+    /// <summary>
+    /// Stops the gameObject from moving.
+    /// </summary>
+    public void Stop()
+    {
+        isRunning = false;
+        direction = Vector2.zero;
+    }
 
     /// <summary>
     /// Sets the direction the mob controller will drive the mob to 
@@ -64,49 +87,49 @@ public class MobController : MonoBehaviour
     /// </param>
     public void SetDirection(Vector2 direction)
     {
-        _direction = direction.normalized;
+        this.direction = direction.normalized;
     }
 
-    public void ResetSettings()
-    {
-        _speed = speedData.speed;
-        _runningMultiplier = speedData.runningMultiplier;
-        _running = false;
-        _direction = Vector2.zero;
-    }
 
+    /// <summary>
+    /// Set the speed of the MobController in Unity Units per second.
+    /// </summary>
+    /// <param name="speed">A speed greater than or equal to 0.</param>
     public void SetSpeed(float speed)
     {
-        _speed = speed;
-    }
-
-    public void SetRunning(bool running)
-    {
-        _running = running;
+        if(speed >= 0.0f)
+        {
+            this.speed = speed;
+        }
     }
 
     public void SetRunningMultiplier(float runningMultiplier)
     {
-        _runningMultiplier = runningMultiplier;
+        if (runningMultiplier >= 1.0f)
+        {
+            this.runningMultiplier = runningMultiplier;
+        }
     }
 
     /// <summary>
-    /// If set to true, prevents the mobController from moving
-    /// when called with UpdateFrame().
+    /// Whether or not the current speed will be multiplied
+    /// by the running multiplier.
     /// </summary>
-    public void SetMovementLock(bool locked)
+    /// <param name="running"></param>
+    public void SetRunning(bool running)
     {
-        _movementLocked = locked;
+        isRunning = running;
     }
 
-
     /// <summary>
-    /// Updates the position of the entity based on any colliding 
-    /// BoxCollider2D's and CollisionMarker
+    /// Calculate the position object this gameObject has to make to not 
+    /// collide with any entities.
     /// </summary>
-    public void CalculateCollidedPosition()
+    private Vector2 CalculateCollisionOffset()
     {
         Collider2D[] colliderHits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0.0f);
+
+        Vector2 offset = Vector2.zero;
 
         foreach (Collider2D hit in colliderHits)
         {
@@ -125,32 +148,34 @@ public class MobController : MonoBehaviour
 
                     if (colliderDistance.isOverlapped)
                     {
-                        transform.position += (Vector3)(colliderDistance.pointA - colliderDistance.pointB);
+                        offset += colliderDistance.pointA - colliderDistance.pointB;
                     }
                 }
             }
         }
+
+        return offset;
     }
 
 
     /// <summary>
-    /// Updates the controller by a single frame. Delta time used
-    /// must be passed in to function.
+    /// Updates the controller by a single frame based on a
+    /// delta time.
     /// </summary>
     public void UpdateFrame(float deltaTime)
     {
-        Vector3 calculatedVelocity = (Vector3)Direction * _speed * deltaTime;
+        Vector3 calculatedVelocity = (Vector3)direction * speed * deltaTime;
 
-        if(_running)
+        if(isRunning)
         {
-            calculatedVelocity *= _runningMultiplier;
+            calculatedVelocity *= runningMultiplier;
         }
-
-        if(!MovementLocked)
+        
+        if(!movementDisabled)
         {
             transform.position += calculatedVelocity;
         }
 
-        CalculateCollidedPosition();
+        transform.position += (Vector3)CalculateCollisionOffset();
     }
 }

@@ -18,8 +18,7 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     protected BoxCollider2D hitbox = null;
 
     [SerializeField]
-    [Tooltip("Used to determine the location of the hitbox.")]
-    protected MobAnimationController mobAnimationController = null;
+    protected MobController mobController = null;
 
     [SerializeField]
     [Tooltip("The layer mask that determines what objects can be hit.")]
@@ -89,7 +88,7 @@ public class AttackBase<T> : Bolt.EntityEventListener<T>
     /// </summary>
     protected void FixedUpdate()
     {
-        Vector2 cardinalDirection = mobAnimationController.CardinalDirection;
+        Vector2 cardinalDirection = mobController.cardinalDirection;
         Vector2 rotatedVector = new Vector2(-cardinalDirection.y, cardinalDirection.x);
         float directionalAngle = Mathf.Acos(rotatedVector.x) * (180.0f / Mathf.PI);
         directionalAngle *= cardinalDirection.x < 0 ? -1 : 1;

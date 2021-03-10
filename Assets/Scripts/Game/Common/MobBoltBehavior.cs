@@ -8,11 +8,9 @@ using Bolt;
 public class MobBoltBehavior : Bolt.EntityEventListener<IMobState>
 {
     [SerializeField]
-    [Tooltip("Used to syncronize movement settings.")]
     private MobController mobController = null;
 
     [SerializeField]
-    [Tooltip("Used to sync attack animations.")]
     private MobAttack mobAttack = null;
 
     public override void Attached()
@@ -36,8 +34,8 @@ public class MobBoltBehavior : Bolt.EntityEventListener<IMobState>
 
     public override void SimulateOwner()
     {
-        state.Direction = mobController.Direction;
-        state.Running = mobController.Running;
+        state.Direction = mobController.direction;
+        state.Running = mobController.isRunning;
 
         if(mobAttack != null)
         {

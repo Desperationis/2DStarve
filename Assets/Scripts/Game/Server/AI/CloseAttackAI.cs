@@ -8,9 +8,8 @@ public class CloseAttackAI : AIBehavior
 
     public override void OnSwitchEnter()
     {
-        mobController.SetMovementLock(true);
+        mobController.DisableMovement();
     }
-
 
     public override void UpdateAI()
     {
@@ -36,6 +35,6 @@ public class CloseAttackAI : AIBehavior
 
     public override void OnSwitchLeave()
     {
-        mobController.SetMovementLock(false);
+        mobController.EnableMovement();
     }
 }

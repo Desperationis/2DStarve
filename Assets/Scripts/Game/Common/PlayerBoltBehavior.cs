@@ -9,7 +9,7 @@ using Bolt;
 public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
 {
     [SerializeField]
-    [Tooltip("Used to syncronize movement settings.")]
+    [Tooltip("Used to synchronize movement settings.")]
     private MobController mobController = null;
 
     [SerializeField]
@@ -105,12 +105,20 @@ public class PlayerBoltBehavior : Bolt.EntityEventListener<IPlayerState>
             // Move the entity on both the client and server; Client-side prediction
             mobController.SetDirection(cmd.Input.Direction);
             mobController.SetRunning(cmd.Input.Running);
-            mobController.SetMovementLock(cmd.Input.MovementLocked);
+
+            if(cmd.Input.MovementLocked)
+            {
+                mobController.DisableMovement();
+            }
+            else
+            {
+                mobController.EnableMovement();
+            }
 
             if(BoltNetwork.IsServer)
             {
-                state.Direction = mobController.Direction;
-                state.Running = mobController.Running;
+                state.Direction = mobController.direction;
+                state.Running = mobController.isRunning;
             }
 
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
