@@ -12,7 +12,7 @@ public class ChatPlayerMovementLock : MonoBehaviour
 
         if(player != null)
         {
-            player.GetComponent<PlayerNetworkOrchestrator>().LockPlayer(true);
+            player.SendMessage("OverrideStop", true);
         }
     }
 
@@ -22,7 +22,7 @@ public class ChatPlayerMovementLock : MonoBehaviour
 
         if (player != null)
         {
-            player.GetComponent<PlayerNetworkOrchestrator>().LockPlayer(false);
+            player.SendMessage("OverrideStop", false);
         }
     }
 }

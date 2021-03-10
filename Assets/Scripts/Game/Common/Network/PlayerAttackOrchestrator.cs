@@ -21,11 +21,11 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
         }
     }
 
-    protected override void _OnEvent(EntityAttackEvent evnt)
+    public override void OnEvent(EntityAttackEvent evnt)
     {
         if(!entity.IsControllerOrOwner)
         {
-            base._OnEvent(evnt);
+            attackingComponent.TriggerAttackEvent();
         }
     }
 

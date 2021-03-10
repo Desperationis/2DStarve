@@ -3,25 +3,21 @@ using Bolt;
 
 /// <summary>
 /// Syncs most variables for a player from the server to the clients while
-/// also using client-side prediction. Variables that are extensively
-/// manipulated (e.x. health) have their own class.
+/// also using client-side prediction. Due to this, this is the only script
+/// that can move the player. 
 /// </summary>
-public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
+public class PlayerMovementOrchestrator : NetworkOrchestrator<IPlayerState>
 {
-    [SerializeField]
-    [Tooltip("Used to tell when the attack animation is playing.")]
-    private AttackingComponent attackingComponent = null;
-
-    private bool _spacePressed = false;
-    private bool _lockPlayer = false;
+    private bool lockPlayer = false;
+    private bool spacePressed = false;
 
     /// <summary>
     /// If true, client will override requested inputs to make 
     /// the player stand still. 
     /// </summary>
-    public void LockPlayer(bool lockPlayer)
+    public void OverrideStop(bool lockPlayer)
     {
-        _lockPlayer = lockPlayer;
+        this.lockPlayer = lockPlayer;
     }
 
     public override void Attached()
@@ -45,7 +41,7 @@ public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
 
     public override void SimulateController()
     {
-        if(!_lockPlayer)
+        if(!lockPlayer)
         {
             // Bundle up all input commands into an authoritive command.
             IPlayerMovementAuthInput commandInput = PlayerMovementAuth.Create();
@@ -65,12 +61,12 @@ public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
 
             commandInput.Direction = inputDirection.normalized;
 
-            commandInput.Attack = Input.GetKey(KeyCode.Space) && !_spacePressed;
-            _spacePressed = Input.GetKey(KeyCode.Space);
+            commandInput.Attack = Input.GetKey(KeyCode.Space) && !spacePressed;
+            spacePressed = Input.GetKey(KeyCode.Space);
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
-            commandInput.MovementLocked = attackingComponent.animationIsPlaying;
+            commandInput.MovementLocked = mobController.movementDisabled;
 
             entity.QueueInput(commandInput);
         }
@@ -122,21 +118,5 @@ public class PlayerNetworkOrchestrator : NetworkOrchestrator<IPlayerState>
             cmd.Result.Position = transform.position;
         }
 
-    }
-
-    /// <summary>
-    /// Callback function that forces the player to be at the
-    /// requested variable state of the server. 
-    /// </summary>
-    /// <param name="evnt"></param>
-    public override void OnEvent(EntityVariableChangeEvent evnt)
-    {
-        mobController.SetSpeed(evnt.Speed);
-        mobController.SetRunningMultiplier(evnt.RunningMultiplier);
-
-        if (BoltNetwork.IsServer)
-        {
-            state.Health = evnt.Health;
-        }
     }
 }

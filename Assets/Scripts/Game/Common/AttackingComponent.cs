@@ -81,6 +81,18 @@ public class AttackingComponent : MobBehaviour
         hitbox.transform.eulerAngles = new Vector3(0, 0, directionalAngle);
     }
 
+    public void Update()
+    {
+        if(animationIsPlaying)
+        {
+            mobController.DisableMovement();
+        }
+        else
+        {
+            mobController.EnableMovement();
+        }
+    }
+
     public void TriggerAttackEvent()
     {
         animator.SetTrigger("OnAttack");
