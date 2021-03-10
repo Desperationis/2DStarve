@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31777cd6317d35f4d88a3368e23fb792, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7491280917830343131}
   attackingComponent: {fileID: 7964543078509966494}
 --- !u!114 &7964543078509966494
 MonoBehaviour:
@@ -169,6 +168,7 @@ GameObject:
   - component: {fileID: 2122001285291922716}
   - component: {fileID: 3557677486998045178}
   - component: {fileID: 890284187845402897}
+  - component: {fileID: -7136201656466836091}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -302,8 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 7520908972589675943}
-  playerStateHealth: {fileID: 3557677486998045178}
-  mobStateHealth: {fileID: 0}
+  healthComponent: {fileID: -7136201656466836091}
 --- !u!114 &3557677486998045178
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97b9b3f30fabd048a857a4a5e48f8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthComponent: {fileID: -7136201656466836091}
 --- !u!114 &890284187845402897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,6 +332,18 @@ MonoBehaviour:
   _speed: 0
   _runningMultiplier: 0
   _health: 0
+--- !u!114 &-7136201656466836091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2625509503249030293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a360af1a83d753444a745633c6084a22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4816671186252303780
 GameObject:
   m_ObjectHideFlags: 0

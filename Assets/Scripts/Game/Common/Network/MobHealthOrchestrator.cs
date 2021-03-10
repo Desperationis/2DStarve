@@ -3,22 +3,17 @@
 /// </summary>
 public class MobHealthOrchestrator : HealthOrchestrator<IMobState>
 {
-    public override void InitializeHealth()
+    public override void LinkHealth()
     {
-        state.AddCallback("Health", HealthUpdate);
-
-        if(BoltNetwork.IsServer)
-        {
-            state.Health = 100;
-        }
+        state.AddCallback("Health", UpdateHealth);
     }
 
-    protected override int _GetStateHealth()
+    protected override int GetStateHealth()
     {
         return state.Health;
     }
 
-    protected override void _SetStateHealth(int health)
+    protected override void SetStateHealth(int health)
     {
         state.Health = health;
     }

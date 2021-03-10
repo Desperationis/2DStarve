@@ -11,25 +11,16 @@ public class MobHealthBar : MobBehaviour
     private TextMeshPro healthBar = null;
 
     [SerializeField]
-    private PlayerHealthOrchestrator playerStateHealth = null;
+    private HealthComponent healthComponent = null;
 
-    [SerializeField]
-    private MobHealthOrchestrator mobStateHealth = null;
-
-    protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
-        if(playerStateHealth != null)
-        {
-            playerStateHealth.onHealthChange.AddListener(SetHealth);
-        }
-        else if (mobStateHealth != null)
-        {
-            mobStateHealth.onHealthChange.AddListener(SetHealth);
-        }
+        healthComponent.AddListener(SetDisplayHealth);
+        SetDisplayHealth(healthComponent.health);
     }
 
-    private void SetHealth(int health)
+    private void SetDisplayHealth(int health)
     {
         healthBar.text = string.Format("Health: {0}", health);
     }

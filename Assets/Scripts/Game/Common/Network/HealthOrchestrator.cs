@@ -1,94 +1,49 @@
-﻿using UnityEngine.Events;
+﻿using UnityEngine;
 
 /// <summary>
-/// A base class that safely exposes the health component of a 
-/// Bolt Entity's state while supporting client-side prediction. 
+/// Base class that synchs the HealthComponent of 
+/// a mob.
 /// </summary>
-public abstract class HealthOrchestrator<T> : Bolt.EntityBehaviour<T>
+public abstract class HealthOrchestrator<T> : MobBehaviour<T>
 {
-    public bool IsDead { get { return GetStateHealth() < 0; } }
-
-    /// <summary>
-    /// Variable that holds a local copy of the health state. This is done
-    /// so that attacking looks instantaneous. 
-    /// </summary>
-    protected int _localHealth = 0;
-
-    public class HealthEvent : UnityEvent<int> { }
-
-    public HealthEvent onHealthChange = new HealthEvent();
+    [SerializeField]
+    private HealthComponent healthComponent = null;
 
     public override void Attached()
     {
-        InitializeHealth();
-    }
+        LinkHealth();
 
-    public void TakeDamage(int amount)
-    {
-        SetStateHealth(GetStateHealth() - amount);
-    }
-
-
-
-    /// <summary>
-    /// This should implement a callback to HealthUpdate() and 
-    /// initialize _localHealth.
-    /// </summary>
-    public abstract void InitializeHealth();
-
-
-    /// <summary>
-    /// A callback function that updates the local copy of health
-    /// with the server. 
-    /// </summary>
-    protected void HealthUpdate()
-    {
-        _localHealth = _GetStateHealth();
-        onHealthChange.Invoke(GetStateHealth());
-    }
-
-
-    /// <summary>
-    /// Returns either the local copy or actual value of health depending 
-    /// if the application is a server or client. 
-    /// </summary>
-    public int GetStateHealth()
-    {
-        if(BoltNetwork.IsServer)
+        if (BoltNetwork.IsServer)
         {
-            return _GetStateHealth();
+            healthComponent.SetHealth(100); // TODO: Move this line outta here
+            SetStateHealth(healthComponent.health);
         }
-
-        return _localHealth;
     }
 
+    /// <summary>
+    /// This should link UpdateHealth to the Health variable of a bolt entity
+    /// via state.AddCallback().
+    /// </summary>
+    public abstract void LinkHealth();
 
     /// <summary>
     /// Private method that returns the raw value 
     /// </summary>
-    protected abstract int _GetStateHealth();
+    protected abstract int GetStateHealth();
 
 
     /// <summary>
     /// Private method that allows the base class to change the health of the 
     /// state. A safer version is implemented in SetStateHealth(int).
     /// </summary>
-    protected abstract void _SetStateHealth(int health);
+    protected abstract void SetStateHealth(int health);
 
 
-    /// <summary>
-    /// Changes the health of this mob safely. 
-    /// </summary>
-    public void SetStateHealth(int health)
+    protected void UpdateHealth()
     {
-        if(BoltNetwork.IsServer)
+        if(BoltNetwork.IsClient)
         {
-            _SetStateHealth(health);
-        }
-        else
-        {
-            _localHealth = health;
-            onHealthChange.Invoke(GetStateHealth());
+            healthComponent.SetHealth(GetStateHealth());
         }
     }
 }
