@@ -2,6 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
+using System.Collections;
 
 /// <summary>
 /// Adds more functionality to Unity's input field. 
@@ -19,7 +20,7 @@ public class InputFieldExpander : MonoBehaviour
     private void Awake()
     {
         inputField.onEndEdit.AddListener(OnEndEdit);
-        inputField.onSubmit.AddListener(OnSubmit);
+        inputField.onEndEdit.AddListener(OnSubmit);
     }
 
     private void OnEndEdit(string message = "")
@@ -29,9 +30,31 @@ public class InputFieldExpander : MonoBehaviour
 
     private void OnSubmit(string message)
     {
-        onSubmit.Invoke(message);
-        inputField.text = "";
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            inputField.text += "\n";
+            inputField.ActivateInputField();
+            inputField.caretPosition = inputField.text.Length;
+            return;
+        }
+
+        if(message.Length > 0)
+        {
+            onSubmit.Invoke(message);
+        }
+
+        inputField.SetTextWithoutNotify("");
+        StartCoroutine("ClearText");
     }
+
+    private IEnumerator ClearText()
+    {
+        // Waits till the next frame to remove Unity's weird
+        // ASCII character that's inserted after onSubmit().
+        yield return null;
+        inputField.SetTextWithoutNotify("");
+    }
+
 
     private void Deselect(string message = "")
     {
