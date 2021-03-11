@@ -8,28 +8,28 @@
 public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
 {
     protected MobController mobController = null;
+    protected MobAnimationController mobAnimationController = null;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         mobController = GetComponent<MobController>();
+
+        if (mobController == null)
+        {
+            mobController = GetComponentInParent<MobController>();
+        }
+
+        mobAnimationController = GetComponent<MobAnimationController>();
+
+        if (mobAnimationController == null)
+        {
+            mobAnimationController = GetComponentInParent<MobAnimationController>();
+        }
+
         _Awake();
     }
 
-    private void Start()
-    {
-        if(mobController == null)
-        {
-            mobController = GetComponent<MobController>();
-        }
-        _Start();
-    }
-
     protected virtual void _Awake()
-    {
-
-    }
-
-    protected virtual void _Start()
     {
 
     }

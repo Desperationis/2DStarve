@@ -6,10 +6,6 @@
 public class AttackingComponent : MobBehaviour
 {
     [SerializeField]
-    [Tooltip("Used to activate the attack animation trigger.")]
-    protected Animator animator = null;
-
-    [SerializeField]
     [Tooltip("The hurtbox of this entity to ignore when attacking.")]
     protected BoxCollider2D hurtbox = null;
 
@@ -20,19 +16,6 @@ public class AttackingComponent : MobBehaviour
     [SerializeField]
     [Tooltip("The layer mask that determines what objects can be hit.")]
     protected LayerMask mask;
-
-
-    /// <summary>
-    /// Whether or not the attack animation (blend tree) is playing.
-    /// </summary>
-    public bool animationIsPlaying
-    {
-        get
-        {
-            return animator.GetCurrentAnimatorStateInfo(0).IsName("Attack");
-        }
-
-    }
 
 
     /// <summary>
@@ -83,19 +66,22 @@ public class AttackingComponent : MobBehaviour
 
     public void Update()
     {
-        if(animationIsPlaying)
+        if(entity.IsControlled)
         {
-            mobController.DisableMovement();
-        }
-        else
-        {
-            mobController.EnableMovement();
+            if(mobAnimationController.IsPlaying("Attack"))
+            {
+                mobController.DisableMovement();
+            }
+            else
+            {
+                mobController.EnableMovement();
+            }
         }
     }
 
     public void TriggerAttackEvent()
     {
-        animator.SetTrigger("OnAttack");
+        mobAnimationController.ActivateTrigger("OnAttack");
     }
 }
 

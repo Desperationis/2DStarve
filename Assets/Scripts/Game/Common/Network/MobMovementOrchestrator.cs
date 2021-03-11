@@ -7,10 +7,6 @@ using Bolt;
 /// </summary>
 public class MobMovementOrchestrator : MovementOrchestrator<IMobState>
 {
-    [SerializeField]
-    private AttackingComponent attackingComponent = null;
-
-
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);

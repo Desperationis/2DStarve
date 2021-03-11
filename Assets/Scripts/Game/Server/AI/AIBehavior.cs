@@ -4,14 +4,12 @@
 /// Base Class for all AI behaviors.
 /// </summary>
 [RequireComponent(typeof(AISwapper))]
-public abstract class AIBehavior : MonoBehaviour
+public abstract class AIBehavior : MobBehaviour
 {
-    protected MobController mobController = null;
     protected MobAIData AIData = null;
 
-    public virtual void SetDependencies(MobController mobController, MobAIData AIData)
+    public virtual void SetDependencies(MobAIData AIData)
     {
-        this.mobController = mobController;
         this.AIData = AIData;
     }
 

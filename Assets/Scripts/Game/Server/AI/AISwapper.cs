@@ -6,12 +6,8 @@ using UnityEngine;
 /// </summary>
 [System.Serializable]
 [DisallowMultipleComponent]
-public class AISwapper : MonoBehaviour
+public class AISwapper : MobBehaviour
 {
-    [SerializeField]
-    [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
-    private MobController mobController = null;
-
     [SerializeField]
     [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
     private MobAIData AIData = null;
@@ -42,7 +38,7 @@ public class AISwapper : MonoBehaviour
         {
             foreach (AIBehavior AI in AIs)
             {
-                AI.SetDependencies(mobController, AIData);
+                AI.SetDependencies(AIData);
                 AI.Init();
             }
             SwapCurrentAI(GetCurrentAI());

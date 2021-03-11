@@ -33,9 +33,9 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
     {
         // Client-side prediction of attack; We don't want to travel
         // back in time with Photon Bolt commands
-        if(BoltNetwork.IsClient)
+        if (BoltNetwork.IsClient)
         {
-            if(Input.GetKey(KeyCode.Space) && !attackingComponent.animationIsPlaying)
+            if (Input.GetKey(KeyCode.Space) && !mobAnimationController.IsPlaying("Attack"))
             {
                 attackingComponent.TriggerAttackEvent();
             }

@@ -9,7 +9,7 @@ public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
     /// </summary>
     public override void SimulateOwner()
     {
-        state.Attacking = attackingComponent.animationIsPlaying;
+        state.Attacking = mobAnimationController.IsPlaying("Attack");
     }
 
 
@@ -21,7 +21,7 @@ public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
     {
         if (state.Attacking && !entity.IsOwner)
         {
-            if (!attackingComponent.animationIsPlaying)
+            if (!mobAnimationController.IsPlaying("Attack"))
             {
                 attackingComponent.TriggerAttackEvent();
             }

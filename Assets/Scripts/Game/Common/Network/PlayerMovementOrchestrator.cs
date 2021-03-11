@@ -66,7 +66,7 @@ public class PlayerMovementOrchestrator : NetworkOrchestrator<IPlayerState>
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
-            commandInput.MovementLocked = mobController.movementDisabled;
+            commandInput.MovementLocked = GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"); ;
 
             entity.QueueInput(commandInput);
         }

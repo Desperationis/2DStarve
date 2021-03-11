@@ -1,18 +1,36 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Controls the animation variables of a mob's animator.
+/// Controls the animation variables of a mob's animator and gives
+/// information about them.
 /// </summary>
-public class MobAnimationController : MonoBehaviour
+public class MobAnimationController : MobBehaviour
 {
     [SerializeField]
     private Animator animator = null;
 
     [SerializeField]
-    private MobController mobController = null;
-
-    [SerializeField]
     private bool flipDirection = false;
+
+
+    /// <summary>
+    /// Whether or not a specific blend tree is playing; I.e. attack.
+    /// </summary>
+    /// <param name="name">Name of the blend tree</param>
+    public bool IsPlaying(string name)
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+    }
+
+    /// <summary>
+    /// Activates an animation trigger.
+    /// </summary>
+    /// <param name="name">Name of trigger</param>
+    public void ActivateTrigger(string name)
+    {
+        animator.SetTrigger(name);
+    }
+
 
     private void Update()
     {
@@ -27,7 +45,7 @@ public class MobAnimationController : MonoBehaviour
         animator.SetFloat("moving", mobController.isMoving ? 1 : -1);
         animator.SetFloat("running", mobController.isRunning && mobController.isMoving ? 1 : -1);
     }
-    public void FlipAnimation()
+    private void FlipAnimation()
     {
         // X component determines the direction of flip. Mathf.Sign(0) = 1
         float inverseDirection = flipDirection ? -1 : 1;
