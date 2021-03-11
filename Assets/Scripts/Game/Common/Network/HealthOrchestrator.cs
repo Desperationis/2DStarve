@@ -17,6 +17,7 @@ public abstract class HealthOrchestrator<T> : MobBehaviour<T>
         {
             healthComponent.SetHealth(100); // TODO: Move this line outta here
             SetStateHealth(healthComponent.health);
+            healthComponent.AddListener((int x) => { UpdateHealth(); });
         }
     }
 
@@ -44,6 +45,10 @@ public abstract class HealthOrchestrator<T> : MobBehaviour<T>
         if(BoltNetwork.IsClient)
         {
             healthComponent.SetHealth(GetStateHealth());
+        }
+        else
+        {
+            SetStateHealth(healthComponent.health);
         }
     }
 }
