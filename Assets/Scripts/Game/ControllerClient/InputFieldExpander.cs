@@ -15,17 +15,17 @@ public class InputFieldExpander : MonoBehaviour
 
     [System.Serializable]
     public class SubmitEvent : UnityEvent<string> { }
-    public SubmitEvent onSubmit = new SubmitEvent();
+    private SubmitEvent onSubmit = new SubmitEvent();
 
     private void Awake()
     {
-        inputField.onEndEdit.AddListener(OnEndEdit);
+        inputField.onEndEdit.AddListener((string tmp) => { DeselectInputField(); }) ;
         inputField.onEndEdit.AddListener(OnSubmit);
     }
 
-    private void OnEndEdit(string message = "")
+    public void AddOnSubmitListener(UnityAction<string> call)
     {
-        Deselect();
+        onSubmit.AddListener(call);
     }
 
     private void OnSubmit(string message)
@@ -55,12 +55,9 @@ public class InputFieldExpander : MonoBehaviour
         inputField.SetTextWithoutNotify("");
     }
 
-
-    private void Deselect(string message = "")
+    private void DeselectInputField()
     {
-        // Deselects the input field. 
         var eventSystem = EventSystem.current;
         if (!eventSystem.alreadySelecting) eventSystem.SetSelectedGameObject(null); // Don't delete the IF statement; It softlocks if you do
     }
-
 }

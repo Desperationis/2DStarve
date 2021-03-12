@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 2645267323944565201}
   - component: {fileID: 2645267323944565214}
   - component: {fileID: 2645267323944565215}
+  - component: {fileID: 6550381253245164020}
   m_Layer: 5
   m_Name: InputField (TMP)
   m_TagString: Untagged
@@ -248,20 +249,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputField: {fileID: 2645267323944565201}
-  onSubmit:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2645267324437615321}
-        m_MethodName: RequestMessage
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2645267323944565215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +261,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503c1af9776bff7469ea4473ad0cf60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6550381253245164020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2645267323944565213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0555447482eadcd40b04a3e305e20b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputField: {fileID: 2645267323944565214}
 --- !u!1 &2645267324184847818
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,6 +540,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b3714acd0b3ba74ab3cbf3facd8cc76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contentPanel: {fileID: 2645267324437615322}
 --- !u!114 &2645267324437615325
 MonoBehaviour:
   m_ObjectHideFlags: 0
