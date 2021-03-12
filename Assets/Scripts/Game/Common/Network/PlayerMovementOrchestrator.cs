@@ -12,7 +12,7 @@ public class PlayerMovementOrchestrator : NetworkOrchestrator<IPlayerState>
     private bool spacePressed = false;
 
     /// <summary>
-    /// If true, client will override requested inputs to make 
+    /// If true, client will override all requested inputs to make 
     /// the player stand still. 
     /// </summary>
     public void OverrideStop(bool lockPlayer)

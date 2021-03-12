@@ -28,8 +28,7 @@ public class PlayerCamera : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private Vector2 offCenter;
-
+    private Vector2 offCenter = Vector2.zero;
 
     [SerializeField]
     private new Camera camera = null;
@@ -40,7 +39,7 @@ public class PlayerCamera : MonoBehaviour
 
     private void Start()
     {
-        ControlledEntity.onControlledEntitySwitch.AddListener(Follow);
+        ControlledEntity.AddListener(Follow);
     }
 
     public void Follow(BoltEntity controlledPlayer)

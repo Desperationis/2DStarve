@@ -9,20 +9,14 @@ public class ChatPlayerMovementLock : MonoBehaviour
     public void LockPlayer()
     {
         BoltEntity player = ControlledEntity.controlledEntity;
-
-        if(player != null)
-        {
-            player.SendMessage("OverrideStop", true);
-        }
+        PlayerMovementOrchestrator movementOrchestrator = player.GetComponent<PlayerMovementOrchestrator>();
+        movementOrchestrator.OverrideStop(true);
     }
 
     public void UnlockPlayer()
     {
         BoltEntity player = ControlledEntity.controlledEntity;
-
-        if (player != null)
-        {
-            player.SendMessage("OverrideStop", false);
-        }
+        PlayerMovementOrchestrator movementOrchestrator = player.GetComponent<PlayerMovementOrchestrator>();
+        movementOrchestrator.OverrideStop(false);
     }
 }
