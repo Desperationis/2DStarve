@@ -14,9 +14,9 @@ TagManager:
   - UI
   - 
   - 
-  - Uninteractible
-  - Entity Hurt and Collision Boxes
-  - Proximity Boxes
+  - Uninteractable
+  - EntityInteractable
+  - 
   - 
   - 
   - 
@@ -40,11 +40,11 @@ TagManager:
   - 
   m_SortingLayers:
   - name: Background
-    uniqueID: 966199007
+    uniqueID: 2222467923
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: UIForeground
-    uniqueID: 552616953
+  - name: UI
+    uniqueID: 3477576233
     locked: 0

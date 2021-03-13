@@ -4,6 +4,30 @@
         <name>bolt.editor</name>
     </assembly>
     <members>
+        <member name="M:Bolt.Editor.Compiler.BoltCompiler.CompileProtocolTokenRegistry">
+            <summary>
+            Search and update the list of Protocol Tokens in the ProtocolTokenRegistry
+            </summary>
+        </member>
+        <member name="M:Bolt.Editor.Compiler.BoltCompiler.LoadProtocolTypes">
+            <summary>
+            Loads all Assemblies on the project a search for Protocol Token implementations
+            that fulfill the requirements described on the method
+            </summary>
+            <returns>List of BoltProtocolTokenRegistry.TokenRegistry with all found tokens</returns>
+        </member>
+        <member name="M:Bolt.Editor.Compiler.BoltCompiler.GetAssemblyByName(System.String)">
+            <summary>
+            Returns a reference for a Assembly based on it's name
+            </summary>
+            <param name="name">Assembly Name</param>
+            <returns>Reference to an Assembly or null if not found</returns>
+        </member>
+        <member name="M:Bolt.Editor.Compiler.BoltUserAssemblyCompiler.ClearCompilerFiles">
+            <summary>
+            Remove all Temporary files from the Bolt Compilation
+            </summary>
+        </member>
         <member name="T:Bolt.Editor.CustomInspector.BoltEntityEditor">
             <summary>
             Custom inspector for BoltEntity component
@@ -114,6 +138,18 @@
             </summary>
             <param name="group">Build target where to disable the flag</param>
             <param name="constantToDisable">Flag to disable</param>
+        </member>
+        <member name="T:bolt.editor.Editors.BoltProtocolTokenRegistryEditor">
+            <summary>
+            Custom editor for BoltProtocolTokenRegistry
+            It shows a list of all IProtocolTokens found on the project
+            and show a button to update the list of Tokens
+            </summary>
+        </member>
+        <member name="M:bolt.editor.Editors.BoltProtocolTokenRegistryEditor.RefreshRegistry">
+            <summary>
+            Update the Protocol Token list
+            </summary>
         </member>
     </members>
 </doc>

@@ -23,7 +23,7 @@ public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
 
         if (mobAnimationController == null)
         {
-            mobAnimationController = GetComponentInParent<MobAnimationController>();
+            mobAnimationController = GetComponentInChildren<MobAnimationController>();
         }
 
         _Awake();

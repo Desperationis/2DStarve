@@ -4,10 +4,15 @@ using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 using UnityEditor;
-using UnityEditor.Experimental.AssetImporters;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Tilemaps;
+
+#if UNITY_2020_2_OR_NEWER
+using ScriptedImporterAttribute = UnityEditor.AssetImporters.ScriptedImporterAttribute;
+#else
+using ScriptedImporterAttribute = UnityEditor.Experimental.AssetImporters.ScriptedImporterAttribute;
+#endif
 
 namespace SuperTiled2Unity.Editor
 {
@@ -270,6 +275,13 @@ namespace SuperTiled2Unity.Editor
 
             var firstId = xTileset.GetAttributeAs<int>("firstgid");
             var source = xTileset.GetAttributeAs<string>("source");
+
+            // JSON customized assets are not supported as Unity has the *.json extension reserved
+            if (string.Equals(Path.GetExtension(source), ".json", StringComparison.OrdinalIgnoreCase))
+            {
+                ReportError("JSON tilesets are not supported by Unity. Use TSX files instead. Tileset: {0}", source);
+                return false;
+            }
 
             // Load the tileset and process the tiles inside
             var tileset = RequestAssetAtPath<SuperTileset>(source);

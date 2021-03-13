@@ -1,3 +1,29 @@
+1.2.14
+
+Added: Help links to Bolt Settings window.
+Added: New ProtocolToken Type (PooledProtocolToken) that makes use of a new pooling system just for Tokens. The Pooling system works with Commands and Events for now.
+Added: New ProtocolToken Registry. This will scan the project looking for Protocol Token implementations and register automatically when Bolt starts.
+Added: Explicit log message when the peer receives an unknown ProtocolToken ID.
+Added: Option to show BoltHitboxBody snapshot history for debugging purposes.
+
+Changed: Project JSON file is now saved only with the indented formatting. This helps when merging the file using a Source Control Version System. 
+Changed: Boolean properties optimization to speed up lookup and modifications. Can have an impact if the network layout makes extensive use of booleans.
+Changed: Bolt Physics Pooling System for BoltPhysicsHit, grating better memory management.
+Changed: Refresh BoltHitbox Component UI.
+Changed: Photon Realtime version to v4.1.4.4.
+
+Fixed: High memory allocation when running Bolt Physics checks, mainly on raycasts against spheres.
+Fixed: High memory allocation when creating Commands. Updated pooling system.
+Fixed: Memory allocation by the Bolt GUI elements.
+Fixed: Events Pooling System. Before only received events were pooled, now local raised events are also pooled.
+Fixed: Internal UdpEndPoint fields order, fixing issues with the endpoint serialization representation in native format.
+Fixed: Delay to shutdown client when the game server shutdown. Now, when the client detects the server is leaving the session, it will shutdown too.
+Fixed: Instant Commands. Now instant commands will execute all previous command on the queue before running, keeping the consistency on the insertion order.
+Fixed: PS4 Serialization methods for native translation of EndPoints.
+Fixed: Reliable Stream receiver order. This prevents the receiving peer to discard packets of not fully completed streams.
+Fixed: NullReferenceException when disposing of data packets.
+Fixed: Return Error code instead of OK when joining a session and the action expires due timeout.
+
 1.2.13
 
 Added: Fallback connection protocol. If the peer is not able to connect via UDP, it will switch to a TCP connection with the Photon Cloud.

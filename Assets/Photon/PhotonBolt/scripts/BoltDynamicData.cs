@@ -44,14 +44,14 @@ namespace Bolt
 
 		private static int GetActiveSceneIndex()
 		{
-			return SceneManager.GetActiveScene().buildIndex;
+			return GetSceneIndex(SceneManager.GetActiveScene().name);
 		}
 
 		private static int GetSceneIndex(string name)
 		{
 			try
 			{
-				return BoltInternal.BoltScenes_Internal.GetSceneIndex(name);
+				return BoltScenes_Internal.GetSceneIndex(name);
 			}
 			catch
 			{
@@ -63,7 +63,7 @@ namespace Bolt
 		{
 			try
 			{
-				return BoltInternal.BoltScenes_Internal.GetSceneName(index);
+				return BoltScenes_Internal.GetSceneName(index);
 			}
 			catch
 			{

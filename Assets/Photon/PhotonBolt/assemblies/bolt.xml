@@ -84,6 +84,12 @@
             Internal Object Pool
             </summary>
         </member>
+        <member name="P:Bolt.ObjectPool`1.Available">
+            <summary>
+            Check if the Pool has any Pooled Object
+            </summary>
+            <returns>True if there is any object to be reused on the pool</returns>
+        </member>
         <member name="M:Bolt.ObjectPool`1.#ctor">
             <summary>
             Object Pool Constructor
@@ -121,6 +127,23 @@
             Used to serialize the Token by writing data into the data packet.
             </summary>
             <param name="packet">Data packet used to store the Token info</param>
+        </member>
+        <member name="M:Bolt.PooledProtocolToken.Read(UdpKit.UdpPacket)">
+            <summary>
+            Used to deserialize the Token reading data from the data packet.
+            </summary>
+            <param name="packet">Data packet that contains the Token info</param>
+        </member>
+        <member name="M:Bolt.PooledProtocolToken.Write(UdpKit.UdpPacket)">
+            <summary>
+            Used to serialize the Token by writing data into the data packet.
+            </summary>
+            <param name="packet">Data packet used to store the Token info</param>
+        </member>
+        <member name="M:Bolt.PooledProtocolToken.Reset">
+            <summary>
+            Used to reset all fields from a IProtocolToken in order to return it to the Pool
+            </summary>
         </member>
         <member name="T:Bolt.ProtocolTokenUtils">
             <summary>
@@ -163,6 +186,19 @@
             </summary>
             <param name="packet">UdpPacket where the Token will be manupulated</param>
             <param name="token">IProtocolToken to be written or read</param>
+        </member>
+        <member name="M:Bolt.ProtocolTokenUtils.Release(Bolt.IProtocolToken)">
+            <summary>
+            Releases a PooledProtocolToken back to the Pool
+            </summary>
+            <param name="token">A IProtocolToken candidate that can be PooledProtocolToken instance</param>
+        </member>
+        <member name="M:Bolt.ProtocolTokenUtils.GetToken``1">
+            <summary>
+            Creates a new Protocol Token instance from a PooledProtocolToken type that can be reused by the pooling system
+            </summary>
+            <typeparam name="T">Protocol Type that represents a PooledProtocolToken type</typeparam>
+            <returns>A new instance of a PooledProtocolToken</returns>
         </member>
         <member name="T:Bolt.Command">
             <summary>
@@ -511,6 +547,12 @@
             Not really sure why these aren't just pulled from UnityObject when needed?
             </summary>
         </member>
+        <member name="M:Bolt.Entity.ExecuteCommandsFromRemote(Bolt.Command@)">
+            <summary>
+            This runs the commands received from the Controller of this entity.
+            </summary>
+            <returns>The number of executed commands</returns>
+        </member>
         <member name="T:Bolt.IEntityBehaviour">
             <summary>
             Interface for unity behaviours that want to access Bolt methods
@@ -665,6 +707,12 @@
             }
             </code>
             </example>
+        </member>
+        <member name="M:Bolt.Event.PrepareRelease">
+            <summary>
+            The Event implementation overrides this method to release any pending data that can be pooled,
+            like IProtocolToken references
+            </summary>
         </member>
         <member name="T:Bolt.ReliabilityModes">
             <summary>
@@ -825,7 +873,7 @@
             like Raycasts and Sphere Overlap
             </summary>
         </member>
-        <member name="F:Bolt.LagCompensation.BoltPhysics._maxWorldSnapshots">
+        <member name="F:Bolt.LagCompensation.BoltPhysics.MaxWorldSnapshots">
             <summary>
             Max number of past snapshots to store
             </summary>
@@ -925,6 +973,65 @@
             <param name="snapshot">World Snapshot found</param>
             <returns>True if a Snapshot was found, false otherwise</returns>
         </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.Create(BoltHitboxBody)">
+            <summary>
+            Create a new Snapshot of the BoltHitboxBody
+            </summary>
+            <param name="body">BoltHitboxBody used to create the new Snapshot</param>
+            <returns>New BoltHitboxBodySnapshot of the BoltHitboxBody </returns>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.Snapshot(BoltHitboxBody)">
+            <summary>
+            Save a snapshot of the BoltHitboxBody
+            </summary>
+            <param name="body">BoltHitboxBody used as reference to store the snapshot</param>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.Dispose">
+            <summary>
+            Dispose this BoltHitboxBodySnapshot and return to Pool
+            </summary>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.GetPosition">
+            <summary>
+            Get the position of the HitBoxBody
+            </summary>
+            <returns>Position of the internal HitBoxBody</returns>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.OverlapSphere(UnityEngine.Vector3,System.Single,Bolt.LagCompensation.BoltPhysicsHits)">
+            <summary>
+            Executes an Sphere Overlap agaist this HitBoxBody
+            </summary>
+            <param name="center">Sphere center</param>
+            <param name="radius">Sphere raius</param>
+            <param name="hits">List of hits</param>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.Raycast(UnityEngine.Vector3,UnityEngine.Vector3,Bolt.LagCompensation.BoltPhysicsHits)">
+            <summary>
+            Check Hit against HitBoxBody
+            </summary>
+            <param name="origin">Ray origin</param>
+            <param name="direction">Ray direction</param>
+            <param name="hits">List of hits</param>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.LocalToWorldMatrixUnscaled(UnityEngine.Transform)">
+            <summary>
+            Create a Transformation Matrix based on the Transform from Local to World Position
+            </summary>
+            <param name="transform">Base Transform used to create the Transformation Matrix</param>
+            <returns>Transformation Matrix</returns>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.WorldToLocalMatrixUnscaled(UnityEngine.Transform)">
+            <summary>
+            Create a Transformation Matrix based on the Transform from World to Local Position
+            </summary>
+            <param name="transform">Base Transform used to create the Transformation Matrix</param>
+            <returns>Transformation Matrix</returns>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxBodySnapshot.Draw">
+            <summary>
+            Draw the Snapshot on the screen using Gizmos for debbuging purposes.
+            </summary>
+        </member>
         <member name="T:Bolt.LagCompensation.BoltHitboxShape">
              <summary>
              What type of shape to use in a bolt hitbox
@@ -964,6 +1071,17 @@
              }
              </code>
              </example>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxWorldSnapshot.Snapshot(BoltHitboxBody)">
+            <summary>
+            Create a new snapshot of the BoltHitboxBody and store internally
+            </summary>
+            <param name="body">BoltHitboxBody reference</param>
+        </member>
+        <member name="M:Bolt.LagCompensation.BoltHitboxWorldSnapshot.Dispose">
+            <summary>
+            Dispose this Snapshot and return to Pool
+            </summary>
         </member>
         <member name="T:Bolt.LagCompensation.BoltPhysicsHits">
              <summary>
@@ -1289,10 +1407,90 @@
             <param name="extraInfo">Extra info passed to the BoltException instance.</param>
             <typeparam name="BE">A <see cref="T:Bolt.Exceptions.BoltException"/> derivative type.</typeparam>
         </member>
+        <member name="T:Bolt.Tokens.BoltProtocolTokenRegistryIgnore">
+            <summary>
+            Use this Attribute on classes that implmement IProtocolToken in order to ignore them
+            on the Prototol Token Registry
+            </summary>
+        </member>
+        <member name="T:Bolt.Tokens.BoltProtocolTokenRegistry">
+            <summary>
+            Protocol Token Registry contains a list of all IProtocolTokens in the project
+            and it's consulted to register all Tokens when Bolt is starting up.
+            This can be used to grant that tokens will be properly registered, in the same order, on all peers
+            </summary>
+        </member>
+        <member name="T:Bolt.Tokens.BoltProtocolTokenRegistry.TokenRegistry">
+            <summary>
+            Stores the information about the IProtocolTokens types
+            Both a simple name, to be shown at the listing and logs
+            and a full assembly name, used to load the type from the Assemblies.
+            </summary>
+        </member>
+        <member name="P:Bolt.Tokens.BoltProtocolTokenRegistry.Instance">
+            <summary>
+            Returns the instance for the current BoltProtocolTokenRegistry
+            </summary>
+        </member>
+        <member name="F:Bolt.Tokens.BoltProtocolTokenRegistry._instance">
+            <summary>
+            Internal reference to the BoltProtocolTokenRegistry
+            </summary>
+        </member>
+        <member name="F:Bolt.Tokens.BoltProtocolTokenRegistry.protocolTokenRegistry">
+            <summary>
+            List of IProtocolToken types based on the TokenRegistry struct
+            </summary>
+        </member>
         <member name="T:Bolt.Utils.BoltSequenceGenerator">
             <summary>
             Sequence Generator creates a sequence of numbers
             </summary>
+        </member>
+        <member name="T:Bolt.Utils.BoltConsole">
+            <summary>
+            The in-game console window
+            </summary>
+            <example>
+            *Example:* Writing a custom message to the console.
+            
+            <code>
+            void Start() {
+              BoltConsole.Write("[Start:" + this.gameObject.name + "]);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Bolt.Utils.BoltConsole.Write(System.String,UnityEngine.Color)">
+            <summary>
+            Write one line to the console
+            </summary>
+            <param name="line">Text to write</param>
+            <param name="color">Color of the text</param>
+            <example>
+            *Example:* Writing a custom message to the console in color.
+            
+            <code>
+            void OnDeath() {
+              BoltConsole.Write("[Death:" + this.gameObject.name + "], Color.Red);
+            }
+            </code>
+            </example>
+        </member>
+        <member name="M:Bolt.Utils.BoltConsole.Write(System.String)">
+            <summary>
+            Write one line to the console
+            </summary>
+            <param name="line">Text to write</param>
+            <example>
+            *Example:* Writing a custom message to the console.
+            
+            <code>
+            void OnSpawn() {
+              BoltConsole.Write("[Spawn:" + this.gameObject.name + "]);
+            }
+            </code>
+            </example>
         </member>
         <member name="T:Bolt.NetworkValue">
             <summary>
@@ -1347,6 +1545,7 @@
              and/or to configure custom properties of the session. More information look at <see cref="T:Bolt.Photon.PhotonRoomProperties"/>.
              </param>
              <param name="sceneToLoad">Target Scene to be loaded after the session creation procedure starts.</param>
+             <param name="sceneToken">IProtocolToken that is passed on the SceneLoad callbacks.</param>
              <example>
              *Example:* Creating a session with some custom properties.
             
@@ -1519,6 +1718,13 @@
         <member name="F:BoltInternal.BoltCore._freezeProxyTempList">
             <summary>
             Temporary re-used list for holding current proxies that need to be frozen.
+            </summary>
+        </member>
+        <member name="M:BoltInternal.BoltCore.DoProtocolTokenRegistration">
+            <summary>
+            This method will register the internal Protocol Tokens used by Bolt
+            but will also look at the BoltProtocolTokenRegistry and register any Protocol Token
+            previously saved on the registry
             </summary>
         </member>
         <member name="M:BoltInternal.GlobalEventListenerBase.PersistBetweenStartupAndShutdown">
@@ -2005,16 +2211,16 @@
         </member>
         <member name="M:BoltInternal.GlobalEventListenerBase.SessionCreatedOrUpdated(UdpKit.UdpSession)">
             <summary>
-            Callback triggered when the requested session creation or update was successful.
+            Callback triggered when the requested session creation was successful.
             </summary>
-            <param name="session">Session reference</param>
+            <param name="session">The created session</param>
             <example>
             *Example:* Loggging 
             
             <code>
             public override void SessionCreatedOrUpdated(UdpSession session)
             {
-              BoltLog.Info("UdpSession {0} of type {1} was created or updated", session.HostName, session.Source);
+              BoltLog.Info("UdpSession {0} of type {1} was created", session.HostName, session.Source);
             }
             </code>
             </example>
@@ -2040,6 +2246,7 @@
             Callback triggered when the requested session creation has failed.
             </summary>
             <param name="session">The failed session</param>
+            <param name="errorReason">Reason the operation has failed</param>
             <example>
             *Example:* Loggging 
             
@@ -2091,6 +2298,7 @@
             </summary>
             <param name="session">The session the client was trying to connect to</param>
             <param name="token">Connection token</param>
+            <param name="errorReason">Reason the operation has failed</param>
             <example>
             *Example:* Loggging 
             
@@ -2590,14 +2798,14 @@
         </member>
         <member name="P:BoltNetwork.Entities">
              <summary>
-             The current server simulation frame number
+             Returns an IEnumerable list of all Bolt Entities currently loaded into the scene
              </summary>
              <example>
              *Example:* A post-game method to destroy all minions/npcs in the server simulation.
             
              <code>
              void PostGameCleanup() {
-               foreach(var entity in BoltNetwork.entities) {
+               foreach(var entity in BoltNetwork.Entities) {
                  if(entity.IsOwner &amp;&amp; entity.StateIs&lt;MinionState&gt;) {
                    BoltNetwork.Destroy(entity);
                  }
@@ -3842,6 +4050,67 @@
              </code>
              </example>
         </member>
+        <member name="M:BoltHitbox.OverlapSphere(UnityEngine.Matrix4x4@,UnityEngine.Vector3,System.Single)">
+            <summary>
+            Check overlap between Sphere and this HitBox
+            </summary>
+            <param name="matrix">Transformation matrix of HitBox from World to Local frame</param>
+            <param name="center"></param>
+            <param name="radius"></param>
+            <returns>True if sphere overlaps this HitBox</returns>
+        </member>
+        <member name="M:BoltHitbox.Raycast(UnityEngine.Matrix4x4@,UnityEngine.Vector3@,UnityEngine.Vector3,UnityEngine.Vector3,System.Single@)">
+            <summary>
+            Check Ray against HitBox
+            </summary>
+            <param name="matrix">Transformation matrix of HitBox from World to Local frame</param>
+            <param name="scale">HitBox scale</param>
+            <param name="origin">Ray origin</param>
+            <param name="direction">Ray direction</param>
+            <param name="distance">Hit distance</param>
+            <returns>True if ray hits this HitBox</returns>
+        </member>
+        <member name="M:BoltHitbox.OverlapSphereOnSphere(UnityEngine.Vector3,System.Single)">
+            <summary>
+            Check overlap of sphere against sphere HitBox
+            </summary>
+            <param name="center">Sphere center</param>
+            <param name="radius">Sphere radius</param>
+            <returns>True if overlap</returns>
+        </member>
+        <member name="M:BoltHitbox.OverlapSphereOnBox(UnityEngine.Vector3,System.Single)">
+            <summary>
+            Check overlap of sphere against box HitBox
+            </summary>
+            <param name="center">Sphere center</param>
+            <param name="radius">Sphere radius</param>
+            <returns>True if overlap</returns>
+        </member>
+        <member name="M:BoltHitbox.RaycastSphere(UnityEngine.Vector3,UnityEngine.Vector3,UnityEngine.Vector3,System.Single@)">
+            <summary>
+            Check Hit of Ray agains Sphere
+            </summary>
+            <param name="origin">Ray origin</param>
+            <param name="direction">Ray direction</param>
+            <param name="scale">Sphere scale</param>
+            <param name="distance">Hit distance</param>
+            <returns>True if ray hits the sphere, false otherwise</returns>
+        </member>
+        <member name="M:BoltHitbox.ClampVector(UnityEngine.Vector3@,UnityEngine.Vector3@,UnityEngine.Vector3@,UnityEngine.Vector3@)">
+            <summary>
+            Clamp the input vector values based on min and max vectors
+            </summary>
+            <param name="value">Vector to be campled</param>
+            <param name="min">Min vector value</param>
+            <param name="max">Max vector value</param>
+            <param name="result">Clamped vector result</param>
+        </member>
+        <member name="M:BoltHitbox.Draw(UnityEngine.Matrix4x4)">
+            <summary>
+            Draw the Hit Box prepresentation as a gizmo to help visualize it
+            </summary>
+            <param name="matrix"></param>
+        </member>
         <member name="T:BoltHitboxBody">
              <summary>
              Defines a body of hitboxes to be tracked
@@ -3858,6 +4127,21 @@
              }
              </code>
              </example>
+        </member>
+        <member name="F:BoltHitboxBody.ShowSnapshotHistory">
+            <summary>
+            Signal if the Snapshot history of this HitboxBody must be shown
+            </summary>
+        </member>
+        <member name="F:BoltHitboxBody._proximity">
+            <summary>
+            BoltHitbox used for Proximity checks
+            </summary>
+        </member>
+        <member name="F:BoltHitboxBody._hitboxes">
+            <summary>
+            List of BoltHitbox from this Body
+            </summary>
         </member>
         <member name="P:BoltHitboxBody.proximity">
             <summary>
@@ -3932,6 +4216,20 @@
              }
              </code>
              </example>
+        </member>
+        <member name="P:BoltConnection.ConnectToken">
+            <summary>
+            The ConnectToken contains the token sent by the client when connecting to a game server.
+            When you call BoltNetwork.Connect, BoltMatchmaking.JoinSession or BoltMatchmaking.JoinRandomSession with a Token,
+            it can be accessed via this property
+            </summary>
+        </member>
+        <member name="P:BoltConnection.DisconnectToken">
+            <summary>
+            The DisconnectToken contains the token used when a Connection is shutdown, either by the remote client or by the
+            game server.
+            When calling BoltConnection.Disconnect with a Token, it can be accessed via this property.
+            </summary>
         </member>
         <member name="P:BoltConnection.AcceptToken">
              <summary>
@@ -4214,51 +4512,6 @@
              }
              </code>
              </example>
-        </member>
-        <member name="T:BoltConsole">
-            <summary>
-            The in-game console window
-            </summary>
-            <example>
-            *Example:* Writing a custom message to the console.
-            
-            <code>
-            void Start() {
-              BoltConsole.Write("[Start:" + this.gameObject.name + "]);
-            }
-            </code>
-            </example>
-        </member>
-        <member name="M:BoltConsole.Write(System.String,UnityEngine.Color)">
-            <summary>
-            Write one line to the console
-            </summary>
-            <param name="line">Text to write</param>
-            <param name="color">Color of the text</param>
-            <example>
-            *Example:* Writing a custom message to the console in color.
-            
-            <code>
-            void OnDeath() {
-              BoltConsole.Write("[Death:" + this.gameObject.name + "], Color.Red);
-            }
-            </code>
-            </example>
-        </member>
-        <member name="M:BoltConsole.Write(System.String)">
-            <summary>
-            Write one line to the console
-            </summary>
-            <param name="line">Text to write</param>
-            <example>
-            *Example:* Writing a custom message to the console.
-            
-            <code>
-            void OnSpawn() {
-              BoltConsole.Write("[Spawn:" + this.gameObject.name + "]);
-            }
-            </code>
-            </example>
         </member>
         <member name="T:BoltException">
             <summary>

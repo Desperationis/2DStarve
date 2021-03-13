@@ -4,14 +4,10 @@ using UdpKit;
 using UnityEngine;
 using Process = System.Diagnostics.Process;
 
-public partial class BoltDebugStart : BoltInternal.GlobalEventListenerBase
+public partial class BoltDebugStart : GlobalEventListener
 {
-	private UdpEndPoint _serverEndPoint;
-	private UdpEndPoint _clientEndPoint;
-
 	void Awake()
 	{
-		DontDestroyOnLoad(gameObject);
 		Application.targetFrameRate = 60;
 	}
 
@@ -22,21 +18,16 @@ public partial class BoltDebugStart : BoltInternal.GlobalEventListenerBase
 		p.StartInfo.FileName = "osascript";
 		p.StartInfo.Arguments =
 
-	@"-e 'tell application """ + UnityEditor.PlayerSettings.productName + @"""
+			@"-e 'tell application """ + UnityEditor.PlayerSettings.productName + @"""
   activate
 end tell'";
 
 		p.Start();
 #endif
 
-		BoltRuntimeSettings settings = BoltRuntimeSettings.instance;
+		var settings = BoltRuntimeSettings.instance;
 
-		_serverEndPoint = new UdpEndPoint(UdpIPv4Address.Localhost, (ushort)settings.debugStartPort);
-		_clientEndPoint = new UdpEndPoint(UdpIPv4Address.Localhost, 0);
-
-		BoltConfig cfg;
-
-		cfg = settings.GetConfigCopy();
+		var cfg = settings.GetConfigCopy();
 		cfg.connectionTimeout = 60000000;
 		cfg.connectionRequestTimeout = 500;
 		cfg.connectionRequestAttempts = 1000;
@@ -47,13 +38,17 @@ end tell'";
 			{
 				BoltLog.Warn("Starting as SERVER");
 
-				BoltLauncher.StartServer(_serverEndPoint, cfg);
+				var serverEndPoint = new UdpEndPoint(UdpIPv4Address.Localhost, (ushort)settings.debugStartPort);
+
+				BoltLauncher.StartServer(serverEndPoint, cfg);
 			}
 			else if (BoltDebugStartSettings.DebugStartIsClient)
 			{
 				BoltLog.Warn("Starting as CLIENT");
 
-				BoltLauncher.StartClient(_clientEndPoint, cfg);
+				var clientEndPoint = new UdpEndPoint(UdpIPv4Address.Localhost, 0);
+
+				BoltLauncher.StartClient(clientEndPoint, cfg);
 			}
 			else if (BoltDebugStartSettings.DebugStartIsSinglePlayer)
 			{
@@ -87,17 +82,14 @@ end tell'";
 		}
 	}
 
-	public override void SceneLoadLocalDone(string scene, IProtocolToken token)
-	{
-		if (BoltRuntimeSettings.instance.debugStartMapName.Equals(scene))
-		{
-			Destroy(gameObject);
-		}
-	}
-
 	private IEnumerator DelayClientConnect()
 	{
-		yield return new WaitForSeconds(3);
+		for (int i = 0; i < 5; i++)
+		{
+			BoltLog.Info("Connecting in {0} seconds...", 5 - i);
+			yield return new WaitForSeconds(1);
+		}
+
 		BoltNetwork.Connect((ushort)BoltRuntimeSettings.instance.debugStartPort);
 	}
 }
