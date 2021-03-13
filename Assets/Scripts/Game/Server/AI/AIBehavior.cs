@@ -6,14 +6,6 @@
 [RequireComponent(typeof(AISwapper))]
 public abstract class AIBehavior : MobBehaviour
 {
-    protected MobAIData AIData = null;
-
-    public virtual void SetDependencies(MobAIData AIData)
-    {
-        this.AIData = AIData;
-    }
-
-
     /// <summary>
     /// Called when AISwapper is initialized.
     /// </summary>

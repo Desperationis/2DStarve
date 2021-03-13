@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 3033814964439577439}
   - component: {fileID: 3625204346832147578}
   - component: {fileID: 5628386034582719490}
+  - component: {fileID: 2403298955609990176}
   m_Layer: 9
   m_Name: Wolf
   m_TagString: Mob
@@ -451,7 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eca1f25a3aedb448a1c12686080f1cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AIData: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6, type: 2}
   AIs:
   - {fileID: 3026020030121905211}
   - {fileID: 896595860766178024}
@@ -558,6 +558,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 8167679196962751512}
   healthComponent: {fileID: 3625204346832147578}
+--- !u!114 &2403298955609990176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5003528177133432361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b2a18e2e22810b4b892c27f5ebff3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMovementData: {fileID: 11400000, guid: 0378083ea0421a94d8efc8373506beab,
+    type: 2}
+  originalAIData: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6, type: 2}
 --- !u!1 &7719238700134976967
 GameObject:
   m_ObjectHideFlags: 0

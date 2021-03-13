@@ -6,10 +6,11 @@ using Bolt;
 /// also using client-side prediction. Due to this, this is the only script
 /// that can move the player. 
 /// </summary>
-public class PlayerMovementOrchestrator : NetworkOrchestrator<IPlayerState>
+public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
 {
     private bool lockPlayer = false;
     private bool spacePressed = false;
+
 
     /// <summary>
     /// If true, client will override all requested inputs to make 
@@ -29,12 +30,12 @@ public class PlayerMovementOrchestrator : NetworkOrchestrator<IPlayerState>
         state.AddCallback("Running", RunningUpdate);
     }
 
-    private void DirectionUpdate()
+    protected override void DirectionUpdate()
     {
         mobController.SetDirection(state.Direction);
     }
 
-    private void RunningUpdate()
+    protected override void RunningUpdate()
     {
         mobController.SetRunning(state.Running);
     }

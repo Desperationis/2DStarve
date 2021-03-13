@@ -8,7 +8,7 @@ public class FollowerAI : AIBehavior
 {
     public override void UpdateAI()
     {
-        PlayerObject nearestPlayer = PlayerRegistry.OverlapCircle(transform.position, AIData.followerRange);
+        PlayerObject nearestPlayer = PlayerRegistry.OverlapCircle(transform.position, dataComponent.aiData.followerRange);
 
         if(nearestPlayer != null)
         {
@@ -21,7 +21,7 @@ public class FollowerAI : AIBehavior
 
     public override bool CheckRequirement()
     {
-        return PlayerRegistry.OverlapCircleAny(transform.position, AIData.followerRange);
+        return PlayerRegistry.OverlapCircleAny(transform.position, dataComponent.aiData.followerRange);
     }
 
     public override void OnSwitchLeave()

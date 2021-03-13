@@ -9,10 +9,6 @@ using UnityEngine;
 public class AISwapper : MobBehaviour
 {
     [SerializeField]
-    [Tooltip("Passed in as a reference to all connected AIBehaviors.")]
-    private MobAIData AIData = null;
-
-    [SerializeField]
     [Tooltip("Values closer to index 0 have a higher priority.")]
     private List<AIBehavior> AIs = new List<AIBehavior>();
 
@@ -38,7 +34,6 @@ public class AISwapper : MobBehaviour
         {
             foreach (AIBehavior AI in AIs)
             {
-                AI.SetDependencies(AIData);
                 AI.Init();
             }
             SwapCurrentAI(GetCurrentAI());

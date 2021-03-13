@@ -9,28 +9,34 @@ public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
 {
     protected MobController mobController = null;
     protected MobAnimationController mobAnimationController = null;
+    protected DataComponent dataComponent = null;
+
+    /// <summary>
+    /// Searches for a component in a mob in its children and parent.
+    /// Priority is current->children->parent.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public T SearchComponentInMob<T>()
+    {
+        T component = GetComponent<T>();
+
+        if (component == null)
+        {
+            component = GetComponentInChildren<T>();
+        }
+        if (component == null)
+        {
+            component = GetComponentInParent<T>();
+        }
+
+        return component;
+    }
 
     protected virtual void Awake()
     {
-        mobController = GetComponent<MobController>();
-
-        if (mobController == null)
-        {
-            mobController = GetComponentInParent<MobController>();
-        }
-
-        mobAnimationController = GetComponent<MobAnimationController>();
-
-        if (mobAnimationController == null)
-        {
-            mobAnimationController = GetComponentInChildren<MobAnimationController>();
-        }
-
-        _Awake();
-    }
-
-    protected virtual void _Awake()
-    {
-
+        mobController = SearchComponentInMob<MobController>();
+        mobAnimationController = SearchComponentInMob<MobAnimationController>();
+        dataComponent = SearchComponentInMob<DataComponent>();
     }
 }

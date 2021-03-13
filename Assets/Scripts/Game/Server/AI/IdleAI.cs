@@ -11,7 +11,7 @@ public class IdleAI : AIBehavior
 
     public override void OnSwitchEnter()
     {
-        switchTimer = Time.time + AIData.idleMoveTime;
+        switchTimer = Time.time + dataComponent.aiData.idleMoveTime;
     }
 
     public override void UpdateAI()
@@ -36,7 +36,7 @@ public class IdleAI : AIBehavior
 
     public float GetWaitingDelay()
     {
-        return stayingStill ? AIData.idleRestTime : AIData.idleMoveTime;
+        return stayingStill ? dataComponent.aiData.idleRestTime : dataComponent.aiData.idleMoveTime;
     }
 
     public override bool CheckRequirement()
