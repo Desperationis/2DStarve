@@ -36,8 +36,8 @@ MonoBehaviour:
     commandPingMultiplier: 1.25
     useNetworkSimulation: 1
     simulatedLoss: 0
-    simulatedPingMean: 0
-    simulatedPingJitter: 0
+    simulatedPingMean: 150
+    simulatedPingJitter: 10
     simulatedRandomFunction: 0
     connectionTimeout: 10000
     connectionRequestTimeout: 500
@@ -49,11 +49,11 @@ MonoBehaviour:
   debugBuildMode: 1
   debugStartMapName: SimpleMoveAndShoot_Game
   debugPlayAsServer: 1
-  showDebugInfo: 1
+  showDebugInfo: 0
   overrideTimeScale: 1
   debugEditorMode: 0
   consoleToggleKey: 9
-  consoleVisibleByDefault: 1
+  consoleVisibleByDefault: 0
   compilationWarnLevel: 4
   editorSkin: 4
   scopeModeHideWarningInGui: 0
@@ -71,5 +71,5 @@ MonoBehaviour:
   enableA2sServer: 0
   RoomCreateTimeout: 20
   RoomJoinTimeout: 20
-  enableClientMetrics: 0
+  enableClientMetrics: 1
   enableSourceProvider: 1
