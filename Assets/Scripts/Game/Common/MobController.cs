@@ -87,7 +87,10 @@ public class MobController : MonoBehaviour
     /// </param>
     public void SetDirection(Vector2 direction)
     {
-        this.direction = direction.normalized;
+        if(!movementDisabled)
+        {
+            this.direction = direction.normalized;
+        }
     }
 
 
