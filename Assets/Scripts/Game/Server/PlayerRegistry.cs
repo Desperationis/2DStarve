@@ -3,33 +3,38 @@ using UnityEngine;
 
 /// <summary>
 /// A static class that deals with finding and creating players in a 
-/// registry; Only applies to the server.
+/// list; Only applies to the server.
 /// </summary>
 public static class PlayerRegistry
 {
-    static private List<PlayerObject> players = new List<PlayerObject>();
+    static private List<PlayerObject> _players = new List<PlayerObject>();
+
+    public static IEnumerable<PlayerObject> players
+    {
+        get { return _players; }
+    }
 
     /// <summary>
-    /// Creates a PlayerObject in the registry given a BoltConnection. This does
-    /// not spawn the player, and can only be done in singleplayer and server applications. 
+    /// Returns the PlayerObject that the server application is currently
+    /// using. If it doesn't exist, it returns null. 
+    /// </summary>
+    public static PlayerObject ServerPlayer
+    {
+        get { return _players.Find(player => player.IsServer); }
+    }
+
+    /// <summary>
+    /// Creates a PlayerObject in the registry given a BoltConnection.
     /// </summary>
     static public PlayerObject CreatePlayer(BoltConnection connection)
     {
-        if(BoltNetwork.IsServer || BoltNetwork.IsSinglePlayer)
+        if(BoltNetwork.IsServer)
         {
-            PlayerObject player;
-
             // Connect a new player instance with a connection;
-            player = new PlayerObject();
-            player.connection = connection;
+            PlayerObject player = new PlayerObject();
+            player.AssignToConnection(connection);
 
-            // Put clients into an internal variable for easy access via BoltConnection
-            if (player.IsClient)
-            {
-                player.connection.UserData = player;
-            }
-
-            players.Add(player);
+            _players.Add(player);
 
             return player;
         }
@@ -38,19 +43,7 @@ public static class PlayerRegistry
         return null;
     }
 
-    public static IEnumerable<PlayerObject> AllPlayers
-    {
-        get { return players; }
-    }
 
-    /// <summary>
-    /// Finds the PlayerObject that the server application is currently
-    /// using. If it doesn't exist, it returns null. 
-    /// </summary>
-    public static PlayerObject ServerPlayer
-    {
-        get { return players.Find(player => player.IsServer); }
-    }
 
     /// <summary>
     /// Creates a PlayerObject in the registry using CreatePlayer(BoltConnection). This 
@@ -60,6 +53,7 @@ public static class PlayerRegistry
     {
         return CreatePlayer(null);
     }
+
 
     /// <summary>
     /// Same functionality as CreatePlayer(BoltConnection). 
@@ -75,14 +69,14 @@ public static class PlayerRegistry
     /// </summary>
     public static void DestroyPlayer(BoltConnection connection)
     {
-        if (BoltNetwork.IsServer || BoltNetwork.IsSinglePlayer)
+        if (BoltNetwork.IsServer)
         {
-            PlayerObject playerInQuestion = GetPlayer(connection);
+            PlayerObject targetPlayer = GetPlayer(connection);
 
-            if(playerInQuestion != null)
+            if(targetPlayer != null)
             {
-                playerInQuestion.BoltDestroy();
-                players.Remove(playerInQuestion);
+                targetPlayer.BoltDestroy();
+                _players.Remove(targetPlayer);
             }
         }
         else
@@ -102,8 +96,7 @@ public static class PlayerRegistry
             return ServerPlayer;
         }
 
-        // Easy access!
-        return (PlayerObject)connection.UserData;
+        return PlayerObject.LookupConnection(connection);
     }
 
 
@@ -115,7 +108,7 @@ public static class PlayerRegistry
     {
         List<PlayerObject> foundPlayers = new List<PlayerObject>();
 
-        foreach(PlayerObject player in AllPlayers)
+        foreach(PlayerObject player in players)
         {
             BoltEntity character = player.character;
             if(character != null)
@@ -137,7 +130,7 @@ public static class PlayerRegistry
     /// </summary>
     public static bool OverlapCircleAny(Vector2 point, float radius)
     {
-        foreach (PlayerObject player in AllPlayers)
+        foreach (PlayerObject player in players)
         {
             BoltEntity character = player.character;
             if (character != null)
@@ -164,7 +157,7 @@ public static class PlayerRegistry
         PlayerObject closestPlayer = null;
         Vector2 closestDifference = Vector2.positiveInfinity;
 
-        foreach (PlayerObject player in AllPlayers)
+        foreach (PlayerObject player in players)
         {
             BoltEntity character = player.character;
             if (character != null)
