@@ -57,9 +57,10 @@ public class AttackingComponent : MobBehaviour
     /// </summary>
     protected void FixedUpdate()
     {
-        Vector2 rotatedVector = mobController.cardinalDirection * new Vector2(-1, 0);
+        Vector2 cardinalDirection = mobController.cardinalDirection;
+        Vector2 rotatedVector = new Vector2(-cardinalDirection.y, cardinalDirection.x);
         float directionalAngle = Mathf.Acos(rotatedVector.x) * (180.0f / Mathf.PI);
-        directionalAngle *= mobController.cardinalDirection.x;
+        directionalAngle *= cardinalDirection.x < 0 ? -1 : 1;
 
         hitbox.transform.eulerAngles = new Vector3(0, 0, directionalAngle);
     }

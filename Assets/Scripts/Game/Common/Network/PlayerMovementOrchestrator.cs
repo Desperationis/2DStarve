@@ -14,7 +14,9 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
 
     /// <summary>
     /// If true, client will override all requested inputs to make 
-    /// the player stand still. 
+    /// the player stand perfectly still. This is used so that,
+    /// when activated, there is absolutely no way for the client to
+    /// move, like when typing at chat.
     /// </summary>
     public void OverrideStop(bool lockPlayer)
     {

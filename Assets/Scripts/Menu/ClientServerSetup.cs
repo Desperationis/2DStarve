@@ -42,7 +42,7 @@ public class ClientServerSetup : Bolt.GlobalEventListener
         // Join any available room
         foreach (var session in sessionList)
         {
-            UdpSession photonSession = session.Value as UdpSession;
+            UdpSession photonSession = session.Value;
             
             if (photonSession.Source == UdpSessionSource.Photon)
             {
