@@ -28,7 +28,7 @@ public class WolfSpawner : MonoBehaviour
             if (Time.time > timer)
             {
                 timer = Time.time + delay;
-                BoltNetwork.Instantiate(BoltPrefabs.Wolf, Vector3.zero, Quaternion.identity);
+                BoltNetwork.Instantiate(BoltPrefabs.ForestBat, Vector3.zero, Quaternion.identity);
                 count++;
             }
         }
