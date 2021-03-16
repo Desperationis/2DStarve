@@ -17,17 +17,17 @@ public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public T SearchComponentInMob<T>()
+    public U SearchComponentInMob<U>()
     {
-        T component = GetComponent<T>();
+        U component = GetComponent<U>();
 
         if (component == null)
         {
-            component = GetComponentInChildren<T>();
+            component = GetComponentInChildren<U>();
         }
         if (component == null)
         {
-            component = GetComponentInParent<T>();
+            component = GetComponentInParent<U>();
         }
 
         return component;
