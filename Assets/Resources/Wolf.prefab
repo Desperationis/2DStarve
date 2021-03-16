@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f7ae4b773707746a106f2d86d85154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackingComponent: {fileID: 9107359878131101239}
+  attackingComponent: {fileID: 6688497073792739532}
 --- !u!114 &8537004705068936323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,6 +44,32 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 773239545976886358, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1c242d0131c034f448d18c50a185f823, type: 2}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -458185587419916677, guid: dd5e55f9f2bd58940bc68618df2e96aa,
+        type: 3}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2871064518707528084, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: originalAIData
@@ -142,6 +168,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6737852648545546036, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: attackingComponent
+      value: 
+      objectReference: {fileID: 6688497073792739532}
     - target: {fileID: 8175371536893970623, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: AIs.Array.size
@@ -170,13 +201,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5423419917973874198}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9107359878131101239 stripped
+--- !u!114 &6688497073792739532 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3828073015501539361, guid: 1e6d0cd9639affb418ec548ede6bc916,
+  m_CorrespondingSourceObject: {fileID: 1698291403290545882, guid: 1e6d0cd9639affb418ec548ede6bc916,
     type: 3}
   m_PrefabInstance: {fileID: 5423419917973874198}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 9047634613478293741}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1910b8ba004a389409b5b3b5cc696062, type: 3}

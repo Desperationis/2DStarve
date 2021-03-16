@@ -24,7 +24,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f7ae4b773707746a106f2d86d85154, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackingComponent: {fileID: 4777645927326786427}
+  attackingComponent: {fileID: 6988492061173769600}
 --- !u!114 &8751724845065425252
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,11 +44,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 773239545976886358, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c530d380b53e3d744b119ff30494e94c, type: 2}
     - target: {fileID: 1193762760597492161, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c530d380b53e3d744b119ff30494e94c, type: 2}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6925834031070194202, guid: d232ecbbc0b24174aa0731c04c3a1662,
+        type: 3}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2871064518707528084, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: originalAIData
@@ -147,6 +173,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6737852648545546036, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: attackingComponent
+      value: 
+      objectReference: {fileID: 6988492061173769600}
     - target: {fileID: 8175371536893970623, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: AIs.Array.size
@@ -172,6 +203,21 @@ PrefabInstance:
       propertyPath: flipDirection
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 2.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 2.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6d0cd9639affb418ec548ede6bc916, type: 3}
 --- !u!1 &4729320124344339873 stripped
@@ -180,13 +226,13 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8605701074686176090}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4777645927326786427 stripped
+--- !u!114 &6988492061173769600 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3828073015501539361, guid: 1e6d0cd9639affb418ec548ede6bc916,
+  m_CorrespondingSourceObject: {fileID: 1698291403290545882, guid: 1e6d0cd9639affb418ec548ede6bc916,
     type: 3}
   m_PrefabInstance: {fileID: 8605701074686176090}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 4729320124344339873}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1910b8ba004a389409b5b3b5cc696062, type: 3}

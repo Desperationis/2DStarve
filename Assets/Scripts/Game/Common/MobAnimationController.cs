@@ -7,10 +7,13 @@
 public class MobAnimationController : MobBehaviour
 {
     [SerializeField]
+    private SpriteRenderer spriteRenderer = null;
+
+    [SerializeField]
     private Animator animator = null;
 
     [SerializeField]
-    private bool flipDirection = false;
+    private bool inverseDirection = false;
 
 
     /// <summary>
@@ -47,10 +50,12 @@ public class MobAnimationController : MobBehaviour
     }
     private void FlipAnimation()
     {
-        // X component determines the direction of flip. Mathf.Sign(0) = 1
-        float inverseDirection = flipDirection ? -1 : 1;
-        float direction = Mathf.Sign(mobController.cardinalDirection.x * inverseDirection);
+        // X component determines the direction of flip.
 
-        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * direction, transform.localScale.y, transform.localScale.z);
+        bool flipRightNow = mobController.cardinalDirection.x < 0 ? true : false;
+
+        flipRightNow = inverseDirection ? !flipRightNow : flipRightNow;
+
+        spriteRenderer.flipX = flipRightNow;
     }
 }

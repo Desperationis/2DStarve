@@ -19,11 +19,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 773239545976886358, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 79b6d4b6c70016844b3d0743a7230eb7, type: 2}
     - target: {fileID: 1193762760597492161, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 79b6d4b6c70016844b3d0743a7230eb7, type: 2}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 646633969347741312, guid: 9323abbeb8124f144b600b5cb03e5066,
+        type: 3}
+    - target: {fileID: 1806403861515501488, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1887006064238764890, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -33,6 +59,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2302575899509268473, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: inverseDirection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2871064518707528084, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
@@ -132,6 +163,11 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6737852648545546036, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: attackingComponent
+      value: 
+      objectReference: {fileID: 1345392934622772512}
     - target: {fileID: 8175371536893970623, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: AIs.Array.data[0]
@@ -142,6 +178,26 @@ PrefabInstance:
       propertyPath: flipDirection
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9107362960756927989, guid: 1e6d0cd9639affb418ec548ede6bc916,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1e6d0cd9639affb418ec548ede6bc916, type: 3}
 --- !u!1 &3744246826866464001 stripped
@@ -150,3 +206,15 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 376684670973719546}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1345392934622772512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1698291403290545882, guid: 1e6d0cd9639affb418ec548ede6bc916,
+    type: 3}
+  m_PrefabInstance: {fileID: 376684670973719546}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3744246826866464001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1910b8ba004a389409b5b3b5cc696062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

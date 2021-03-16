@@ -14,7 +14,7 @@ public class WolfSpawner : MonoBehaviour
 
     [SerializeField]
     [ReadOnly]
-    private int count;
+    private int count = 0;
 
     public void Awake()
     {
@@ -28,7 +28,20 @@ public class WolfSpawner : MonoBehaviour
             if (Time.time > timer)
             {
                 timer = Time.time + delay;
-                BoltNetwork.Instantiate(BoltPrefabs.Rabbit, Vector3.zero, Quaternion.identity);
+
+                if(count == 0)
+                {
+                    BoltNetwork.Instantiate(BoltPrefabs.Rabbit, Vector3.zero, Quaternion.identity);
+                }
+                if (count == 1)
+                {
+                    BoltNetwork.Instantiate(BoltPrefabs.ForestBat, Vector3.zero, Quaternion.identity);
+                }
+                if (count == 2)
+                {
+                    BoltNetwork.Instantiate(BoltPrefabs.Wolf, Vector3.zero, Quaternion.identity);
+                }
+
                 count++;
             }
         }
