@@ -69,13 +69,13 @@ PrefabInstance:
         type: 3}
       propertyPath: originalAIData
       value: 
-      objectReference: {fileID: 11400000, guid: b77dad171f6cff3488c68751cb374de6,
+      objectReference: {fileID: 11400000, guid: 80a0d5177cca9ea4bbb880c3bf76cd5e,
         type: 2}
     - target: {fileID: 2871064518707528084, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
       propertyPath: originalMovementData
       value: 
-      objectReference: {fileID: 11400000, guid: 0378083ea0421a94d8efc8373506beab,
+      objectReference: {fileID: 11400000, guid: e32aa893a701db240890f48a7c02b503,
         type: 2}
     - target: {fileID: 3948667385073592056, guid: 1e6d0cd9639affb418ec548ede6bc916,
         type: 3}
