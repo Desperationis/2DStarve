@@ -17,3 +17,4 @@ MonoBehaviour:
   followerRange: 5
   runAtFollow: 1
   attackRange: 2
+  attackPause: 1

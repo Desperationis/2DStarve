@@ -18,4 +18,7 @@ public class MobAIData : ScriptableObject
     [Header("Attack AI")]
     [Tooltip("The radius used to search for players in unity units.")]
     public float attackRange;
+    
+    [Tooltip("Number of seconds to wait for before attacking.")]
+    public float attackPause;
 }
