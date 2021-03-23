@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="1" nextobjectid="1">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="left-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="1" nextobjectid="158">
+ <properties>
+  <property name="Type" value="Wolf"/>
+ </properties>
  <tileset firstgid="1" source="Grass_Tileset.tsx"/>
  <layer name="Tile Layer 1" width="50" height="50">
   <data encoding="csv">
@@ -2579,4 +2582,178 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup color="#320000" name="Wolf">
+  <object id="122" x="-18.1818" y="-172.727">
+   <point/>
+  </object>
+  <object id="123" x="-512.121" y="21.2121">
+   <point/>
+  </object>
+  <object id="124" x="-452" y="-884">
+   <point/>
+  </object>
+  <object id="125" x="-628" y="-884">
+   <point/>
+  </object>
+  <object id="126" x="-764" y="-836">
+   <point/>
+  </object>
+  <object id="127" x="-852" y="-760">
+   <point/>
+  </object>
+  <object id="128" x="-912" y="-688">
+   <point/>
+  </object>
+  <object id="129" x="-960" y="-560">
+   <point/>
+  </object>
+  <object id="130" x="-1080" y="-292">
+   <point/>
+  </object>
+  <object id="131" x="-1144" y="-180">
+   <point/>
+  </object>
+  <object id="132" x="-1224" y="-40">
+   <point/>
+  </object>
+  <object id="133" x="-1260" y="232">
+   <point/>
+  </object>
+  <object id="134" x="-1248" y="400">
+   <point/>
+  </object>
+  <object id="135" x="-1132" y="564">
+   <point/>
+  </object>
+  <object id="136" x="-944" y="704">
+   <point/>
+  </object>
+  <object id="137" x="-720" y="864">
+   <point/>
+  </object>
+  <object id="138" x="-356" y="964">
+   <point/>
+  </object>
+  <object id="139" x="-8" y="1024">
+   <point/>
+  </object>
+  <object id="140" x="228" y="1020">
+   <point/>
+  </object>
+  <object id="141" x="596" y="996">
+   <point/>
+  </object>
+  <object id="142" x="828" y="920">
+   <point/>
+  </object>
+  <object id="143" x="952" y="784">
+   <point/>
+  </object>
+  <object id="144" x="1164" y="544">
+   <point/>
+  </object>
+  <object id="145" x="1192" y="240">
+   <point/>
+  </object>
+  <object id="146" x="1096" y="-136">
+   <point/>
+  </object>
+  <object id="147" x="1032" y="-428">
+   <point/>
+  </object>
+  <object id="148" x="836" y="-704">
+   <point/>
+  </object>
+  <object id="149" x="496" y="-904">
+   <point/>
+  </object>
+  <object id="150" x="216" y="-980">
+   <point/>
+  </object>
+  <object id="151" x="68" y="-996">
+   <point/>
+  </object>
+  <object id="152" x="-184" y="-996">
+   <point/>
+  </object>
+  <object id="153" x="-324" y="-952">
+   <point/>
+  </object>
+  <object id="154" x="-412" y="-912">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#64ff64" name="ForestBat">
+  <object id="106" x="536.364" y="-466.667">
+   <point/>
+  </object>
+  <object id="107" x="-463.636" y="-403.03">
+   <point/>
+  </object>
+  <object id="108" x="-206.061" y="-636.364">
+   <point/>
+  </object>
+  <object id="109" x="-684.848" y="-218.182">
+   <point/>
+  </object>
+  <object id="110" x="-503.03" y="284.848">
+   <point/>
+  </object>
+  <object id="111" x="572.727" y="-15.1515">
+   <point/>
+  </object>
+  <object id="112" x="-893.939" y="118.182">
+   <point/>
+  </object>
+  <object id="113" x="-730.303" y="548.485">
+   <point/>
+  </object>
+  <object id="114" x="-227.273" y="527.273">
+   <point/>
+  </object>
+  <object id="115" x="-12.1212" y="636.364">
+   <point/>
+  </object>
+  <object id="116" x="293.939" y="427.273">
+   <point/>
+  </object>
+  <object id="117" x="530.303" y="636.364">
+   <point/>
+  </object>
+  <object id="118" x="824.242" y="351.515">
+   <point/>
+  </object>
+  <object id="119" x="996.97" y="69.697">
+   <point/>
+  </object>
+  <object id="120" x="812.121" y="-321.212">
+   <point/>
+  </object>
+  <object id="156" x="-1156" y="-396">
+   <point/>
+  </object>
+  <object id="157" x="-970" y="-290">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup color="#ffffff" name="Rabbit">
+  <object id="97" x="168" y="-68">
+   <point/>
+  </object>
+  <object id="98" x="-170.667" y="44">
+   <point/>
+  </object>
+  <object id="99" x="171" y="140">
+   <point/>
+  </object>
+  <object id="100" x="-472" y="-57">
+   <point/>
+  </object>
+  <object id="101" x="-61" y="-306">
+   <point/>
+  </object>
+  <object id="102" x="-204" y="274">
+   <point/>
+  </object>
+ </objectgroup>
 </map>
