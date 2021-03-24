@@ -30,6 +30,32 @@ public class MapEntityLoader : MonoBehaviour
     }
 
 
+    private GameObject tree = null;
+
+    /// <summary>
+    /// TEMP for non-bolt entities; Will be replaced in the future
+    /// </summary>
+    /// <param name="layer"></param>
+    /// <param name="clone"></param>
+    private void LoadTempLayer(SuperObjectLayer layer, GameObject clone)
+    {
+        SuperObject[] entities = layer.GetComponentsInChildren<SuperObject>();
+
+        foreach (SuperObject entity in entities)
+        {
+            // Spawn mobs relative to map
+            Vector3 position = new Vector3(entity.m_X / map.m_TileWidth, entity.m_Y / map.m_TileHeight);
+            position += map.transform.position;
+
+            GameObject.Instantiate(clone, position, Quaternion.identity);
+        }
+    }
+
+    private void Awake()
+    {
+        tree = (GameObject) Resources.Load("Tree");
+    }
+
 
     void Start()
     {
@@ -49,6 +75,9 @@ public class MapEntityLoader : MonoBehaviour
                         break;
                     case "Rabbit":
                         LoadLayer(layer, BoltPrefabs.Rabbit);
+                        break;
+                    case "Tree":
+                        LoadTempLayer(layer, tree);
                         break;
                 }
 
