@@ -83,5 +83,20 @@ public class MapEntityLoader : MonoBehaviour
 
             }
         }
+        
+        if(BoltNetwork.IsClient)
+        {
+            SuperObjectLayer[] layers = map.GetComponentsInChildren<SuperObjectLayer>();
+            foreach(SuperObjectLayer layer in layers)
+            {
+                switch (layer.m_TiledName)
+                {
+                    case "Tree":
+                        LoadTempLayer(layer, tree);
+                        break;
+                }
+
+            }
+        }
     }
 }
