@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 /// <summary>
 /// Syncs daylight color based on server events
@@ -6,7 +7,7 @@
 public class DayTimeOrchestrator : Bolt.GlobalEventListener
 {
     [SerializeField]
-    private new SpriteRenderer light = null;
+    private new Light2D light = null;
 
     public override void OnEvent(DayTimeChange evnt)
     {
