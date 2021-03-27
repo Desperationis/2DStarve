@@ -678,6 +678,29 @@
       "Name": "EntityAttackEvent",
       "Guid": "2fb5b5ab-53bb-450b-8618-1ee40ebf4f34",
       "Groups": []
+    },
+    {
+      "$type": "Bolt.Compiler.EventDefinition, bolt.compiler",
+      "Properties": [
+        {
+          "Name": "color",
+          "Enabled": true,
+          "Expanded": true,
+          "ReplicationMode": 1,
+          "Priority": 1,
+          "PropertyType": {
+            "$type": "Bolt.Compiler.PropertyTypeColor32, bolt.compiler"
+          },
+          "AssetSettings": {
+            "$type": "Bolt.Compiler.PropertyEventSettings, bolt.compiler"
+          }
+        }
+      ],
+      "EntitySenders": 3,
+      "GlobalSenders": 1,
+      "Name": "DayTimeChange",
+      "Guid": "cfcd1889-1127-4c99-a5c6-201d2e58b539",
+      "Groups": []
     }
   ],
   "ActiveGroup": "Everything"
