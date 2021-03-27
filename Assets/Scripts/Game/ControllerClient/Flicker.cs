@@ -1,11 +1,14 @@
 ﻿using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 /// <summary>
-/// Flickers the local scale of a sprite; Mainly
-/// used for fire / lights.
+/// Flickers  a Light2D
 /// </summary>
 public class Flicker : MonoBehaviour
 {
+    [SerializeField]
+    private new Light2D light = null;
+
     [SerializeField]
     private float min = 3.0f;
 
@@ -18,8 +21,8 @@ public class Flicker : MonoBehaviour
     private void FixedUpdate()
     {
         float targetRadius = Random.Range(min, max);
-        float newScale = Mathf.MoveTowards(transform.localScale.x, targetRadius, speed);
+        float newRadius = Mathf.MoveTowards(light.pointLightOuterRadius, targetRadius, speed);
 
-        transform.localScale = new Vector3(newScale, newScale, 1);
+        light.pointLightOuterRadius = newRadius;
     }
 }
