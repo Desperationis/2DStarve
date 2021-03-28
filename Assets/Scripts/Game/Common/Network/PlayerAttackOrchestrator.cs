@@ -11,7 +11,7 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
-        if(!resetState && cmd.Input.Attack)
+        if(!resetState && cmd.Input.Attack && !mobAnimationController.IsPlaying("Attack"))
         {
             // Attack on input
             if (BoltNetwork.IsServer)
