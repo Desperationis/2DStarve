@@ -29,10 +29,8 @@ public class MapEntityLoader : MonoBehaviour
         foreach (SuperObject entity in entities)
         {
             // Spawn mobs relative to map
-            Vector3 position = new Vector3(entity.m_X / map.m_TileWidth, -entity.m_Y / map.m_TileHeight);
-            position += map.transform.position;
-
-            BoltNetwork.Instantiate(mob, position, Quaternion.identity);
+            Vector2 entityPosition = new Vector3(entity.m_X, entity.m_Y);
+            BoltNetwork.Instantiate(mob, MapCoords.EntityToWorld(map, entityPosition), Quaternion.identity);
         }
     }
 
@@ -52,10 +50,8 @@ public class MapEntityLoader : MonoBehaviour
         foreach (SuperObject entity in entities)
         {
             // Spawn mobs relative to map
-            Vector3 position = new Vector3(entity.m_X / map.m_TileWidth, -entity.m_Y / map.m_TileHeight);
-            position += map.transform.position;
-
-            GameObject.Instantiate(clone, position, Quaternion.identity);
+            Vector2 entityPosition = new Vector3(entity.m_X, entity.m_Y);
+            GameObject.Instantiate(clone, MapCoords.EntityToWorld(map, entityPosition), Quaternion.identity);
         }
     }
 

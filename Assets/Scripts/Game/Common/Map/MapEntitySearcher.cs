@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using SuperTiled2Unity;
 
 /// <summary>
@@ -19,9 +17,7 @@ public class MapEntitySearcher : MonoBehaviour
 
                 foreach (SuperObject entity in entities)
                 {
-                    Vector3 position = new Vector3(entity.m_X / map.m_TileWidth, -entity.m_Y / map.m_TileHeight, 0);
-                    position += map.transform.position;
-                    return position;
+                    return MapCoords.EntityToWorld(map, new Vector2(entity.m_X, entity.m_Y));
                 }
             }
         }
