@@ -10,11 +10,21 @@ public class PlayerHealthOrchestrator : HealthOrchestrator<IPlayerState>
 
     protected override int GetStateHealth()
     {
-        return state.Health;
+        // Check if this entity is not being destroyed before
+        // accessing bolt properties.
+        if (entity.IsAttached)
+        {
+            return state.Health;
+        }
+
+        return 0;
     }
 
     protected override void SetStateHealth(int health)
     {
-        state.Health = health;
+        if (entity.IsAttached)
+        {
+            state.Health = health;
+        }
     }
 }
