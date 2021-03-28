@@ -8,7 +8,7 @@ using SuperTiled2Unity;
 public class MapBoundCreator : MonoBehaviour
 {
     [SerializeField]
-    private SuperMap map = null;
+    private MapLoader mapLoader = null;
 
     private GameObject mapBound = null;
 
@@ -16,6 +16,7 @@ public class MapBoundCreator : MonoBehaviour
 
     private void Awake()
     {
+        mapLoader.AddLoadListener(SpawnBounds);
         mapBound = (GameObject)Resources.Load("Objects/MapBound");
     }
 
@@ -29,7 +30,7 @@ public class MapBoundCreator : MonoBehaviour
     /// <param name="size">
     /// Size of the bound.
     /// </param>
-    private void SpawnBound(Vector3 offset, Vector2 size)
+    private void SpawnBound(SuperMap map, Vector3 offset, Vector2 size)
     {
         GameObject bound = GameObject.Instantiate(mapBound, map.transform);
         bound.transform.position = map.transform.position + offset;
@@ -37,7 +38,7 @@ public class MapBoundCreator : MonoBehaviour
         collider.size = size;
     }
 
-    private void Start()
+    private void SpawnBounds(SuperMap map)
     {
         Vector3 offset = Vector3.zero;
         Vector3 size = Vector3.zero;
@@ -45,17 +46,17 @@ public class MapBoundCreator : MonoBehaviour
         offset.x = -width / 2;
         offset.y = -map.m_Height / 2;
         size = new Vector2(width, map.m_Height);
-        SpawnBound(offset, size); // Left
+        SpawnBound(map, offset, size); // Left
 
         offset.x += width + map.m_Width;
-        SpawnBound(offset, size); // Right
+        SpawnBound(map, offset, size); // Right
 
         offset.x = map.m_Width / 2;
         offset.y = width / 2;
         size = new Vector2(map.m_Width, width);
-        SpawnBound(offset, size); // Top
+        SpawnBound(map, offset, size); // Top
 
         offset.y -= width + map.m_Height;
-        SpawnBound(offset, size); // Right
+        SpawnBound(map, offset, size); // Right
     }
 }

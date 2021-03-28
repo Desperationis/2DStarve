@@ -8,14 +8,21 @@ using Bolt;
 public class MapEntityLoader : MonoBehaviour
 {
     [SerializeField]
-    private SuperMap map = null;
+    private MapLoader mapLoader = null;
+
+    private void Awake()
+    {
+        mapLoader.AddLoadListener(SpawnPrefabs);
+        tree = (GameObject) Resources.Load("Objects/Tree");
+        campfire = (GameObject) Resources.Load("Objects/Campfire");
+    }
 
     /// <summary>
     /// Loads all entities of a specific layer
     /// </summary>
     /// <param name="layer">SuperTiled2Unity Layer</param>
     /// <param name="mob">PrefabId of the mob</param>
-    private void LoadLayer(SuperObjectLayer layer, PrefabId mob)
+    private void LoadLayer(SuperMap map, SuperObjectLayer layer, PrefabId mob)
     {
         SuperObject[] entities = layer.GetComponentsInChildren<SuperObject>();
 
@@ -38,7 +45,7 @@ public class MapEntityLoader : MonoBehaviour
     /// </summary>
     /// <param name="layer"></param>
     /// <param name="clone"></param>
-    private void LoadTempLayer(SuperObjectLayer layer, GameObject clone)
+    private void LoadTempLayer(SuperMap map, SuperObjectLayer layer, GameObject clone)
     {
         SuperObject[] entities = layer.GetComponentsInChildren<SuperObject>();
 
@@ -52,14 +59,7 @@ public class MapEntityLoader : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        tree = (GameObject) Resources.Load("Objects/Tree");
-        campfire = (GameObject) Resources.Load("Objects/Campfire");
-    }
-
-
-    void Start()
+    private void SpawnPrefabs(SuperMap map)
     {
         // Only spawn prefabs server-side
         if(BoltNetwork.IsServer)
@@ -70,19 +70,19 @@ public class MapEntityLoader : MonoBehaviour
                 switch (layer.m_TiledName)
                 {
                     case "Wolf":
-                        LoadLayer(layer, BoltPrefabs.Wolf);
+                        LoadLayer(map, layer, BoltPrefabs.Wolf);
                         break;
                     case "ForestBat":
-                        LoadLayer(layer, BoltPrefabs.ForestBat);
+                        LoadLayer(map, layer, BoltPrefabs.ForestBat);
                         break;
                     case "Rabbit":
-                        LoadLayer(layer, BoltPrefabs.Rabbit);
+                        LoadLayer(map, layer, BoltPrefabs.Rabbit);
                         break;
                     case "Tree":
-                        LoadTempLayer(layer, tree);
+                        LoadTempLayer(map, layer, tree);
                         break;
                     case "Campfire":
-                        LoadTempLayer(layer, campfire);
+                        LoadTempLayer(map, layer, campfire);
                         break;
                 }
 
@@ -97,10 +97,10 @@ public class MapEntityLoader : MonoBehaviour
                 switch (layer.m_TiledName)
                 {
                     case "Tree":
-                        LoadTempLayer(layer, tree);
+                        LoadTempLayer(map, layer, tree);
                         break;
                     case "Campfire":
-                        LoadTempLayer(layer, campfire);
+                        LoadTempLayer(map, layer, campfire);
                         break;
                 }
 
