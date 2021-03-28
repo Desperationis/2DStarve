@@ -33,6 +33,14 @@ public class HealthComponent : MobBehaviour
         if(pastHealth != this.health)
         {
             onHealthChange.Invoke(this.health);
+            // 0 Listener 1
+            //      100 Listener 1
+            //      100 Listener 2
+            //      100 Listener 3
+            //      100 Listener 4
+            // 0 <- Listener 2
+            // 0 <- Listener 3
+            // 0 <- Listener 4
         }
     }
 
