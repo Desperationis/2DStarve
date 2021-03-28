@@ -11,13 +11,19 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
-        // Let the server know that the controller pressed attack
-        // Since it's only server-side, will only be executed once.
-        if (cmd.Input.Attack && BoltNetwork.IsServer)
+        if(!resetState && cmd.Input.Attack && !mobAnimationController.IsPlaying("Attack"))
         {
-            attackingComponent.TriggerAttackEvent();
-            EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
-            attackEvent.Send();
+            // Attack on input
+            if (BoltNetwork.IsServer)
+            {
+                attackingComponent.TriggerAttackEvent();
+                EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
+                attackEvent.Send();
+            }
+            if (BoltNetwork.IsClient)
+            {
+                attackingComponent.TriggerAttackEvent();
+            }
         }
     }
 
@@ -26,19 +32,6 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
         if(!entity.IsControllerOrOwner)
         {
             attackingComponent.TriggerAttackEvent();
-        }
-    }
-
-    public override void SimulateController()
-    {
-        // Client-side prediction of attack; We don't want to travel
-        // back in time with Photon Bolt commands
-        if (BoltNetwork.IsClient)
-        {
-            if (Input.GetKey(KeyCode.Space) && !mobAnimationController.IsPlaying("Attack"))
-            {
-                attackingComponent.TriggerAttackEvent();
-            }
         }
     }
 }

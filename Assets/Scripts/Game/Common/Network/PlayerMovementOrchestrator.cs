@@ -87,7 +87,7 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
     public override void ExecuteCommand(Command command, bool resetState)
     {
         // Bolt saves a query of inputs and slowly fixes the divergence of the
-        // client to the cerser's position. This is done with resetState.
+        // client to the server's position. This is done with resetState.
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
         if (resetState)
