@@ -9,14 +9,14 @@ public class ChatPlayerMovementLock : MonoBehaviour
     public void LockPlayer()
     {
         BoltEntity player = ControlledEntity.controlledEntity;
-        PlayerMovementOrchestrator movementOrchestrator = player.GetComponent<PlayerMovementOrchestrator>();
+        PlayerInputOrchestrator movementOrchestrator = player.GetComponent<PlayerInputOrchestrator>();
         movementOrchestrator.OverrideStop(true);
     }
 
     public void UnlockPlayer()
     {
         BoltEntity player = ControlledEntity.controlledEntity;
-        PlayerMovementOrchestrator movementOrchestrator = player.GetComponent<PlayerMovementOrchestrator>();
+        PlayerInputOrchestrator movementOrchestrator = player.GetComponent<PlayerInputOrchestrator>();
         movementOrchestrator.OverrideStop(false);
     }
 }
