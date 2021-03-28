@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Makes attacking interfacible with AIBehaviors. Derives from  AttackBase.
+/// Syncs the attacking component on mobs with clients.
 /// </summary>
 public class MobAttackOrchestrator : NetworkOrchestrator<IMobState>
 {
     [SerializeField]
     private AttackingComponent attackingComponent = null;
 
-    /// <summary>
-    /// Updates state variables to match server.
-    /// </summary>
     public override void SimulateOwner()
     {
         state.Attacking = mobAnimationController.IsPlaying("Attack");
@@ -24,10 +21,7 @@ public class MobAttackOrchestrator : NetworkOrchestrator<IMobState>
     {
         if (state.Attacking && !entity.IsOwner)
         {
-            if (!mobAnimationController.IsPlaying("Attack"))
-            {
-                attackingComponent.TriggerAttackEvent();
-            }
+            attackingComponent.Attack();
         }
     }
 }

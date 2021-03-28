@@ -1,10 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Bolt;
+﻿using UnityEngine;
 
 public class PlayerInputOrchestrator : NetworkOrchestrator<IPlayerState>
 {
+    [SerializeField]
+    [Tooltip("Used to determine if the player is currently attacking.")]
+    private AttackingComponent attackingComponent = null;
+
     private bool lockPlayer = false;
     private bool spacePressed = false;
 
@@ -45,7 +46,7 @@ public class PlayerInputOrchestrator : NetworkOrchestrator<IPlayerState>
 
             commandInput.Running = Input.GetKey(KeyCode.LeftShift);
 
-            commandInput.MovementLocked = GetComponentInChildren<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Attack"); ;
+            commandInput.MovementLocked = attackingComponent.isAttacking;
 
             entity.QueueInput(commandInput);
         }

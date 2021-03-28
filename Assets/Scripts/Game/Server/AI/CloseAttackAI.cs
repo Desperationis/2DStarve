@@ -24,9 +24,9 @@ public class CloseAttackAI : AIBehavior
         }
         mobController.UpdateFrame(Time.fixedDeltaTime);
 
-        if(!mobAnimationController.IsPlaying("Attack") && attackTimer < Time.time)
+        if(!attackingComponent.isAttacking && attackTimer < Time.time)
         {
-            attackingComponent.TriggerAttackEvent();
+            attackingComponent.Attack();
             attackTimer = Time.time + dataComponent.aiData.attackPause;
         }
     }
@@ -34,7 +34,7 @@ public class CloseAttackAI : AIBehavior
 
     public override bool CheckRequirement()
     {
-        return PlayerRegistry.OverlapCircleAny(transform.position, 1.5f) || mobAnimationController.IsPlaying("Attack") || attackTimer > Time.time;
+        return PlayerRegistry.OverlapCircleAny(transform.position, 1.5f) || attackingComponent.isAttacking || attackTimer > Time.time;
     }
 
     public override void OnSwitchLeave()

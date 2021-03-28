@@ -17,13 +17,21 @@ public class AttackingComponent : MobBehaviour
     [Tooltip("The layer mask that determines what objects can be hit.")]
     protected LayerMask mask;
 
+    public bool isAttacking
+    {
+        get
+        {
+            return mobAnimationController.IsPlaying("Attack");
+        }
+    }
+
 
     /// <summary>
     /// Sends an attack event to all colliders (filtered by the layer mask) that
     /// are currently overlapping the attacking hitbox. This should be called
-    /// as an animation event.
+    /// as an animation event during an attack frame.
     /// </summary>
-    public virtual void Attack()
+    public virtual void FrameAttack()
     {
         if(entity.IsControllerOrOwner)
         {
@@ -69,7 +77,7 @@ public class AttackingComponent : MobBehaviour
     {
         if(entity.IsControlled)
         {
-            if(mobAnimationController.IsPlaying("Attack"))
+            if(isAttacking)
             {
                 mobController.DisableMovement();
             }
@@ -81,14 +89,16 @@ public class AttackingComponent : MobBehaviour
     }
 
     /// <summary>
-    /// Triggers the trigger for the attack animation if it is not currently
-    /// playing.
+    /// Starts the attack animation, if it isn't already playing.
+    /// Returns true if it hasn't started, false if it already has.
     /// </summary>
-    public void TriggerAttackEvent()
+    public bool Attack()
     {
-        if(!mobAnimationController.IsPlaying("Attack"))
+        if(!isAttacking)
         {
             mobAnimationController.ActivateTrigger("OnAttack");
         }
+
+        return !isAttacking;
     }
 }

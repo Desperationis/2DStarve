@@ -13,18 +13,20 @@ public class PlayerAttackOrchestrator : NetworkOrchestrator<IPlayerState>
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
-        if(!resetState && cmd.Input.Attack && !mobAnimationController.IsPlaying("Attack"))
+        if(!resetState && cmd.Input.Attack && !attackingComponent.isAttacking)
         {
             // Attack on input
             if (BoltNetwork.IsServer)
             {
-                attackingComponent.TriggerAttackEvent();
-                EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
-                attackEvent.Send();
+                if(attackingComponent.Attack())
+                {
+                    EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
+                    attackEvent.Send();
+                }
             }
             if (BoltNetwork.IsClient)
             {
-                attackingComponent.TriggerAttackEvent();
+                attackingComponent.Attack();
             }
         }
     }
@@ -33,7 +35,7 @@ public class PlayerAttackOrchestrator : NetworkOrchestrator<IPlayerState>
     {
         if(!entity.IsControllerOrOwner)
         {
-            attackingComponent.TriggerAttackEvent();
+            attackingComponent.Attack();
         }
     }
 }
