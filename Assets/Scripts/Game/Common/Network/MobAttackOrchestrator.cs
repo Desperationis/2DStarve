@@ -1,8 +1,13 @@
-﻿/// <summary>
+﻿using UnityEngine;
+
+/// <summary>
 /// Makes attacking interfacible with AIBehaviors. Derives from  AttackBase.
 /// </summary>
-public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
+public class MobAttackOrchestrator : NetworkOrchestrator<IMobState>
 {
+    [SerializeField]
+    private AttackingComponent attackingComponent = null;
+
     /// <summary>
     /// Updates state variables to match server.
     /// </summary>
