@@ -53,7 +53,7 @@ public class MapEntityLoader : MonoBehaviour
 
     private void Awake()
     {
-        tree = (GameObject) Resources.Load("Tree");
+        tree = (GameObject) Resources.Load("Objects/Tree");
     }
 
 
