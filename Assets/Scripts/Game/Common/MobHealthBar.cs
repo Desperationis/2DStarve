@@ -2,8 +2,8 @@
 using TMPro;
 
 /// <summary>
-/// Displays a health bar by listening to value changes in a
-/// StateHealthBase derived class. 
+/// Displays a health bar by listening to value changes in a StateHealthBase
+/// derived class.
 /// </summary>
 public class MobHealthBar : MobBehaviour
 {

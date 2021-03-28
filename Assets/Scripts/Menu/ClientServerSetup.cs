@@ -4,8 +4,8 @@ using Bolt.Matchmaking;
 using UdpKit;
 
 /// <summary>
-/// A script that is called by buttons to set up the application
-/// as either a client or a server. 
+/// Interface for menu buttons to start up the game as either a server // or
+/// client.
 /// </summary>
 public class ClientServerSetup : Bolt.GlobalEventListener
 {
@@ -43,7 +43,7 @@ public class ClientServerSetup : Bolt.GlobalEventListener
         foreach (var session in sessionList)
         {
             UdpSession photonSession = session.Value;
-            
+
             if (photonSession.Source == UdpSessionSource.Photon)
             {
                 BoltMatchmaking.JoinSession(photonSession);

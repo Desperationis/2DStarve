@@ -1,8 +1,8 @@
 ﻿using Bolt;
 
 /// <summary>
-/// A script that deals with callbacks on the GameScene when
-/// the application is configured to be a server. 
+/// A script that deals with callbacks on the GameScene when the application is
+/// configured to be a server.
 /// </summary>
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "GameScene")]
 public class ServerCallbacks : Bolt.GlobalEventListener
@@ -30,7 +30,7 @@ public class ServerCallbacks : Bolt.GlobalEventListener
 
     public override void SceneLoadRemoteDone(BoltConnection connection, IProtocolToken token)
     {
-        // When a client is done loading on their end, spawn it. 
+        // When a client is done loading on their end, spawn it.
         PlayerRegistry.GetPlayer(connection).Spawn();
     }
 }

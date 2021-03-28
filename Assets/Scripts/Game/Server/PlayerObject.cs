@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Abstract representation of a player that allows for 
-/// easy creation, referencing, and destruction. This even allows
-/// the server application to play as player.
+/// Abstract representation of a player that allows for  easy creation,
+/// referencing, and destruction. This even allows the server application to
+/// play as player.
 /// </summary>
 public class PlayerObject
 {
@@ -57,8 +57,8 @@ public class PlayerObject
     }
 
     /// <summary>
-    /// Spawn at the center of the map and give the client control
-    /// over its character.
+    /// Spawn at the center of the map and give the client control over its
+    /// character.
     /// </summary>
     public void Spawn()
     {

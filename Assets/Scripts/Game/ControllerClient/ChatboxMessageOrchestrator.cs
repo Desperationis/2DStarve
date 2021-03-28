@@ -2,9 +2,8 @@
 using TMPro;
 
 /// <summary>
-/// Class dedicated to listening for messages
-/// from the server and putting them into the 
-/// chatbox.
+/// Class dedicated to listening for messages from the server and putting them
+/// into the  chatbox.
 /// </summary>
 public class ChatboxMessageOrchestrator : Bolt.GlobalEventListener
 {
@@ -25,8 +24,8 @@ public class ChatboxMessageOrchestrator : Bolt.GlobalEventListener
     }
 
     /// <summary>
-    /// Creates a text prefab as a child of this gameObject for it to
-    /// be seen in chat.
+    /// Creates a text prefab as a child of this gameObject for it to be seen in
+    /// chat.
     /// </summary>
     private void InstantiateTextPrefab(string message)
     {

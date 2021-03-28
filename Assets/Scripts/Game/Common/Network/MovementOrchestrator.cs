@@ -1,9 +1,8 @@
 ﻿using Bolt;
 
 /// <summary>
-/// Base class for movement orchestrators. Before any of that network
-/// stuff happens, this initializes the speed of MobController via 
-/// a data component.
+/// Base class for movement orchestrators. Before any of that network stuff
+/// happens, this initializes the speed of MobController via  a data component.
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public abstract class MovementOrchestrator<T> : NetworkOrchestrator<T>

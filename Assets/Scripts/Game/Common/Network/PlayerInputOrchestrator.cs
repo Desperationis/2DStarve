@@ -9,8 +9,9 @@ public class PlayerInputOrchestrator : NetworkOrchestrator<IPlayerState>
     private bool spacePressed = false;
 
     /// <summary>
-    /// If true, client will override all requested inputs to their default state 
-    /// so that the player is idle; Useful for staying still while looking at UI.
+    /// If true, client will override all requested inputs to their default
+    /// state  so that the player is idle; Useful for staying still while
+    /// looking at UI.
     /// </summary>
     public void OverrideStop(bool lockPlayer)
     {

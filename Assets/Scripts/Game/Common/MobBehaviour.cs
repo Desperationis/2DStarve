@@ -2,8 +2,8 @@
 using Bolt;
 
 /// <summary>
-/// Bolt.EntityBehaviour-derived class that exposes
-/// an easy reference to a Mob's MobController.
+/// Bolt.EntityBehaviour-derived class that exposes an easy reference to a Mob's
+/// MobController, MobAnimationController, and data component. 
 /// </summary>
 public class MobBehaviour : Bolt.EntityBehaviour
 {
@@ -12,14 +12,12 @@ public class MobBehaviour : Bolt.EntityBehaviour
     protected DataComponent dataComponent = null;
 
     /// <summary>
-    /// Searches for a component in a mob in its children and parent.
-    /// Priority is current->children->parent.
+    /// Searches for a component in a mob in its children and parent. Priority
+    /// is current->children->parent.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     public T SearchComponentInMob<T>() {
         T component = GetComponent<T>();
-        
+
         if (component == null)
         {
             component = GetComponentInChildren<T>();
@@ -41,8 +39,8 @@ public class MobBehaviour : Bolt.EntityBehaviour
 }
 
 /// <summary>
-/// Bolt.EntityBehaviour-derived class that exposes
-/// an easy reference to a Mob's MobController.
+/// Bolt.EntityBehaviour-derived class that exposes an easy reference to a Mob's
+/// MobController.
 /// </summary>
 public class MobBehaviour<T> : Bolt.EntityBehaviour<T>
 {
@@ -51,11 +49,9 @@ public class MobBehaviour<T> : Bolt.EntityBehaviour<T>
     protected DataComponent dataComponent = null;
 
     /// <summary>
-    /// Searches for a component in a mob in its children and parent.
-    /// Priority is current->children->parent.
+    /// Searches for a component in a mob in its children and parent. Priority
+    /// is current->children->parent.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     public U SearchComponentInMob<U>()
     {
         U component = GetComponent<U>();

@@ -3,8 +3,8 @@ using Bolt;
 using UdpKit;
 
 /// <summary>
-/// A script that deals with callbacks on the GameScene when
-/// the application is configured to be a client. 
+/// A script that deals with callbacks on the GameScene when the application is
+/// configured to be a client.
 /// </summary>
 [BoltGlobalBehaviour(BoltNetworkModes.Client, "GameScene")]
 public class ClientCallbacks : Bolt.GlobalEventListener

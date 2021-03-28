@@ -2,9 +2,9 @@
 using Bolt;
 
 /// <summary>
-/// Syncs most variables for a player from the server to the clients while
-/// also using client-side prediction. Due to this, this is the only script
-/// that can move the player. 
+/// Syncs most variables for a player from the server to the clients while also
+/// using client-side prediction. Due to this, this is the only script that can
+/// move the player.
 /// </summary>
 public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
 {
@@ -12,7 +12,7 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
     {
         state.SetTransforms(state.Transform, transform);
 
-        // Syncronize mobController settings on clients and server. 
+        // Syncronize mobController settings on clients and server.
         state.AddCallback("Direction", DirectionUpdate);
         state.AddCallback("Running", RunningUpdate);
     }

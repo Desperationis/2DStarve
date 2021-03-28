@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Used to mark the collision number of an object or entity; In relation
-/// to another entity's number:
+/// Used to mark the collision number of an object or entity; In relation to
+/// another entity's number:
 /// 
 /// Same number = No collision
 /// Lower Number = Pushed by it
 /// Higher Number = Is the pusher
-/// 
+///
 /// </summary>
 [DisallowMultipleComponent]
 public class CollisionMarker : MonoBehaviour
@@ -16,7 +16,7 @@ public class CollisionMarker : MonoBehaviour
     private int _collisionNumber = 0;
 
     [HideInInspector]
-    public int CollisionNumber { get { return  _collisionNumber;  } }
+    public int collisionNumber { get { return  _collisionNumber;  } }
 
 
     /// <summary>
@@ -24,7 +24,7 @@ public class CollisionMarker : MonoBehaviour
     /// </summary>
     public static bool CanCollide(CollisionMarker a, CollisionMarker b)
     {
-        return a.CollisionNumber != b.CollisionNumber;
+        return a.collisionNumber != b.collisionNumber;
     }
 
     /// <summary>
@@ -32,7 +32,7 @@ public class CollisionMarker : MonoBehaviour
     /// </summary>
     public static bool CanPush(CollisionMarker a, CollisionMarker b)
     {
-        return a.CollisionNumber > b.CollisionNumber;
+        return a.collisionNumber > b.collisionNumber;
     }
 
     /// <summary>
@@ -40,6 +40,6 @@ public class CollisionMarker : MonoBehaviour
     /// </summary>
     public static bool IsPushed(CollisionMarker a, CollisionMarker b)
     {
-        return a.CollisionNumber < b.CollisionNumber;
+        return a.collisionNumber < b.collisionNumber;
     }
 }

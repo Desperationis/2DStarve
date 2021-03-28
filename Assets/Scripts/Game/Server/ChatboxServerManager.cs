@@ -1,7 +1,7 @@
 ﻿/// <summary>
-/// A server-only class that verifies and sends back messages to clients.
-/// This is mainly intenteded to be the place where commands or private messages
-/// are only sent to a specific person or group of people.
+/// A server-only class that verifies and sends back messages to clients. This
+/// is mainly intenteded to be the place where commands or private messages are
+/// only sent to a specific person or group of people.
 /// </summary>
 [BoltGlobalBehaviour(BoltNetworkModes.Server, "GameScene")]
 public class ChatboxServerManager : Bolt.GlobalEventListener

@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
-
 /// <summary>
-/// Component that provides a SAFE reference to a mob's data.
+/// Component that provides a SAFE reference to a mob's data. i.e. runtime copy
 /// </summary>
 public class DataComponent : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class DataComponent : MonoBehaviour
     public MobMovementData movementData { get; private set; }
     public MobAIData aiData { get; private set; }
 
-    public void Awake()
+    private void Awake()
     {
         movementData = originalMovementData != null ? Object.Instantiate(originalMovementData) : null;
         aiData = originalAIData != null ? Object.Instantiate(originalAIData) : null;

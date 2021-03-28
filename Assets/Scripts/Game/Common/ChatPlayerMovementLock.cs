@@ -6,7 +6,11 @@
 /// </summary>
 public class ChatPlayerMovementLock : MonoBehaviour
 {
-    public void LockPlayer()
+    /// Functions below should ONLY go below OnSelect and OnDeselect. Unity's
+    /// stupid inputField won't let me do this on Awake() as there are no events
+    /// for them. 
+
+    private void LockPlayer()
     {
         BoltEntity player = ControlledEntity.controlledEntity;
         PlayerInputOrchestrator movementOrchestrator = player.GetComponent<PlayerInputOrchestrator>();

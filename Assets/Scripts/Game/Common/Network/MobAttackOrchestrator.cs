@@ -1,6 +1,5 @@
 ﻿/// <summary>
-/// Makes attacking interfacible with AIBehaviors. Derives from 
-/// AttackBase.
+/// Makes attacking interfacible with AIBehaviors. Derives from  AttackBase.
 /// </summary>
 public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
 {
@@ -14,8 +13,7 @@ public class MobAttackOrchestrator : AttackOrchestrator<IMobState>
 
 
     /// <summary>
-    /// Match the attacking animation with the rest of the 
-    /// clients.
+    /// Match the attacking animation with the rest of the  clients.
     /// </summary>
     private void Update()
     {

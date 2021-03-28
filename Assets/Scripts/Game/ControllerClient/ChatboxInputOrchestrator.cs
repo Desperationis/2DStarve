@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Class dedicated to sending client's chatbox
-/// input to the server.
+/// Class dedicated to sending client's chatbox input to the server.
 /// </summary>
 public class ChatboxInputOrchestrator : MonoBehaviour
 {
@@ -15,8 +14,8 @@ public class ChatboxInputOrchestrator : MonoBehaviour
     }
 
     /// <summary>
-    /// Raise a ChatMessageRequestEvent containing a chat messsage to the server. 
-    /// This is usually attached to an input field.
+    /// Raise a ChatMessageRequestEvent containing a chat messsage to the
+    /// server.  This is usually attached to an input field.
     /// </summary>
     public void RequestMessage(string message)
     {

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Component that controls attacking an entity locally.
+/// Component that adds attacking functionality to an entity.
 /// </summary>
 public class AttackingComponent : MobBehaviour
 {
@@ -20,7 +20,7 @@ public class AttackingComponent : MobBehaviour
 
     /// <summary>
     /// Sends an attack event to all colliders (filtered by the layer mask) that
-    /// are currently overlapping the attacking hitbox. This should be called 
+    /// are currently overlapping the attacking hitbox. This should be called
     /// as an animation event.
     /// </summary>
     public virtual void Attack()
@@ -41,7 +41,7 @@ public class AttackingComponent : MobBehaviour
                 {
                     if (hit != hurtbox)
                     {
-                        // Send a event to the mob's health's TakeDamage() if possible. 
+                        // Send a event to the mob's health's TakeDamage() if possible.
                         hit.SendMessage("TakeDamage", 10, SendMessageOptions.DontRequireReceiver);
                     }
                 }
@@ -51,9 +51,9 @@ public class AttackingComponent : MobBehaviour
 
 
     /// <summary>
-    /// Rotates the hitbox around the transform according to the 
-    /// cardinal direction the entity is facing; (0, -1) = 0 degrees and
-    /// (-1, 0) = 270 degrees.
+    /// Rotates the hitbox around the transform according to the  cardinal
+    /// direction the entity is facing; (0, -1) = 0 degrees and (-1, 0) = 270
+    /// degrees.
     /// </summary>
     protected void FixedUpdate()
     {
@@ -80,9 +80,15 @@ public class AttackingComponent : MobBehaviour
         }
     }
 
+    /// <summary>
+    /// Triggers the trigger for the attack animation if it is not currently
+    /// playing.
+    /// </summary>
     public void TriggerAttackEvent()
     {
-        mobAnimationController.ActivateTrigger("OnAttack");
+        if(!mobAnimationController.IsPlaying("Attack"))
+        {
+            mobAnimationController.ActivateTrigger("OnAttack");
+        }
     }
 }
-

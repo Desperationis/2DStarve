@@ -1,5 +1,5 @@
 ﻿/// <summary>
-/// Implements the interface of IMobState into StateHealthBase logic. 
+/// Implements the interface of IMobState into StateHealthBase logic.
 /// </summary>
 public class MobHealthOrchestrator : HealthOrchestrator<IMobState>
 {
@@ -10,8 +10,8 @@ public class MobHealthOrchestrator : HealthOrchestrator<IMobState>
 
     protected override int GetStateHealth()
     {
-        // Check if this entity is not being destroyed before
-        // accessing bolt properties.
+        // Check if this entity is not being destroyed before accessing bolt
+        // properties.
         if (entity.IsAttached)
         {
             return state.Health;

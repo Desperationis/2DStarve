@@ -5,7 +5,7 @@ using TMPro;
 using System.Collections;
 
 /// <summary>
-/// Adds more functionality to Unity's input field. 
+/// Adds more functionality to Unity's input field.
 /// </summary>
 public class InputFieldExpander : MonoBehaviour
 {
@@ -48,8 +48,8 @@ public class InputFieldExpander : MonoBehaviour
 
     private IEnumerator ClearText()
     {
-        // Waits till the next frame to remove Unity's weird
-        // ASCII character that's inserted after onSubmit().
+        // Waits till the next frame to remove Unity's weird ASCII character
+        // that's inserted after onSubmit().
         yield return null;
         inputField.SetTextWithoutNotify("");
     }

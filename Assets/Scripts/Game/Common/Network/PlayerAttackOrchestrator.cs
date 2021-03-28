@@ -2,8 +2,7 @@
 using Bolt;
 
 /// <summary>
-/// Client-side prediction for player attack. Derives from 
-/// AttackBase.
+/// Client-side prediction for player attack. Derives from  AttackBase.
 /// </summary>
 public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
 {
