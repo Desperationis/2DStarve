@@ -31,6 +31,7 @@ public class MapEntityLoader : MonoBehaviour
 
 
     private GameObject tree = null;
+    private GameObject campfire = null;
 
     /// <summary>
     /// TEMP for non-bolt entities; Will be replaced in the future
@@ -54,6 +55,7 @@ public class MapEntityLoader : MonoBehaviour
     private void Awake()
     {
         tree = (GameObject) Resources.Load("Objects/Tree");
+        campfire = (GameObject) Resources.Load("Objects/Campfire");
     }
 
 
@@ -79,6 +81,9 @@ public class MapEntityLoader : MonoBehaviour
                     case "Tree":
                         LoadTempLayer(layer, tree);
                         break;
+                    case "Campfire":
+                        LoadTempLayer(layer, campfire);
+                        break;
                 }
 
             }
@@ -93,6 +98,9 @@ public class MapEntityLoader : MonoBehaviour
                 {
                     case "Tree":
                         LoadTempLayer(layer, tree);
+                        break;
+                    case "Campfire":
+                        LoadTempLayer(layer, campfire);
                         break;
                 }
 

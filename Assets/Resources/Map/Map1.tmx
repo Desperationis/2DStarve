@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="left-down" width="201" height="172" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="406">
+<map version="1.5" tiledversion="1.5.0" orientation="orthogonal" renderorder="left-down" width="201" height="172" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="432">
  <properties>
   <property name="Type" value="Wolf"/>
  </properties>
@@ -180,6 +180,86 @@
 21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,22,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21,21
 </data>
  </layer>
+ <objectgroup color="#c86432" id="7" name="Campfire" tintcolor="#c86432">
+  <object id="406" x="1633.33" y="1224.67">
+   <point/>
+  </object>
+  <object id="407" x="1737.33" y="1224">
+   <point/>
+  </object>
+  <object id="408" x="1740" y="1325.33">
+   <point/>
+  </object>
+  <object id="409" x="1627.33" y="1327.33">
+   <point/>
+  </object>
+  <object id="410" x="1608" y="1008">
+   <point/>
+  </object>
+  <object id="411" x="2218" y="1068">
+   <point/>
+  </object>
+  <object id="412" x="2094" y="846">
+   <point/>
+  </object>
+  <object id="413" x="2172" y="1290">
+   <point/>
+  </object>
+  <object id="414" x="1880" y="642">
+   <point/>
+  </object>
+  <object id="415" x="1604" y="656">
+   <point/>
+  </object>
+  <object id="416" x="1280" y="652">
+   <point/>
+  </object>
+  <object id="417" x="1076" y="1010">
+   <point/>
+  </object>
+  <object id="418" x="1224" y="1006">
+   <point/>
+  </object>
+  <object id="419" x="1022" y="1314">
+   <point/>
+  </object>
+  <object id="420" x="1244" y="1324">
+   <point/>
+  </object>
+  <object id="421" x="1104" y="1414">
+   <point/>
+  </object>
+  <object id="422" x="1054.55" y="1660.61">
+   <point/>
+  </object>
+  <object id="423" x="1360.61" y="2057.58">
+   <point/>
+  </object>
+  <object id="424" x="1563.64" y="1924.24">
+   <point/>
+  </object>
+  <object id="425" x="1660.61" y="1972.73">
+   <point/>
+  </object>
+  <object id="426" x="1818.18" y="1812.12">
+   <point/>
+  </object>
+  <object id="427" x="2106.06" y="1984.85">
+   <point/>
+  </object>
+  <object id="428" x="1975.76" y="2087.88">
+   <point/>
+  </object>
+  <object id="429" x="2012.12" y="1900">
+   <point/>
+  </object>
+  <object id="430" x="1897.33" y="1158.67">
+   <point/>
+  </object>
+  <object id="431" x="1634.67" y="1540">
+   <point/>
+  </object>
+ </objectgroup>
  <objectgroup color="#199619" id="5" name="Tree">
   <object id="201" x="1433" y="1215">
    <point/>
