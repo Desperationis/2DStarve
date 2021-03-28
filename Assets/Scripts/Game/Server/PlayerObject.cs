@@ -60,11 +60,11 @@ public class PlayerObject
     /// Spawn at the center of the map and give the client control over its
     /// character.
     /// </summary>
-    public void Spawn()
+    public void Spawn(Vector3 position)
     {
         if(!character)
         {
-            character = BoltNetwork.Instantiate(BoltPrefabs.Player, Vector3.zero, Quaternion.identity);
+            character = BoltNetwork.Instantiate(BoltPrefabs.Player, position, Quaternion.identity);
 
             if(IsServer)
             {
@@ -76,7 +76,7 @@ public class PlayerObject
             }
         }
 
-        character.transform.position = Vector3.zero;
+        character.transform.position = position;
     }
 
     /// <summary>

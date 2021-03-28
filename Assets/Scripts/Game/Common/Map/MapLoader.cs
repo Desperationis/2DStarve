@@ -42,4 +42,13 @@ public class MapLoader : MonoBehaviour
     {
         onMapLoad.AddListener(call);
     }
+
+    public SuperMap GetCurrentMap()
+    {
+        if(currentMap != null)
+        {
+            return currentMap.GetComponent<SuperMap>();
+        }
+        return null;
+    }
 }
