@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Base class that synchs the HealthComponent of  a mob.
+/// Base class that synchs the HealthComponent of a mob.
 /// </summary>
 public abstract class HealthOrchestrator<T> : MobBehaviour<T>
 {

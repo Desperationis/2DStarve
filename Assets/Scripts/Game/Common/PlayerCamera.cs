@@ -33,8 +33,6 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private new Camera camera = null;
 
-    [SerializeField]
-    [ReadOnly]
     private BoltEntity controlledPlayer = null;
 
     private void Start()
