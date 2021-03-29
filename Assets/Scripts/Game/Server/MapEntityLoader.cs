@@ -80,6 +80,16 @@ public class MapEntityLoader : MonoBehaviour
                     case "Campfire":
                         LoadTempLayer(map, layer, campfire);
                         break;
+                    case "SpawnPoint":
+                        SuperObject[] entities = layer.GetComponentsInChildren<SuperObject>();
+
+                        foreach (SuperObject entity in entities)
+                        {
+                            // Spawn mobs relative to map
+                            Vector2 entityPosition = new Vector3(entity.m_X, entity.m_Y);
+                            SpawnRegistry.AddSpawnPoint(MapCoords.EntityToWorld(map, entityPosition));
+                        }
+                        break;
                 }
 
             }

@@ -19,7 +19,11 @@ public class PlayerDeathComponent : Bolt.EntityBehaviour<IPlayerState>
         if (healthValue <= 0 && BoltNetwork.IsServer)
         {
             StartCoroutine("ChangeHealthNextFrame", 100);
-            transform.position = Vector3.zero;
+            PlayerObject player = PlayerRegistry.GetPlayer(entity);
+            if(player != null)
+            {
+                player.Spawn();
+            }
         }
     }
 
