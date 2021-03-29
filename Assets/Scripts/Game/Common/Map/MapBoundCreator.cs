@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using SuperTiled2Unity;
+using Cinemachine;
+using System.Collections;
 
 /// <summary>
 /// Creates 2D box colliders on the edge of the map to prevent
@@ -10,7 +12,14 @@ public class MapBoundCreator : MonoBehaviour
     [SerializeField]
     private MapLoader mapLoader = null;
 
+    [SerializeField]
+    private PolygonCollider2D cameraBound = null;
+
+    [SerializeField]
+    private CinemachineConfiner confiner = null;
+
     private GameObject mapBound = null;
+
 
     private int width = 2;
 
@@ -58,5 +67,15 @@ public class MapBoundCreator : MonoBehaviour
 
         offset.y -= width + map.m_Height;
         SpawnBound(map, offset, size); // Right
+
+        cameraBound.SetPath(0, new[]
+        {
+            MapCoords.MapToWorld(map, new Vector2(0, 0)),
+            MapCoords.MapToWorld(map, new Vector2(map.m_Width, 0)),
+            MapCoords.MapToWorld(map, new Vector2(map.m_Width, map.m_Height)),
+            MapCoords.MapToWorld(map, new Vector2(0, map.m_Height))
+        });
+
+        confiner.InvalidatePathCache(); // Let's cinemachine know that the bound changed
     }
 }
