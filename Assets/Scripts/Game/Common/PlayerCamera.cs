@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Cinemachine;
 
 /// <summary>
 /// Singleton dedicated to following ONLY 1 player via camera.
@@ -28,13 +29,8 @@ public class PlayerCamera : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private Vector2 offCenter = Vector2.zero;
+    private new CinemachineVirtualCamera camera = null;
 
-    [SerializeField]
-    private new Camera camera = null;
-
-    [SerializeField]
-    [ReadOnly]
     private BoltEntity controlledPlayer = null;
 
     private void Start()
@@ -44,19 +40,6 @@ public class PlayerCamera : MonoBehaviour
 
     public void Follow(BoltEntity controlledPlayer)
     {
-        this.controlledPlayer = controlledPlayer;
-    }
-
-    private void LateUpdate()
-    {
-        if(controlledPlayer != null)
-        {
-            Vector3 newCameraPosition;
-            newCameraPosition.x = controlledPlayer.transform.position.x + offCenter.x;
-            newCameraPosition.y = controlledPlayer.transform.position.y + offCenter.y;
-            newCameraPosition.z = transform.position.z;
-
-            camera.transform.position = newCameraPosition;
-        }
+        camera.Follow = controlledPlayer.transform;
     }
 }

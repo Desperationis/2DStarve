@@ -1,7 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Component resposible for the death of a player. 
+/// </summary>
 public class PlayerDeathComponent : Bolt.EntityBehaviour<IPlayerState>
 {
     [SerializeField]
@@ -24,6 +26,6 @@ public class PlayerDeathComponent : Bolt.EntityBehaviour<IPlayerState>
     private IEnumerator ChangeHealthNextFrame(int healthValue)
     {
         yield return new WaitForEndOfFrame();
-        health.SetHealth(100);
+        health.SetHealth(healthValue);
     }
 }

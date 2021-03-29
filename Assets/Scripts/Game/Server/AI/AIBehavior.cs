@@ -23,19 +23,19 @@ public abstract class AIBehavior : MobBehaviour
     }
 
     /// <summary>
-    /// A rule that needs to be fulfilled for this AI to be swapped in.
-    /// If true, AISwapper will try to swap this AI for another, so long as its
-    /// priority is high enough.
+    /// A rule that needs to be fulfilled for this AI to be swapped in. If true,
+    /// AISwapper will try to swap this AI for another, so long as its priority
+    /// is high enough.
     /// </summary>
-    /// 
+    ///
     /// <returns>
     /// Returns a boolean, representing if the rule was fulfilled or not.
     /// </returns>
     public abstract bool CheckRequirement();
 
     /// <summary>
-    /// Updates AIBehavior on FixedUpdate(). This will only
-    /// be called if the AI is currently swapped in. 
+    /// Updates AIBehavior on FixedUpdate(). This will only be called if the AI
+    /// is currently swapped in.
     /// </summary>
     public virtual void UpdateAI()
     {

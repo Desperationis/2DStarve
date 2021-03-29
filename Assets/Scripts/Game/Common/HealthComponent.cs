@@ -2,13 +2,10 @@
 using UnityEngine.Events;
 
 /// <summary>
-/// Component that controls health of an entity locally.
+/// Component that controls the health of an entity locally.
 /// </summary>
 public class HealthComponent : MobBehaviour
 {
-    /// <summary>
-    /// Variable that holds a local copy of the health state. 
-    /// </summary>
     public int health { get; private set; }
 
     private class HealthEvent : UnityEvent<int> { }
@@ -47,7 +44,6 @@ public class HealthComponent : MobBehaviour
     /// <summary>
     /// Adds a listener to onHealthChange.
     /// </summary>
-    /// <param name="call"></param>
     public void AddListener(UnityAction<int> call)
     {
         onHealthChange.AddListener(call);

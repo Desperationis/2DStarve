@@ -2,8 +2,8 @@
 using UnityEngine;
 
 /// <summary>
-/// A static class that deals with finding and creating players in a 
-/// list; Only applies to the server.
+/// A static class that deals with finding and creating players in a  list; Only
+/// applies to the server.
 /// </summary>
 public static class PlayerRegistry
 {
@@ -15,8 +15,8 @@ public static class PlayerRegistry
     }
 
     /// <summary>
-    /// Returns the PlayerObject that the server application is currently
-    /// using. If it doesn't exist, it returns null. 
+    /// Returns the PlayerObject that the server application is currently using.
+    /// If it doesn't exist, it returns null.
     /// </summary>
     public static PlayerObject ServerPlayer
     {
@@ -46,8 +46,9 @@ public static class PlayerRegistry
 
 
     /// <summary>
-    /// Creates a PlayerObject in the registry using CreatePlayer(BoltConnection). This 
-    /// PlayerObject references the player the server is using. 
+    /// Creates a PlayerObject in the registry using
+    /// CreatePlayer(BoltConnection). This  PlayerObject references the player
+    /// the server is using.
     /// </summary>
     public static PlayerObject CreateServerPlayer()
     {
@@ -56,7 +57,7 @@ public static class PlayerRegistry
 
 
     /// <summary>
-    /// Same functionality as CreatePlayer(BoltConnection). 
+    /// Same functionality as CreatePlayer(BoltConnection).
     /// </summary>
     public static PlayerObject CreateClientPlayer(BoltConnection connection)
     {
@@ -64,8 +65,8 @@ public static class PlayerRegistry
     }
 
     /// <summary>
-    /// Tries to destroy an instance of a player given its connection. A value of
-    /// null will delete the server player. 
+    /// Tries to destroy an instance of a player given its connection. A value
+    /// of null will delete the server player.
     /// </summary>
     public static void DestroyPlayer(BoltConnection connection)
     {
@@ -86,7 +87,7 @@ public static class PlayerRegistry
     }
 
     /// <summary>
-    /// Searches for a player given its BoltConnection. If the value passed in 
+    /// Searches for a player given its BoltConnection. If the value passed in
     /// is null, it will return the server player.
     /// </summary>
     public static PlayerObject GetPlayer(BoltConnection connection)
@@ -101,8 +102,8 @@ public static class PlayerRegistry
 
 
     /// <summary>
-    /// Returns all the overlapping players that fall within a given circle. Returns an 
-    /// empty list if none were found.
+    /// Returns all the overlapping players that fall within a given circle.
+    /// Returns an  empty list if none were found.
     /// </summary>
     public static List<PlayerObject> OverlapCircleAll(Vector2 point, float radius)
     {
@@ -149,8 +150,8 @@ public static class PlayerRegistry
 
 
     /// <summary>
-    /// Returns the closest overlapping player to a center of a circle. Returns null
-    /// if a player wasn't found. 
+    /// Returns the closest overlapping player to a center of a circle. Returns
+    /// null if a player wasn't found.
     /// </summary>
     public static PlayerObject OverlapCircle(Vector2 point, float radius)
     {

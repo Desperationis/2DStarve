@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Base class for anything that needs to be synched over
-/// Photon Bolt.
+/// Base class for anything that needs to be synched over Photon Bolt.
 /// </summary>
 /// <typeparam name="T">Interface for the entity.</typeparam>
 public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
@@ -12,11 +11,9 @@ public class NetworkOrchestrator<T> : Bolt.EntityEventListener<T>
     protected DataComponent dataComponent = null;
 
     /// <summary>
-    /// Searches for a component in a mob in its children and parent.
-    /// Priority is current->children->parent.
+    /// Searches for a component in a mob in its children and parent. Priority
+    /// is current->children->parent.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <returns></returns>
     public U SearchComponentInMob<U>()
     {
         U component = GetComponent<U>();

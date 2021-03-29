@@ -1,13 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Sends events to progress the day.
+/// Progresses a global light over time to make it look like a day has passed.
 /// </summary>
 public class DayTimeProgressor : MonoBehaviour
 {
-    const float transitionDuration = 10.0f;
+    [SerializeField]
+    private float transitionDuration = 10.0f;
 
     private enum TIME { DAY, DUSK, NIGHT };
     private TIME pastPhase = TIME.DUSK;
@@ -82,11 +82,8 @@ public class DayTimeProgressor : MonoBehaviour
     }
 
     /// <summary>
-    /// Interpolates current Daylight color into another 
-    /// over 10 seconds.
+    /// Interpolates current Daylight color into another  over 10 seconds.
     /// </summary>
-    /// <param name="color"></param>
-    /// <returns></returns>
     private IEnumerator InterpolateTo(Color32 color)
     {
         for (int i = 0; i < Mathf.CeilToInt(transitionDuration); i++)

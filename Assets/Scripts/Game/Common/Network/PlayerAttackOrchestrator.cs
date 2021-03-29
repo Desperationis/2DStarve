@@ -2,27 +2,31 @@
 using Bolt;
 
 /// <summary>
-/// Client-side prediction for player attack. Derives from 
-/// AttackBase.
+/// Client-side prediction for player attack. Derives from  AttackBase.
 /// </summary>
-public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
+public class PlayerAttackOrchestrator : NetworkOrchestrator<IPlayerState>
 {
+    [SerializeField]
+    private AttackingComponent attackingComponent = null;
+
     public override void ExecuteCommand(Command command, bool resetState)
     {
         PlayerMovementAuth cmd = (PlayerMovementAuth)command;
 
-        if(!resetState && cmd.Input.Attack && !mobAnimationController.IsPlaying("Attack"))
+        if(!resetState && cmd.Input.Attack && !attackingComponent.isAttacking)
         {
             // Attack on input
             if (BoltNetwork.IsServer)
             {
-                attackingComponent.TriggerAttackEvent();
-                EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
-                attackEvent.Send();
+                if(attackingComponent.Attack())
+                {
+                    EntityAttackEvent attackEvent = EntityAttackEvent.Create(entity);
+                    attackEvent.Send();
+                }
             }
             if (BoltNetwork.IsClient)
             {
-                attackingComponent.TriggerAttackEvent();
+                attackingComponent.Attack();
             }
         }
     }
@@ -31,7 +35,7 @@ public class PlayerAttackOrchestrator : AttackOrchestrator<IPlayerState>
     {
         if(!entity.IsControllerOrOwner)
         {
-            attackingComponent.TriggerAttackEvent();
+            attackingComponent.Attack();
         }
     }
 }

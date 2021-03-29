@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// A custom physics controller for collisions with BoxCollider2Ds. 
-/// This is the script solely responsible for mob movement and direction.
+/// A custom physics controller for collisions with BoxCollider2Ds.  This is the
+/// script solely responsible for mob movement and direction.
 /// </summary>
 public class MobController : MonoBehaviour
 {
@@ -22,9 +22,9 @@ public class MobController : MonoBehaviour
 
     public Vector2 cardinalDirection
     {
-        // Returns the cardinal direction of the mob controller as 
-        // a normalized vector in only the 4 major directions.
-        // If not moving, return the last known cardinal direction.
+        // Returns the cardinal direction of the mob controller as  a normalized
+        // vector in only the 4 major directions. If not moving, return the last
+        // known cardinal direction.
         get
         {
             if (direction != Vector2.zero)
@@ -42,11 +42,11 @@ public class MobController : MonoBehaviour
         }
     }
 
-    public bool isMoving { 
+    public bool isMoving {
         get
         {
             return direction.sqrMagnitude != 0.0f && !movementDisabled;
-        } 
+        }
     }
 
     private void Awake()
@@ -78,12 +78,12 @@ public class MobController : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the direction the mob controller will drive the mob to 
-    /// when called with UpdateFrame(). 
+    /// Sets the direction the mob controller will drive the mob to  when called
+    /// with UpdateFrame().
     /// </summary>
     /// <param name="direction">
-    /// A vector that represents the direction of the mob controller.
-    /// This will be normalized automatically. 
+    /// A vector that represents the direction of the mob controller. This will
+    /// be normalized automatically.
     /// </param>
     public void SetDirection(Vector2 direction)
     {
@@ -115,8 +115,8 @@ public class MobController : MonoBehaviour
     }
 
     /// <summary>
-    /// Whether or not the current speed will be multiplied
-    /// by the running multiplier.
+    /// Whether or not the current speed will be multiplied by the running
+    /// multiplier.
     /// </summary>
     /// <param name="running"></param>
     public void SetRunning(bool running)
@@ -125,7 +125,7 @@ public class MobController : MonoBehaviour
     }
 
     /// <summary>
-    /// Calculate the position object this gameObject has to make to not 
+    /// Calculate the position object this gameObject has to make to not
     /// collide with any entities.
     /// </summary>
     private Vector2 CalculateCollisionOffset()
@@ -143,8 +143,8 @@ public class MobController : MonoBehaviour
 
             if(hitMarker)
             {
-                // Determine if this entity gets pushed by other colliders
-                // or phases through them
+                // Determine if this entity gets pushed by other colliders or
+                // phases through them
                 if (CollisionMarker.IsPushed(collisionMarker, hitMarker))
                 {
                     ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
@@ -162,8 +162,7 @@ public class MobController : MonoBehaviour
 
 
     /// <summary>
-    /// Updates the controller by a single frame based on a
-    /// delta time.
+    /// Updates the controller by a single frame based on a delta time.
     /// </summary>
     public void UpdateFrame(float deltaTime)
     {
@@ -173,7 +172,7 @@ public class MobController : MonoBehaviour
         {
             calculatedVelocity *= runningMultiplier;
         }
-        
+
         if(!movementDisabled)
         {
             transform.position += calculatedVelocity;

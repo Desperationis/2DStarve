@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// Controls the animation variables of a mob's animator and gives
-/// information about them.
+/// Controls the animation variables of a mob's animator and gives information
+/// about them.
 /// </summary>
 public class MobAnimationController : MobBehaviour
 {
@@ -51,7 +51,6 @@ public class MobAnimationController : MobBehaviour
     private void FlipAnimation()
     {
         // X component determines the direction of flip.
-
         bool flipRightNow = mobController.cardinalDirection.x < 0 ? true : false;
 
         flipRightNow = inverseDirection ? !flipRightNow : flipRightNow;
