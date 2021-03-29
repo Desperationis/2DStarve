@@ -7,7 +7,7 @@
 public class MobController : MonoBehaviour
 {
     [SerializeField]
-    private BoxCollider2D boxCollider = null;
+    private Rigidbody2D rigidBody = null;
 
     [SerializeField]
     public CollisionMarker collisionMarker = null;
@@ -124,49 +124,14 @@ public class MobController : MonoBehaviour
         isRunning = running;
     }
 
-    /// <summary>
-    /// Calculate the position object this gameObject has to make to not
-    /// collide with any entities.
-    /// </summary>
-    private Vector2 CalculateCollisionOffset()
-    {
-        Collider2D[] colliderHits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0.0f);
-
-        Vector2 offset = Vector2.zero;
-
-        foreach (Collider2D hit in colliderHits)
-        {
-            if (hit == boxCollider) continue;
-
-            // Phase through if hit marker is not found
-            CollisionMarker hitMarker = hit.GetComponent<CollisionMarker>();
-
-            if(hitMarker)
-            {
-                // Determine if this entity gets pushed by other colliders or
-                // phases through them
-                if (CollisionMarker.IsPushed(collisionMarker, hitMarker))
-                {
-                    ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-
-                    if (colliderDistance.isOverlapped)
-                    {
-                        offset += colliderDistance.pointA - colliderDistance.pointB;
-                    }
-                }
-            }
-        }
-
-        return offset;
-    }
-
 
     /// <summary>
     /// Updates the controller by a single frame based on a delta time.
     /// </summary>
     public void UpdateFrame(float deltaTime)
     {
-        Vector3 calculatedVelocity = (Vector3)direction * speed * deltaTime;
+        rigidBody.velocity = Vector2.zero;
+        Vector3 calculatedVelocity = (Vector3)direction * speed;
 
         if(isRunning)
         {
@@ -175,9 +140,7 @@ public class MobController : MonoBehaviour
 
         if(!movementDisabled)
         {
-            transform.position += calculatedVelocity;
+            rigidBody.velocity = calculatedVelocity;
         }
-
-        transform.position += (Vector3)CalculateCollisionOffset();
     }
 }

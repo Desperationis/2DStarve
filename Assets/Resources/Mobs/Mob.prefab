@@ -41,7 +41,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -1.3}
@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 8175371536893970623}
   - component: {fileID: 773239545976886358}
   - component: {fileID: 1806403861515501488}
+  - component: {fileID: 7208648102281174983}
   m_Layer: 9
   m_Name: Mob
   m_TagString: Mob
@@ -172,6 +173,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a065a6e3295493847bd0ea3f8dba8773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rigidBody: {fileID: 7208648102281174983}
 --- !u!114 &3372848086321601069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc554962e22863d4ab793220c3ffc1ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCollider: {fileID: 9107362960756927989}
+  rigidBody: {fileID: 7208648102281174983}
   collisionMarker: {fileID: 6434208019029866089}
   _cardinalDirection: {x: 0, y: -1}
 --- !u!61 &9107362960756927989
@@ -395,6 +397,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!50 &7208648102281174983
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948667385073592059}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!1001 &7402665290004290583
 PrefabInstance:
   m_ObjectHideFlags: 0

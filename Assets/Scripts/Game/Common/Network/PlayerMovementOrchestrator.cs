@@ -8,6 +8,9 @@ using Bolt;
 /// </summary>
 public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
 {
+    [SerializeField]
+    private Rigidbody2D rigidBody = null;
+
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);
@@ -27,6 +30,14 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
         mobController.SetRunning(state.Running);
     }
 
+    private void Update()
+    {
+        if (!entity.IsControllerOrOwner && !BoltNetwork.IsServer)
+        {
+            rigidBody.velocity = new Vector2(0, 0);
+        }
+    }
+
     public override void ExecuteCommand(Command command, bool resetState)
     {
         // Bolt saves a query of inputs and slowly fixes the divergence of the
@@ -37,6 +48,7 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
         {
             // If the client goes to far, rewind it back to original position.
             transform.position = cmd.Result.Position;
+            rigidBody.velocity = cmd.Result.Velocity;
         }
         else
         {
@@ -61,7 +73,14 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
 
             mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
 
+            if(BoltNetwork.IsClient)
+            {
+                Physics2D.autoSimulation = false;
+                Physics2D.Simulate(Time.deltaTime);
+            }
+
             cmd.Result.Position = transform.position;
+            cmd.Result.Velocity = rigidBody.velocity;
         }
 
     }

@@ -7,6 +7,9 @@ using Bolt;
 /// </summary>
 public class MobMovementOrchestrator : MovementOrchestrator<IMobState>
 {
+    [SerializeField]
+    private Rigidbody2D rigidBody = null;
+
     public override void Attached()
     {
         state.SetTransforms(state.Transform, transform);
@@ -24,6 +27,14 @@ public class MobMovementOrchestrator : MovementOrchestrator<IMobState>
     protected override void RunningUpdate()
     {
         mobController.SetRunning(state.Running);
+    }
+
+    private void Update()
+    {
+        if(BoltNetwork.IsClient)
+        {
+            rigidBody.velocity = new Vector2(0, 0);
+        }
     }
 
 
