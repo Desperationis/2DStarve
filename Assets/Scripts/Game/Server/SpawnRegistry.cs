@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// A static class that deals with holding spawn points. This 
 /// is only used server-side.
 /// </summary>
-public class SpawnRegistry : MonoBehaviour
+public class SpawnRegistry
 {
     private static List<Vector2> spawnPoints = new List<Vector2>();
 
