@@ -60,7 +60,11 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
             }
 
             mobController.UpdateFrame();
-            PhysicsUpdater.Simulate();
+
+            if(entity.HasControl)
+            {
+                PhysicsUpdater.Simulate();
+            }
 
             cmd.Result.Position = transform.position;
         }
