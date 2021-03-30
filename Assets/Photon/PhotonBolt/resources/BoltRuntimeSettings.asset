@@ -63,7 +63,7 @@ MonoBehaviour:
   photonAppId: 53a0c4d8-2a08-420c-a725-89edd194706e
   photonUsePunch: 1
   photonCloudRegionIndex: 14
-  instantiateMode: 2
+  instantiateMode: 1
   globalEntityBehaviourQueryOption: 3
   globalEntityPriorityCalculatorQueryOption: 3
   globalEntityReplicationFilterQueryOption: 3
