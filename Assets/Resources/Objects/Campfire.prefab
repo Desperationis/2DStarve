@@ -245,7 +245,17 @@ PrefabInstance:
     - target: {fileID: 8189094022252591051, guid: db3f1e2e3bbc10b4c9a168601fad2ee3,
         type: 3}
       propertyPath: m_Intensity
-      value: 1.3
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189094022252591051, guid: db3f1e2e3bbc10b4c9a168601fad2ee3,
+        type: 3}
+      propertyPath: m_FalloffIntensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8189094022252591051, guid: db3f1e2e3bbc10b4c9a168601fad2ee3,
+        type: 3}
+      propertyPath: m_PointLightInnerRadius
+      value: 0.180966
       objectReference: {fileID: 0}
     - target: {fileID: 8189094022252591051, guid: db3f1e2e3bbc10b4c9a168601fad2ee3,
         type: 3}
