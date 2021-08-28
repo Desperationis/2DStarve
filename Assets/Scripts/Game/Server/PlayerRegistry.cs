@@ -2,7 +2,7 @@
 using UnityEngine;
 
 /// <summary>
-/// A static class that deals with finding and creating players in a  list; Only
+/// A static class that deals with finding and creating players in a list; Only
 /// applies to the server.
 /// </summary>
 public static class PlayerRegistry
@@ -98,6 +98,23 @@ public static class PlayerRegistry
         }
 
         return PlayerObject.LookupConnection(connection);
+    }
+
+    /// <summary>
+    /// Searches for a player given its BoltEntity. If not found,
+    /// returns null.
+    /// </summary>
+    public static PlayerObject GetPlayer(BoltEntity entity)
+    {
+        foreach(PlayerObject player in _players)
+        {
+            if(player.character == entity)
+            {
+                return player;
+            }
+        }
+
+        return null;
     }
 
 

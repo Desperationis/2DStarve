@@ -22,7 +22,7 @@ public class CloseAttackAI : AIBehavior
         {
             mobController.SetDirection(closestPlayer.character.transform.position - transform.position);
         }
-        mobController.UpdateFrame(Time.fixedDeltaTime);
+        mobController.UpdateFrame();
 
         if(!attackingComponent.isAttacking && attackTimer < Time.time)
         {

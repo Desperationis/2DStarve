@@ -57,14 +57,13 @@ public class PlayerObject
     }
 
     /// <summary>
-    /// Spawn at the center of the map and give the client control over its
-    /// character.
+    /// Spawn at the oldest known spawn point.
     /// </summary>
-    public void Spawn(Vector3 position)
+    public void Spawn()
     {
         if(!character)
         {
-            character = BoltNetwork.Instantiate(BoltPrefabs.Player, position, Quaternion.identity);
+            character = BoltNetwork.Instantiate(BoltPrefabs.Player, SpawnRegistry.GetSpawnPoint(), Quaternion.identity);
 
             if(IsServer)
             {
@@ -76,7 +75,7 @@ public class PlayerObject
             }
         }
 
-        character.transform.position = position;
+        character.transform.position = SpawnRegistry.GetSpawnPoint();
     }
 
     /// <summary>

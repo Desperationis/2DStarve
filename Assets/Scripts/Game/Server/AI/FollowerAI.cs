@@ -14,7 +14,7 @@ public class FollowerAI : AIBehavior
         {
             mobController.SetRunning(true);
             mobController.SetDirection(nearestPlayer.character.transform.position - transform.position);
-            mobController.UpdateFrame(Time.fixedDeltaTime);
+            mobController.UpdateFrame();
         }
 
     }

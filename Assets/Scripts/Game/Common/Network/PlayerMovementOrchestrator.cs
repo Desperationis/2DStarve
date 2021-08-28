@@ -59,7 +59,12 @@ public class PlayerMovementOrchestrator : MovementOrchestrator<IPlayerState>
                 state.Running = mobController.isRunning;
             }
 
-            mobController.UpdateFrame(BoltNetwork.FrameDeltaTime);
+            mobController.UpdateFrame();
+
+            if(entity.HasControl)
+            {
+                PhysicsUpdater.Simulate();
+            }
 
             cmd.Result.Position = transform.position;
         }

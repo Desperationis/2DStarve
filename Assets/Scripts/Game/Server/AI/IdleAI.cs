@@ -31,7 +31,7 @@ public class IdleAI : AIBehavior
             switchTimer = Time.time + GetWaitingDelay();
         }
 
-        mobController.UpdateFrame(Time.fixedDeltaTime);
+        mobController.UpdateFrame();
     }
 
     public float GetWaitingDelay()
